@@ -21,6 +21,7 @@ $RECYCLE.BIN/
 *.exe
 *.out
 *.app
+*.manifest
 
 # =========================
 # Operating System Files
