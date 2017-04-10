@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrisonersDilemmaCA", "PrisonersDilemmaCA\PrisonersDilemmaCA.csproj", "{ED103950-12E1-4A9C-B5B8-C909C16395C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrisonersDilemmaCATests", "PrisonersDilemmaCATests\PrisonersDilemmaCATests.csproj", "{EB3348C0-2893-4628-81B7-0374187C32FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED103950-12E1-4A9C-B5B8-C909C16395C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED103950-12E1-4A9C-B5B8-C909C16395C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED103950-12E1-4A9C-B5B8-C909C16395C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED103950-12E1-4A9C-B5B8-C909C16395C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB3348C0-2893-4628-81B7-0374187C32FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB3348C0-2893-4628-81B7-0374187C32FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB3348C0-2893-4628-81B7-0374187C32FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB3348C0-2893-4628-81B7-0374187C32FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
