@@ -17,7 +17,7 @@ namespace PrisonersDilemmaCA
     public interface IStrategy
     {
         #region methods
-        void step(Cell cell, List<Cell> neighbors);
+        Move chooseMove(Cell cell, List<Cell> neighbors);
         Color getColor();
         #endregion
     }

@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+    Class           :   StratRandom.cs
+    Description     :   Random strategy.
+    Author          :   SEEMULLER Julien
+    Date            :   10.04.2017
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -7,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace PrisonersDilemmaCA
 {
-    public class TitForTat : IStrategy
+    public class StratRandom : IStrategy
     {
         #region fields
         #endregion
@@ -19,14 +26,14 @@ namespace PrisonersDilemmaCA
         #endregion
 
         #region methods
-        public void step(Cell cell, List<Cell> neighbors)
+        public Move chooseMove(Cell cell, List<Cell> neighbors)
         {
             throw new NotImplementedException();
         }
 
         public System.Drawing.Color getColor()
         {
-            return Color.FromArgb(231, 76, 60);
+            return Color.FromArgb(41, 128, 185);
         }
         #endregion
     }

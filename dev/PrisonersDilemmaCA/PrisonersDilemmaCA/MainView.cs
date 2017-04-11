@@ -12,16 +12,18 @@ namespace PrisonersDilemmaCA
 {
     public partial class MainView : Form
     {
-        Grid cellularAutomaton;
-        //int nbLines = 10;
-        //int nbCols = 10;
+        Grid mainGrid;
+        PayoffMatrix payoffMatrix;
 
         public MainView()
         {
             InitializeComponent();
 
+            // Initialize the payoff matrix with default values
+            payoffMatrix = new PayoffMatrix();
+
             // Initialize our grid of cells
-            cellularAutomaton = new Grid(pbGrid.Width, pbGrid.Height, tbLines.Value, tbColumns.Value);
+            mainGrid = new Grid(pbGrid.Width, pbGrid.Height, tbLines.Value, tbColumns.Value, payoffMatrix);
         }
 
         /// <summary>
@@ -39,17 +41,31 @@ namespace PrisonersDilemmaCA
         private void pbGrid_Paint(object sender, PaintEventArgs e)
         {
             // Draw code here
-            cellularAutomaton.draw(e.Graphics);
+            mainGrid.draw(e.Graphics);
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            cellularAutomaton = new Grid(pbGrid.Width, pbGrid.Height, tbLines.Value, tbColumns.Value);
+            mainGrid = new Grid(pbGrid.Width, pbGrid.Height, tbLines.Value, tbColumns.Value, payoffMatrix);
         }
 
         private void trackBar2_Scroll(object sender, EventArgs e)
         {
-            cellularAutomaton = new Grid(pbGrid.Width, pbGrid.Height, tbLines.Value, tbColumns.Value);
+            mainGrid = new Grid(pbGrid.Width, pbGrid.Height, tbLines.Value, tbColumns.Value, payoffMatrix);
+        }
+
+        // Open the generation form
+        private void generateNewBoardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // Open the payoff matrix parameters
+        private void payoffMatrixToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Pass the PayoffMatrix object as parameter to the form and open it
+            PayoffMatrixView matrixView = new PayoffMatrixView(payoffMatrix);
+            matrixView.Show();
         }
     }
 }

@@ -22,15 +22,16 @@ namespace PrisonersDilemmaCA
         public const int NEAREST_NEIGHBOR_RANGE = 1;
         #endregion
 
-        private List<Cell> _cells;
+        private Cell[,] _cells;
         private double _width;
         private double _height;
         private int _nbLines;
         private int _nbCols;
+        private PayoffMatrix _payoffMatrix;
         #endregion
 
         #region properties
-        public List<Cell> Cells
+        public Cell[,] Cells
         {
             get { return _cells; }
             set { _cells = value; }
@@ -59,6 +60,12 @@ namespace PrisonersDilemmaCA
             get { return _nbLines; }
             set { _nbLines = value; }
         }
+
+        public PayoffMatrix PayoffMatrix
+        {
+            get { return _payoffMatrix; }
+            set { _payoffMatrix = value; }
+        }
         #endregion
 
         #region constructors
@@ -69,19 +76,20 @@ namespace PrisonersDilemmaCA
         /// <param name="height">The height of the grid in pixels</param>
         /// <param name="nbCols">The number of columns of the grid</param>
         /// <param name="nbLines">The number of lines of the grid</param>
-        public Grid(int width, int height, int nbLines, int nbCols)
+        public Grid(int width, int height, int nbLines, int nbCols, PayoffMatrix matrix)
         {
-            this.Width   = width;
-            this.Height  = height;
+            this.Width = width;
+            this.Height = height;
             this.NbLines = nbLines;
-            this.NbCols  = nbCols;
+            this.NbCols = nbCols;
+            this.PayoffMatrix = matrix;
 
             // Initialize our list of cells
-            this.Cells = new List<Cell>();
+            this.Cells = new Cell[nbLines, nbCols];
 
             // Calculate the width and the height of a cell
-            double cellWidth  =  this.Width  / nbCols;
-            double cellHeight =  this.Height / nbLines;
+            double cellWidth = this.Width / nbCols;
+            double cellHeight = this.Height / nbLines;
 
             // Go through each possible slot in the grid
             for (int y = 0; y < this.NbLines; y++)
@@ -89,14 +97,14 @@ namespace PrisonersDilemmaCA
                 for (int x = 0; x < this.NbCols; x++)
                 {
                     // Create a temporary cell with the default strategy
-                    Cell tmpCell = new Cell(x, y);
+                    Cell tmpCell = new Cell(x, y, this.PayoffMatrix);
 
                     // Set the cell's height according to the grid's need
                     tmpCell.Width = cellWidth;
                     tmpCell.Height = cellHeight;
 
                     // Add the cell to the list
-                    this.Cells.Add(tmpCell);
+                    this.Cells[y, x] = tmpCell;
                 }
             }
 
@@ -123,9 +131,7 @@ namespace PrisonersDilemmaCA
             int newY = point.Y;
 
             // Return the correct cell
-            // The position in the list is equal to x + (y * 10)
-            // ex : x = 1, y = 2 -> i = 21 in the list of cells
-            return this.Cells[newX + (newY * 10)];
+            return this.Cells[newY, newX];
         }
 
         /// <summary>
@@ -208,10 +214,9 @@ namespace PrisonersDilemmaCA
                 cell.draw(g);
             }
 
-            
-            // Get the cell width
-            int cellWidth = Convert.ToInt32(this.Cells.First().Width);
-            int cellHeight = Convert.ToInt32(this.Cells.First().Height);
+            // Get the cell width (take the first one in the list
+            int cellWidth = Convert.ToInt32(this.Cells[0, 0].Width);
+            int cellHeight = Convert.ToInt32(this.Cells[0, 0].Height);
 
             // Draw the lines
             for (int y = 0; y <= this.NbLines; y++)

@@ -13,11 +13,11 @@ namespace PrisonersDilemmaCA.Tests
         [TestMethod()]
         public void DesignatedConstructorTest()
         {
-            Grid myGrid = new Grid(50, 100, 10, 20);
+            Grid myGrid = new Grid(50, 100, 10, 20, new PayoffMatrix());
 
             // Check if we have the correct number of cells
             int expectedNbCells = 10 * 20;
-            Assert.AreEqual(expectedNbCells, myGrid.Cells.Count);
+            Assert.AreEqual(expectedNbCells, myGrid.Cells.Length);
 
             // Check if the values sent are correct
             Assert.AreEqual(50, myGrid.Width);
@@ -29,7 +29,7 @@ namespace PrisonersDilemmaCA.Tests
         [TestMethod()]
         public void getPointClampedInGridTest()
         {
-            Grid myGrid = new Grid(100, 100, 10, 10);
+            Grid myGrid = new Grid(100, 100, 10, 10, new PayoffMatrix());
 
             // Values to send through the function
             int sentX1 = 12;
@@ -54,7 +54,7 @@ namespace PrisonersDilemmaCA.Tests
         [TestMethod()]
         public void getCellTest()
         {
-            Grid myGrid = new Grid(100, 100, 10, 10);
+            Grid myGrid = new Grid(100, 100, 10, 10, new PayoffMatrix());
             Cell actual;
 
             // Values to send through the function
@@ -62,12 +62,17 @@ namespace PrisonersDilemmaCA.Tests
             int y1 = 10;
             int x2 = 11;
             int y2 = 7;
+            int x3 = -1;
+            int y3 = -1;
 
             int expectedX1 = 0;
             int expectedY1 = 0;
 
             int expectedX2 = 1;
             int expectedY2 = 7;
+
+            int expectedX3 = 9;
+            int expectedY3 = 9;
 
             // Compare 1
             actual = myGrid.getCell(x1, y1);
@@ -78,14 +83,24 @@ namespace PrisonersDilemmaCA.Tests
             actual = myGrid.getCell(x2, y2);
             Assert.AreEqual(expectedX2, actual.X);
             Assert.AreEqual(expectedY2, actual.Y);
+
+            // Compare 3
+            actual = myGrid.getCell(x3, y3);
+            Assert.AreEqual(expectedX3, actual.X);
+            Assert.AreEqual(expectedY3, actual.Y);
         }
 
         [TestMethod()]
         public void findCellNeighborsTest()
         {
-            Grid myGrid = new Grid(100, 100, 10, 10);
+            Grid myGrid = new Grid(100, 100, 20, 20, new PayoffMatrix());
             List<Cell> actual = myGrid.findCellNeighbors(myGrid.getCell(11,0));
-            int expectedCount = 8 * Grid.NEAREST_NEIGHBOR_RANGE;
+
+            // Test the actual number of neighbors
+            // 1) Find the width of the "grid" around our cell (neighbor grid)
+            // 2) Find the area of the grid and substract our own cell (in the center)
+            int diameterOfNeighborGrid = (Grid.NEAREST_NEIGHBOR_RANGE * 2) + 1;
+            int expectedCount = (diameterOfNeighborGrid * diameterOfNeighborGrid) - 1;
 
             Assert.AreEqual(expectedCount, actual.Count);
         }

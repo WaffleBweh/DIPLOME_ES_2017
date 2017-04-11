@@ -20,8 +20,8 @@ namespace PrisonersDilemmaCA
         #region fields
 
         #region consts & enums
-        private static readonly IStrategy DEFAULT_STRATEGY = new TitForTat();
-        public enum Move { None, Cooperate, Defect }
+        private static readonly IStrategy DEFAULT_STRATEGY = new StratTitForTat();
+
         #endregion
 
         private int _x;
@@ -32,6 +32,7 @@ namespace PrisonersDilemmaCA
         private IStrategy _strategy;
         private Color _color;
         private List<Cell> _neighbors;
+        private PayoffMatrix _payoffMatrix;
         private Move nextMove;
         #endregion
 
@@ -66,10 +67,16 @@ namespace PrisonersDilemmaCA
             set { _score = value; }
         }
 
-        internal IStrategy Strategy
+        public IStrategy Strategy
         {
             get { return _strategy; }
             set { _strategy = value; }
+        }
+
+        public PayoffMatrix PayoffMatrix
+        {
+            get { return _payoffMatrix; }
+            set { _payoffMatrix = value; }
         }
 
         public Color Color
@@ -98,11 +105,17 @@ namespace PrisonersDilemmaCA
         /// <param name="x">X coordinate of the cell on the grid</param>
         /// <param name="y">Y coordinate of the cell on the grid</param>
         /// <param name="strategy">Current strategy of the cell</param>
-        public Cell(int x, int y, IStrategy strategy)
+        /// <param name="matrix">Payoff matrix used to determine the score of each cell</param>
+        public Cell(int x, int y, IStrategy strategy, PayoffMatrix matrix)
         {
             this.X = x;
             this.Y = y;
             this.Strategy = strategy;
+            this.PayoffMatrix = matrix;
+            this.Score = 0;
+
+            this.Neighbors = new List<Cell>();
+
             // Get the color of the cell from the current strategy
             this.Color = this.Strategy.getColor();
             // Starts with no moves
@@ -115,7 +128,8 @@ namespace PrisonersDilemmaCA
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        public Cell(int x, int y) : this(x, y, DEFAULT_STRATEGY)
+        public Cell(int x, int y, PayoffMatrix matrix)
+            : this(x, y, DEFAULT_STRATEGY, matrix)
         {
             // No code
         }
@@ -139,6 +153,26 @@ namespace PrisonersDilemmaCA
 
             // Draw the cell
             g.FillRectangle(brush, realXPos, realYPos, roundedWidth, roundedHeight);
+        }
+
+        /// <summary>
+        /// Plays a game of the prisoners dilemma with the cell's neighbors using the cell's current strategy
+        /// </summary>
+        public void step()
+        {
+            // Choose the next move using our strategy
+            this.nextMove = this.Strategy.chooseMove(this, this.Neighbors);
+
+            // Go and play with each of our neighbors
+            List<int> scores = new List<int>();
+            foreach (Cell neighbor in this.Neighbors)
+            {
+                // Play a game and store the result
+                scores.Add(PayoffMatrix.returnPayoff(this.nextMove, neighbor.nextMove));
+            }
+
+            // We get the average score of the cell
+            this.Score = (int)Math.Floor(scores.Average());
         }
         #endregion
     }
