@@ -23,8 +23,8 @@ namespace PrisonersDilemmaCA
         #endregion
 
         private Cell[,] _cells;
-        private double _width;
-        private double _height;
+        private int _width;
+        private int _height;
         private int _nbLines;
         private int _nbCols;
         private PayoffMatrix _payoffMatrix;
@@ -37,13 +37,13 @@ namespace PrisonersDilemmaCA
             set { _cells = value; }
         }
 
-        public double Width
+        public int Width
         {
             get { return _width; }
             set { _width = value; }
         }
 
-        public double Height
+        public int Height
         {
             get { return _height; }
             set { _height = value; }
@@ -88,8 +88,8 @@ namespace PrisonersDilemmaCA
             this.Cells = new Cell[nbLines, nbCols];
 
             // Calculate the width and the height of a cell
-            double cellWidth = this.Width / nbCols;
-            double cellHeight = this.Height / nbLines;
+            int cellWidth = this.Width / nbCols;
+            int cellHeight = this.Height / nbLines;
 
             // Go through each possible slot in the grid
             for (int y = 0; y < this.NbLines; y++)
@@ -215,15 +215,15 @@ namespace PrisonersDilemmaCA
             }
 
             // Get the cell width (take the first one in the list
-            int cellWidth = Convert.ToInt32(this.Cells[0, 0].Width);
-            int cellHeight = Convert.ToInt32(this.Cells[0, 0].Height);
+            int cellWidth = this.Cells[0, 0].Width;
+            int cellHeight = this.Cells[0, 0].Height;
 
             // Draw the lines
             for (int y = 0; y <= this.NbLines; y++)
             {
                 int startX = 0;
                 int startY = y * cellHeight;
-                int endX = Convert.ToInt32(this.Width);
+                int endX = this.Width;
                 int endY = y * cellHeight;
 
                 // If we are on the last line, account for the 1 extra pixel
@@ -242,7 +242,7 @@ namespace PrisonersDilemmaCA
                 int startX = x * cellWidth;
                 int startY = 0;
                 int endX = x * cellWidth;
-                int endY = Convert.ToInt32(this.Height);
+                int endY = this.Height;
 
                 // If we are on the last line, account for the 1 extra pixel
                 if (x == this.NbCols)

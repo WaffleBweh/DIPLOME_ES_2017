@@ -26,8 +26,8 @@ namespace PrisonersDilemmaCA
 
         private int _x;
         private int _y;
-        private double _width;
-        private double _height;
+        private int _width;
+        private int _height;
         private int _score;
         private IStrategy _strategy;
         private Color _color;
@@ -49,13 +49,13 @@ namespace PrisonersDilemmaCA
             set { _y = value; }
         }
 
-        public double Width
+        public int Width
         {
             get { return _width; }
             set { _width = value; }
         }
 
-        public double Height
+        public int Height
         {
             get { return _height; }
             set { _height = value; }
@@ -146,13 +146,11 @@ namespace PrisonersDilemmaCA
             SolidBrush brush = new SolidBrush(this.Color);
 
             // Calculate the positions
-            int roundedHeight = Convert.ToInt32(this.Height);
-            int roundedWidth = Convert.ToInt32(this.Width);
-            int realXPos = this.X * roundedWidth;
-            int realYPos = this.Y * roundedHeight;
+            int realXPos = this.X * this.Width;
+            int realYPos = this.Y * this.Height;
 
             // Draw the cell
-            g.FillRectangle(brush, realXPos, realYPos, roundedWidth, roundedHeight);
+            g.FillRectangle(brush, realXPos, realYPos, this.Width, this.Height);
         }
 
         /// <summary>

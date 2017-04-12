@@ -14,11 +14,20 @@ namespace PrisonersDilemmaCA
     {
         Grid mainGrid;
         PayoffMatrix payoffMatrix;
+        List<IStrategy> availableStrategies;
 
         public MainView()
         {
             InitializeComponent();
 
+            // Make a list of all our available strategies
+            availableStrategies = new List<IStrategy>();
+            // To add more strategies, add them to the list
+            availableStrategies.Add(new StratRandom());
+            availableStrategies.Add(new StratTitForTat());
+            availableStrategies.Add(new StratRandom());
+            availableStrategies.Add(new StratTitForTat());
+            availableStrategies.Add(new StratRandom());
             // Initialize the payoff matrix with default values
             payoffMatrix = new PayoffMatrix();
 
@@ -34,7 +43,6 @@ namespace PrisonersDilemmaCA
         /// <param name="e"></param>
         private void MainTimer_Tick(object sender, EventArgs e)
         {
-
             Refresh();
         }
 
@@ -44,12 +52,30 @@ namespace PrisonersDilemmaCA
             mainGrid.draw(e.Graphics);
         }
 
+        /// <summary>
+        /// Updates when changing the number of cells horizontally
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            mainGrid = new Grid(pbGrid.Width, pbGrid.Height, tbLines.Value, tbColumns.Value, payoffMatrix);
+            UpdateGrid();
         }
 
+        /// <summary>
+        /// Updates when changing the number of cells vertically
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void trackBar2_Scroll(object sender, EventArgs e)
+        {
+            UpdateGrid();
+        }
+
+        /// <summary>
+        /// Updates the grid with new values
+        /// </summary>
+        private void UpdateGrid()
         {
             mainGrid = new Grid(pbGrid.Width, pbGrid.Height, tbLines.Value, tbColumns.Value, payoffMatrix);
         }
@@ -57,7 +83,9 @@ namespace PrisonersDilemmaCA
         // Open the generation form
         private void generateNewBoardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            // Pass the grid and list of strategies to the form and open them
+            GenerateView generateView = new GenerateView(mainGrid, availableStrategies);
+            generateView.Show();
         }
 
         // Open the payoff matrix parameters

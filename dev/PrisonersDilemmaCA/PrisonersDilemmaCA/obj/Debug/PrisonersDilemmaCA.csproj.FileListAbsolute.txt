@@ -8,3 +8,4 @@ C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\Prisoner
 C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCA\obj\Debug\PrisonersDilemmaCA.pdb
 C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCA\obj\Debug\PrisonersDilemmaCA.MainView.resources
 C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCA\obj\Debug\PrisonersDilemmaCA.PayoffMatrixView.resources
+C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCA\obj\Debug\PrisonersDilemmaCA.GenerateView.resources

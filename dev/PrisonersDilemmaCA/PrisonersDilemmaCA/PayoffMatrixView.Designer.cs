@@ -45,7 +45,7 @@
             this.rtbReward.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtbReward.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.rtbReward.Location = new System.Drawing.Point(84, 38);
-            this.rtbReward.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.rtbReward.Margin = new System.Windows.Forms.Padding(0);
             this.rtbReward.MaxLength = 3;
             this.rtbReward.Multiline = false;
             this.rtbReward.Name = "rtbReward";
@@ -59,7 +59,7 @@
             this.rtbSucker.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtbSucker.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.rtbSucker.Location = new System.Drawing.Point(240, 38);
-            this.rtbSucker.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.rtbSucker.Margin = new System.Windows.Forms.Padding(0);
             this.rtbSucker.MaxLength = 3;
             this.rtbSucker.Multiline = false;
             this.rtbSucker.Name = "rtbSucker";
@@ -73,7 +73,7 @@
             this.rtbTemptation.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtbTemptation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.rtbTemptation.Location = new System.Drawing.Point(84, 106);
-            this.rtbTemptation.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.rtbTemptation.Margin = new System.Windows.Forms.Padding(0);
             this.rtbTemptation.MaxLength = 3;
             this.rtbTemptation.Multiline = false;
             this.rtbTemptation.Name = "rtbTemptation";
@@ -87,7 +87,7 @@
             this.rtbPunishment.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtbPunishment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.rtbPunishment.Location = new System.Drawing.Point(240, 106);
-            this.rtbPunishment.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.rtbPunishment.Margin = new System.Windows.Forms.Padding(0);
             this.rtbPunishment.MaxLength = 3;
             this.rtbPunishment.Multiline = false;
             this.rtbPunishment.Name = "rtbPunishment";
@@ -178,7 +178,7 @@
             this.MinimizeBox = false;
             this.Name = "PayoffMatrixView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "PayoffMatrixView";
+            this.Text = "Payoff matrix settings";
             this.ResumeLayout(false);
 
         }
