@@ -13,7 +13,9 @@ namespace PrisonersDilemmaCA
 {
     public partial class GenerateView : Form
     {
-        Grid tmpGrid;
+        public Grid currentGrid { get; set; }
+        public List<IStrategy> strategies { get; set; }
+
         int nbOfStrategies;
         int heightOfComponents = 40;
         int widthOfComponents = 150;
@@ -23,21 +25,19 @@ namespace PrisonersDilemmaCA
         List<TrackBar> trackbars;
         List<Label> trackbarLabels;
         List<int> lastTrackbarValues;
-        List<IStrategy> strategies;
 
-        public GenerateView(Grid currentGrid, List<IStrategy> availableStrategies)
+        public GenerateView()
         {
             InitializeComponent();
-            
-            // Store the reference to our grid
-            tmpGrid = currentGrid;
-            // Make a shallow copy of the current strategies
-            strategies = new List<IStrategy>();
-            foreach (var strat in availableStrategies)
-            {
-                strategies.Add(strat);
-            }
+        }
 
+        /// <summary>
+        /// Generates the GUI dynamially on load
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GenerateView_Load(object sender, EventArgs e)
+        {
             // Store the number of available strategies we have
             nbOfStrategies = strategies.Count;
 
@@ -67,7 +67,7 @@ namespace PrisonersDilemmaCA
                 tmpLabel.Font = new Font(FontFamily.GenericSansSerif, 12);
 
                 // Add the label content
-                string strategyName = availableStrategies[i - 1].GetType().Name;
+                string strategyName = strategies[i - 1].GetType().Name;
 
                 // Filter the name (remove "Strat" and use spaces insted of CamelCase)
                 strategyName = Regex.Replace(strategyName, "(Strat)", "");
@@ -133,7 +133,7 @@ namespace PrisonersDilemmaCA
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void UpdateValues(object sender, EventArgs e) 
+        public void UpdateValues(object sender, EventArgs e)
         {
             // Get the current total percentage
             int sum = trackbars.Sum(item => item.Value);
@@ -186,35 +186,22 @@ namespace PrisonersDilemmaCA
             // Create a new random number generator
             Random rng = new Random();
 
+            Dictionary<IStrategy, int> stratAndPercent = new Dictionary<IStrategy, int>();
             List<IStrategy> toRemove = new List<IStrategy>();
-            List<int> percentages = new List<int>();
 
             // Filter out the unused strategies
             for (int i = 0; i < nbOfStrategies; i++)
             {
-                // Add every unused strategy to our "to remove" list
-                if (trackbars[i].Value <= 0)
+                if (!(trackbars[i].Value <= 0))
                 {
-                    toRemove.Add(strategies[i]);
-                }
-                else
-                {
-                    // Store the percentage of the rest
-                    percentages.Add(trackbars[i].Value);
+                    // Store the percentage of the remaining strategies
+                    stratAndPercent.Add(strategies[i], trackbars[i].Value);
                 }
             }
 
-            // Remove the unused strategies
-            foreach (var unusedItem in toRemove)
-            {
-                strategies.Remove(unusedItem);
-            }
 
-            foreach (var cell in tmpGrid.Cells)
-            {
-                // Change its strategy according to a percentage
-                
-            }
+            // Generate a new board
+            currentGrid.generate(stratAndPercent);
 
             // Close the form
             this.Close();

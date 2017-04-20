@@ -5,3 +5,11 @@ C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\Prisoner
 C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\obj\Debug\PrisonersDilemmaCATests.csprojResolveAssemblyReference.cache
 C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\obj\Debug\PrisonersDilemmaCATests.dll
 C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\obj\Debug\PrisonersDilemmaCATests.pdb
+C:\Users\Julien\Desktop\DIPLOME_ES_2017\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll
+C:\Users\Julien\Desktop\DIPLOME_ES_2017\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.pdb
+C:\Users\Julien\Desktop\DIPLOME_ES_2017\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Julien\Desktop\DIPLOME_ES_2017\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCA.exe
+C:\Users\Julien\Desktop\DIPLOME_ES_2017\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCA.pdb
+C:\Users\Julien\Desktop\DIPLOME_ES_2017\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\obj\Debug\PrisonersDilemmaCATests.csprojResolveAssemblyReference.cache
+C:\Users\Julien\Desktop\DIPLOME_ES_2017\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\obj\Debug\PrisonersDilemmaCATests.dll
+C:\Users\Julien\Desktop\DIPLOME_ES_2017\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\obj\Debug\PrisonersDilemmaCATests.pdb

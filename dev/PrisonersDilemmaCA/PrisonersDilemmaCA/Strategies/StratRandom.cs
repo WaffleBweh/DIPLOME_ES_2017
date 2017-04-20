@@ -31,7 +31,7 @@ namespace PrisonersDilemmaCA
             throw new NotImplementedException();
         }
 
-        public System.Drawing.Color getColor()
+        public Color getColor()
         {
             return Color.FromArgb(41, 128, 185);
         }

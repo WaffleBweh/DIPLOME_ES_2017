@@ -70,7 +70,11 @@ namespace PrisonersDilemmaCA
         public IStrategy Strategy
         {
             get { return _strategy; }
-            set { _strategy = value; }
+            set {
+                _strategy = value;
+                // Set the color when we change the strategy
+                this.Color = this.Strategy.getColor();
+            }
         }
 
         public PayoffMatrix PayoffMatrix

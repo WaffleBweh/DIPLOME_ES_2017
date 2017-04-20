@@ -254,6 +254,33 @@ namespace PrisonersDilemmaCA
                 g.DrawLine(Pens.Black, startX, startY, endX, endY);
             }
         }
+
+        public void generate(Dictionary<IStrategy, int> strategyAndPercentages)
+        {
+            // Create a new random number generator
+            Random rng = new Random();
+
+            // Create a list of a hundred elements representing the repartition of strategies
+            List<IStrategy> strategyPopulation = new List<IStrategy>();
+
+            // Go through each possible strategy and percentage
+            foreach (var strat in strategyAndPercentages)
+            {
+                // Fill the list with the current strategy the same number of times as the percentage
+                for (int i = 0; i < strat.Value; i++)
+                {
+                    strategyPopulation.Add(strat.Key);
+                }
+            }
+
+            // Go through each cell in the grid
+            foreach (Cell cell in this.Cells)
+            {
+                // Choose a random strategy in the list and apply it to the current cell
+                int rnd = rng.Next(strategyPopulation.Count);
+                cell.Strategy = strategyPopulation[rnd];
+            }
+        }
         #endregion
     }
 }

@@ -84,7 +84,9 @@ namespace PrisonersDilemmaCA
         private void generateNewBoardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Pass the grid and list of strategies to the form and open them
-            GenerateView generateView = new GenerateView(mainGrid, availableStrategies);
+            GenerateView generateView = new GenerateView();
+            generateView.currentGrid = this.mainGrid;
+            generateView.strategies = this.availableStrategies;
             generateView.Show();
         }
 
