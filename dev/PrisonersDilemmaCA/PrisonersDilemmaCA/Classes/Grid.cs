@@ -117,6 +117,111 @@ namespace PrisonersDilemmaCA
         #endregion
 
         #region methods
+
+        /// <summary>
+        /// Steps forward in time
+        /// </summary>
+        public void step()
+        {
+            // Store each of the cell's last move
+            foreach (Cell cell in this.Cells)
+            {
+                cell.updateLastMove();
+            }
+
+            // Choose each of the cell's next move
+            foreach (Cell cell in this.Cells)
+            {
+                cell.chooseNextMove();
+            }
+
+            // Step forward (play the game)
+            foreach (Cell cell in this.Cells)
+            {
+                cell.step();
+            }
+        }
+
+        /// <summary>
+        /// Draw every cell on the board and the grid around them
+        /// </summary>
+        /// <param name="g"></param>
+        public void draw(Graphics g)
+        {
+            // Draw each cell
+            foreach (Cell cell in this.Cells)
+            {
+                cell.draw(g);
+            }
+
+            // Get the cell width (take the first one in the list
+            int cellWidth = this.Cells[0, 0].Width;
+            int cellHeight = this.Cells[0, 0].Height;
+
+            // Draw the lines
+            for (int y = 0; y <= this.NbLines; y++)
+            {
+                int startX = 0;
+                int startY = y * cellHeight;
+                int endX = this.Width;
+                int endY = y * cellHeight;
+
+                // If we are on the last line, account for the 1 extra pixel
+                if (y == this.NbLines)
+                {
+                    startY -= 1;
+                    endY -= 1;
+                }
+
+                g.DrawLine(Pens.Black, startX, startY, endX, endY);
+            }
+
+            // Draw the columns
+            for (int x = 0; x <= this.NbCols; x++)
+            {
+                int startX = x * cellWidth;
+                int startY = 0;
+                int endX = x * cellWidth;
+                int endY = this.Height;
+
+                // If we are on the last line, account for the 1 extra pixel
+                if (x == this.NbCols)
+                {
+                    startX -= 1;
+                    endX -= 1;
+                }
+
+                g.DrawLine(Pens.Black, startX, startY, endX, endY);
+            }
+        }
+
+        public void generate(Dictionary<Strategy, int> strategyAndPercentages)
+        {
+            // Create a new random number generator
+            Random rng = new Random();
+
+            // Create a list of a hundred elements representing the repartition of strategies
+            List<Strategy> strategyPopulation = new List<Strategy>();
+
+            // Go through each possible strategy and percentage
+            foreach (var strat in strategyAndPercentages)
+            {
+                // Fill the list with the current strategy the same number of times as the percentage
+                for (int i = 0; i < strat.Value; i++)
+                {
+                    strategyPopulation.Add(strat.Key);
+                }
+            }
+
+            // Go through each cell in the grid
+            foreach (Cell cell in this.Cells)
+            {
+                // Choose a random strategy in the list and apply it to the current cell
+                int rnd = rng.Next(strategyPopulation.Count);
+                cell.Strategy = strategyPopulation[rnd];
+            }
+        }
+
         /// <summary>
         /// Gets the cell at the given position in a toroidal fashion
         /// </summary>
@@ -202,83 +307,62 @@ namespace PrisonersDilemmaCA
             return neighbors;
         }
 
+
         /// <summary>
-        /// Draw every cell on the board and the grid around them
+        /// Update the strategy of the cell that has been hit by the cursor
         /// </summary>
-        /// <param name="g"></param>
-        public void draw(Graphics g)
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="strat"></param>
+        public void onClick(int x, int y, Strategy strat)
         {
-            // Draw each cell
             foreach (Cell cell in this.Cells)
             {
-                cell.draw(g);
-            }
-
-            // Get the cell width (take the first one in the list
-            int cellWidth = this.Cells[0, 0].Width;
-            int cellHeight = this.Cells[0, 0].Height;
-
-            // Draw the lines
-            for (int y = 0; y <= this.NbLines; y++)
-            {
-                int startX = 0;
-                int startY = y * cellHeight;
-                int endX = this.Width;
-                int endY = y * cellHeight;
-
-                // If we are on the last line, account for the 1 extra pixel
-                if (y == this.NbLines)
-                {
-                    startY -= 1;
-                    endY -= 1;
-                }
-
-                g.DrawLine(Pens.Black, startX, startY, endX, endY);
-            }
-
-            // Draw the columns
-            for (int x = 0; x <= this.NbCols; x++)
-            {
-                int startX = x * cellWidth;
-                int startY = 0;
-                int endX = x * cellWidth;
-                int endY = this.Height;
-
-                // If we are on the last line, account for the 1 extra pixel
-                if (x == this.NbCols)
-                {
-                    startX -= 1;
-                    endX -= 1;
-                }
-
-                g.DrawLine(Pens.Black, startX, startY, endX, endY);
+                cell.onClick(x, y, strat);
             }
         }
 
-        public void generate(Dictionary<IStrategy, int> strategyAndPercentages)
+        /// <summary>
+        /// Set the color depending on the mode
+        /// 
+        /// When in strategy color mode  :  The color of the strategy is shown.
+        /// When in move color mode      :  The color of the last move is shown.
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        public void setColorMode(ColorMode mode)
         {
-            // Create a new random number generator
-            Random rng = new Random();
-
-            // Create a list of a hundred elements representing the repartition of strategies
-            List<IStrategy> strategyPopulation = new List<IStrategy>();
-
-            // Go through each possible strategy and percentage
-            foreach (var strat in strategyAndPercentages)
+            // Switch according to the mode
+            switch (mode)
             {
-                // Fill the list with the current strategy the same number of times as the percentage
-                for (int i = 0; i < strat.Value; i++)
-                {
-                    strategyPopulation.Add(strat.Key);
-                }
+                case ColorMode.Strategy:
+                    this.setColorFromStrategy();
+                    break;
+                case ColorMode.Move:
+                    this.setColorFromMove();
+                    break;
             }
+        }
 
-            // Go through each cell in the grid
+        /// <summary>
+        /// Sets the cell's colors from thier strategy
+        /// </summary>
+        private void setColorFromStrategy()
+        {
             foreach (Cell cell in this.Cells)
             {
-                // Choose a random strategy in the list and apply it to the current cell
-                int rnd = rng.Next(strategyPopulation.Count);
-                cell.Strategy = strategyPopulation[rnd];
+                cell.setColorFromStrategy();
+            }
+        }
+
+        /// <summary>
+        /// Sets the cell's colors from thier last move
+        /// </summary>
+        private void setColorFromMove()
+        {
+            foreach (Cell cell in this.Cells)
+            {
+                cell.setColorFromMove();
             }
         }
         #endregion

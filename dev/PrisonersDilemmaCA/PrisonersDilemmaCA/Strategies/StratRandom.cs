@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace PrisonersDilemmaCA
 {
-    public class StratRandom : IStrategy
+    public class StratRandom : Strategy
     {
         #region fields
         #endregion
@@ -26,12 +26,21 @@ namespace PrisonersDilemmaCA
         #endregion
 
         #region methods
-        public Move chooseMove(Cell cell, List<Cell> neighbors)
+        public override Move chooseMove(Cell cell, List<Cell> neighbors)
         {
-            throw new NotImplementedException();
+            // Make a new unique random number generator
+            Random rng = new Random(Guid.NewGuid().GetHashCode());
+
+            // Make a list with the possible moves
+            List<Move> availableMoves = new List<Move>();
+            availableMoves.Add(Move.Cooperate);
+            availableMoves.Add(Move.Defect);
+
+            // Return a random element in the list
+            return availableMoves[rng.Next(availableMoves.Count)];
         }
 
-        public Color getColor()
+        public override Color getColor()
         {
             return Color.FromArgb(41, 128, 185);
         }

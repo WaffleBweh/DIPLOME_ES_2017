@@ -17,10 +17,10 @@ namespace PrisonersDilemmaCA
     {
         #region fields
         #region consts
-        private const int DEFAULT_TEMPTATION_PAYOFF = 5;
-        private const int DEFAULT_REWARD_PAYOFF = 3;
-        private const int DEFAULT_PUNISHMENT_PAYOFF = 1;
-        private const int DEFAULT_SUCKER_PAYOFF = 0;
+        private const int DEFAULT_TEMPTATION_PAYOFF = 0;
+        private const int DEFAULT_REWARD_PAYOFF = 1;
+        private const int DEFAULT_PUNISHMENT_PAYOFF = 3;
+        private const int DEFAULT_SUCKER_PAYOFF = 5;
         #endregion
 
         private int _reward;        // Reward payoff
@@ -60,7 +60,7 @@ namespace PrisonersDilemmaCA
         /// Designated constructor
         /// 
         /// Rules :
-        /// T > R > P > S
+        /// T better than R better than P better than S
         /// </summary>
         /// <param name="t">Temptation payoff</param>
         /// <param name="r">Reward payoff</param>
@@ -133,7 +133,7 @@ namespace PrisonersDilemmaCA
 
         /// <summary>
         /// Checks the validity of the matrix according to the rules :
-        /// T > R > P > S
+        /// T better than R better than P better than S
         /// </summary>
         /// <param name="t"></param>
         /// <param name="r"></param>
@@ -145,7 +145,7 @@ namespace PrisonersDilemmaCA
             bool result = false;
 
             // First condition of validity
-            if ((t > r) && (r > p) && (p > s))
+            if ((t < r) && (r < p) && (p < s))
             {
                 result = true;
             }

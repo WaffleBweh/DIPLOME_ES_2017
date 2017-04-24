@@ -14,7 +14,7 @@ namespace PrisonersDilemmaCA
     public partial class GenerateView : Form
     {
         public Grid currentGrid { get; set; }
-        public List<IStrategy> strategies { get; set; }
+        public List<Strategy> strategies { get; set; }
 
         int nbOfStrategies;
         int heightOfComponents = 40;
@@ -67,12 +67,7 @@ namespace PrisonersDilemmaCA
                 tmpLabel.Font = new Font(FontFamily.GenericSansSerif, 12);
 
                 // Add the label content
-                string strategyName = strategies[i - 1].GetType().Name;
-
-                // Filter the name (remove "Strat" and use spaces insted of CamelCase)
-                strategyName = Regex.Replace(strategyName, "(Strat)", "");
-                strategyName = Regex.Replace(strategyName, "([a-z])([A-Z])", "$1 $2");
-
+                string strategyName = strategies[i - 1].ToString();
                 tmpLabel.Text = strategyName;
 
                 // Create a trackbar
@@ -186,8 +181,8 @@ namespace PrisonersDilemmaCA
             // Create a new random number generator
             Random rng = new Random();
 
-            Dictionary<IStrategy, int> stratAndPercent = new Dictionary<IStrategy, int>();
-            List<IStrategy> toRemove = new List<IStrategy>();
+            Dictionary<Strategy, int> stratAndPercent = new Dictionary<Strategy, int>();
+            List<Strategy> toRemove = new List<Strategy>();
 
             // Filter out the unused strategies
             for (int i = 0; i < nbOfStrategies; i++)

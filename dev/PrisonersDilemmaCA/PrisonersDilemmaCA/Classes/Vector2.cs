@@ -60,12 +60,12 @@ namespace PrisonersDilemmaCA
 
         #region methods
         /// <summary>
-        /// Converts the location to a Point object
+        /// Implicit conversion to a Point object
         /// </summary>
         /// <returns></returns>
-        public Point asPoint()
+        public static implicit operator Point(Vector2 vec2)
         {
-            return new Point(this.X, this.Y);
+            return new Point(vec2.X, vec2.Y);
         }
         #endregion
     }

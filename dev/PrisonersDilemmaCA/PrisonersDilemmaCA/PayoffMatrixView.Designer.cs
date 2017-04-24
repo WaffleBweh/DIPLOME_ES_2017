@@ -179,6 +179,7 @@
             this.Name = "PayoffMatrixView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Payoff matrix settings";
+            this.Load += new System.EventHandler(this.PayoffMatrixView_Load);
             this.ResumeLayout(false);
 
         }

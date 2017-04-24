@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace PrisonersDilemmaCA
 {
-    public class StratTitForTat : IStrategy
+    public class StratTitForTat : Strategy
     {
         #region fields
         #endregion
@@ -28,12 +28,31 @@ namespace PrisonersDilemmaCA
         #endregion
 
         #region methods
-        public Move chooseMove(Cell cell, List<Cell> neighbors)
+        public override Move chooseMove(Cell cell, List<Cell> neighbors)
         {
-            throw new NotImplementedException();
+            // Cooperates on first move, then copies his best openent
+            Move result = Move.Cooperate;
+
+            // If this wasn't our first round, we look at our neighbors
+            if (!(cell.LastMove == Move.None))
+            {
+                // The best score is the lowest one
+                int minScore = neighbors[0].Score;
+                foreach (Cell neighbor in neighbors)
+                {
+                    // Find the lowest score and copy the oppenents last move
+                    if (minScore > neighbor.Score)
+                    {
+                        minScore = neighbor.Score;
+                        result = neighbor.LastMove;
+                    }
+                }
+            }
+
+            return result;
         }
 
-        public Color getColor()
+        public override Color getColor()
         {
             return Color.FromArgb(200, 200, 200);
         }

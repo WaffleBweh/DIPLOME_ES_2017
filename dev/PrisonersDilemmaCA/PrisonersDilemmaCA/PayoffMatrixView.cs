@@ -12,20 +12,20 @@ namespace PrisonersDilemmaCA
 {
     public partial class PayoffMatrixView : Form
     {
-        PayoffMatrix matrixRef;
+        public PayoffMatrix currentMatrix { get; set; }
 
-        public PayoffMatrixView(PayoffMatrix matrix)
+        public PayoffMatrixView()
         {
             InitializeComponent();
-            // Get our matrix as reference
-            matrixRef = matrix;
+        }
 
+        private void PayoffMatrixView_Load(object sender, EventArgs e)
+        {
             // Initialize our textboxes with the matrix data
-            rtbReward.Text = matrix.Reward.ToString();
-            rtbSucker.Text = matrix.Sucker.ToString();
-            rtbTemptation.Text = matrix.Temptation.ToString();
-            rtbPunishment.Text = matrix.Punishment.ToString();
-
+            rtbReward.Text = currentMatrix.Reward.ToString();
+            rtbSucker.Text = currentMatrix.Sucker.ToString();
+            rtbTemptation.Text = currentMatrix.Temptation.ToString();
+            rtbPunishment.Text = currentMatrix.Punishment.ToString();
         }
 
         // Apply the changes and quit
@@ -51,10 +51,10 @@ namespace PrisonersDilemmaCA
             else
             {
                 // Else, we apply the changes
-                matrixRef.Reward = r;
-                matrixRef.Sucker = s;
-                matrixRef.Temptation = t;
-                matrixRef.Punishment = p;
+                currentMatrix.Reward = r;
+                currentMatrix.Sucker = s;
+                currentMatrix.Temptation = t;
+                currentMatrix.Punishment = p;
 
                 // Close the form
                 this.Close();
@@ -66,5 +66,6 @@ namespace PrisonersDilemmaCA
         {
             this.Close();
         }
+
     }
 }
