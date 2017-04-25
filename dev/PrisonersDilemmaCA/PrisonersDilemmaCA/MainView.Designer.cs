@@ -230,7 +230,7 @@
             // 
             // StepTimer
             // 
-            this.StepTimer.Interval = 1000;
+            this.StepTimer.Interval = 115;
             this.StepTimer.Tick += new System.EventHandler(this.StepTimer_Tick);
             // 
             // label5
@@ -253,7 +253,7 @@
             this.tbTimerSpeed.TabIndex = 14;
             this.tbTimerSpeed.TickFrequency = 100;
             this.tbTimerSpeed.TickStyle = System.Windows.Forms.TickStyle.Both;
-            this.tbTimerSpeed.Value = 1000;
+            this.tbTimerSpeed.Value = 115;
             this.tbTimerSpeed.Scroll += new System.EventHandler(this.tbTimerSpeed_Scroll);
             // 
             // lblSpeedValue
@@ -263,7 +263,7 @@
             this.lblSpeedValue.Name = "lblSpeedValue";
             this.lblSpeedValue.Size = new System.Drawing.Size(259, 23);
             this.lblSpeedValue.TabIndex = 15;
-            this.lblSpeedValue.Text = "automatically steps every 1000 [ms]";
+            this.lblSpeedValue.Text = "automatically steps every 115 [ms]";
             this.lblSpeedValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainView

@@ -19,15 +19,15 @@ namespace PrisonersDilemmaCA
         #region fields
 
         #region consts
-        public const int NEAREST_NEIGHBOR_RANGE = 1;
+        public const int NEAREST_NEIGHBOR_RANGE = 1;    // Change the "radius" at which we consider cells neighbors
         #endregion
 
-        private Cell[,] _cells;
-        private int _width;
-        private int _height;
-        private int _nbLines;
-        private int _nbCols;
-        private PayoffMatrix _payoffMatrix;
+        private Cell[,] _cells;                         // 2D array containing the cells
+        private int _width;                             // Width of the grid in pixels
+        private int _height;                            // Height of the grid in pixels
+        private int _nbLines;                           // Number of lines in the grid (y)
+        private int _nbCols;                            // Number of columns in the grid (x)
+        private PayoffMatrix _payoffMatrix;             // Payoff matrix to be distributed to cells
         #endregion
 
         #region properties

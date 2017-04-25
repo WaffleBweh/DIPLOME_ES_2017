@@ -39,7 +39,7 @@
             // 
             this.btnApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnApply.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnApply.Location = new System.Drawing.Point(256, 312);
+            this.btnApply.Location = new System.Drawing.Point(256, 237);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(105, 38);
             this.btnApply.TabIndex = 0;
@@ -51,7 +51,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(367, 312);
+            this.btnCancel.Location = new System.Drawing.Point(367, 237);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(105, 38);
             this.btnCancel.TabIndex = 1;
@@ -75,7 +75,7 @@
             // 
             this.pbPercentage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbPercentage.Location = new System.Drawing.Point(12, 270);
+            this.pbPercentage.Location = new System.Drawing.Point(12, 195);
             this.pbPercentage.Name = "pbPercentage";
             this.pbPercentage.Size = new System.Drawing.Size(460, 36);
             this.pbPercentage.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
@@ -86,7 +86,7 @@
             this.lblPercentage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPercentage.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPercentage.Location = new System.Drawing.Point(12, 244);
+            this.lblPercentage.Location = new System.Drawing.Point(12, 169);
             this.lblPercentage.Name = "lblPercentage";
             this.lblPercentage.Size = new System.Drawing.Size(460, 23);
             this.lblPercentage.TabIndex = 4;
@@ -97,7 +97,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 362);
+            this.ClientSize = new System.Drawing.Size(484, 287);
             this.Controls.Add(this.lblPercentage);
             this.Controls.Add(this.pbPercentage);
             this.Controls.Add(this.lblTitle);

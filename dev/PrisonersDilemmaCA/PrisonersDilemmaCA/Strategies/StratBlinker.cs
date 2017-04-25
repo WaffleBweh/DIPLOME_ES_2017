@@ -1,6 +1,6 @@
 ﻿/*
-    Class           :   StratGrimTrigger.cs
-    Description     :   Grim trigger strategy, cooperates until some neighbor 
+    Class           :   StratBlinker.cs
+    Description     :   Blinker strategy, alternates between "defect" and "cooperate"
     Author          :   SEEMULLER Julien
     Date            :   10.04.2017
 */
@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace PrisonersDilemmaCA
 {
-    public class StratGrimTrigger : Strategy
+    public class StratBlinker : Strategy
     {
         #region fields
         #endregion
@@ -28,18 +28,17 @@ namespace PrisonersDilemmaCA
         #region methods
         public override Move chooseMove(Cell cell, List<Cell> neighbors)
         {
+            // Starts by cooperating
             Move result = Move.Cooperate;
 
-            // Look if we got betrayed by a neighbor
-            foreach (Cell neighbor in neighbors)
+            // Then alternates between "defect" and "cooperate"
+            if (cell.History.First() == Move.Cooperate)
             {
-                if (neighbor.History.First() == Move.Defect)
-                {
-                    // If we are betrayed, we switch to a "Always Defect" strategy
-                    cell.Strategy = new StratAlwaysDefect();
-                    cell.chooseNextMove();
-                    break;
-                }
+                result = Move.Defect;
+            }
+            else if (cell.History.First() == Move.Defect)
+            {
+                result = Move.Cooperate;
             }
 
             return result;
@@ -47,7 +46,7 @@ namespace PrisonersDilemmaCA
 
         public override Color getColor()
         {
-            return Color.FromArgb(52, 73, 94);
+            return Color.FromArgb(155, 89, 182);
         }
         #endregion
     }

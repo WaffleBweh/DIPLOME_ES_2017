@@ -22,17 +22,17 @@ namespace PrisonersDilemmaCA
         public static readonly Strategy DEFAULT_STRATEGY = new StratTitForTat();
         #endregion
 
-        private int _x;
-        private int _y;
-        private int _width;
-        private int _height;
-        private int _score;
-        private Strategy _strategy;
-        private Color _color;
-        private List<Cell> _neighbors;
-        private PayoffMatrix _payoffMatrix;
-        private Move _move;
-        private Move _lastMove;
+        private int _x;                     // X position in the grid (should be multiplied by width if used for graphics)
+        private int _y;                     // Y position in the grid (should be multiplied by height if used for graphics)
+        private int _width;                 // Width of the cell (dependent on the grid)
+        private int _height;                // Height of the cell (dependent on the grid)
+        private int _score;                 // Represents the number of days in prison
+        private Strategy _strategy;         // The strategy used by the cell (ex : Tit for Tat)
+        private Color _color;               // The current color of the cell
+        private List<Cell> _neighbors;      // A list of references to the cells neighbors
+        private PayoffMatrix _payoffMatrix; // The payoff matrix used by the cell
+        private Move _move;                 // What the cell intends to do this turn (ex : Defect)
+        private Stack<Move> _history;      // Complete history of the cell's actions (ex : C, C, C, D, C, D, etc...)
         #endregion
 
         #region properties
@@ -101,10 +101,10 @@ namespace PrisonersDilemmaCA
             set { _move = value; }
         }
 
-        public Move LastMove
+        public Stack<Move> History
         {
-            get { return _lastMove; }
-            set { _lastMove = value; }
+            get { return _history; }
+            set { _history = value; }
         }
         #endregion
 
@@ -125,17 +125,18 @@ namespace PrisonersDilemmaCA
             this.Score = 0;
 
             this.Neighbors = new List<Cell>();
+            this.History = new Stack<Move>();
 
             // Get the color of the cell from the current strategy
             this.setColorFromStrategy();
+
             // Starts with no moves
             this.Move = Move.None;
-            this.LastMove = this.Move;
+            this.History.Push(this.Move);
         }
 
         /// <summary>
         /// Default constructor
-        /// 
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -160,8 +161,8 @@ namespace PrisonersDilemmaCA
                 scores.Add(PayoffMatrix.returnPayoff(this.Move, neighbor.Move));
             }
 
-            // We get the average score of the cell
-            this.Score = (int)Math.Floor(scores.Average());
+            // We get the best score of the cell
+            this.Score = scores.Min();
 
             // Update the color of the cell
             this.setColorFromMove();
@@ -180,7 +181,7 @@ namespace PrisonersDilemmaCA
         /// </summary>
         public void updateLastMove()
         {
-            this.LastMove = this.Move;
+            this.History.Push(this.Move);
         }
 
         /// <summary>
@@ -234,7 +235,7 @@ namespace PrisonersDilemmaCA
             switch (this.Move)
             {
                 case Move.Cooperate:
-                    if (this.LastMove == Move.Defect)
+                    if (this.History.First() == Move.Defect)
                     {
                         this.Color = Color.FromArgb(211, 84, 0); // ORANGE
                     }
@@ -246,7 +247,7 @@ namespace PrisonersDilemmaCA
 
 
                 case Move.Defect:
-                    if (this.LastMove == Move.Cooperate)
+                    if (this.History.First() == Move.Cooperate)
                     {
                         this.Color = Color.FromArgb(241, 196, 15); // YELLOW
                     }

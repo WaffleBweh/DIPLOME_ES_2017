@@ -147,7 +147,10 @@ namespace PrisonersDilemmaCA
             // First condition of validity
             if ((t < r) && (r < p) && (p < s))
             {
-                result = true;
+                if (2 * r < t + s)
+                {
+                    result = true;
+                }
             }
 
             return result;

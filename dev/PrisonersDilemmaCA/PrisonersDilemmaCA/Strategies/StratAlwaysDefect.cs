@@ -1,8 +1,6 @@
 ﻿/*
-    Class           :   StratTitForTat.cs
-    Description     :   Tit-for-tat strategy
-                        http://www.investopedia.com/terms/t/tit-for-tat.asp
-
+    Class           :   StratAlwaysDefect.cs
+    Description     :   Always defects strategy
     Author          :   SEEMULLER Julien
     Date            :   10.04.2017
 */

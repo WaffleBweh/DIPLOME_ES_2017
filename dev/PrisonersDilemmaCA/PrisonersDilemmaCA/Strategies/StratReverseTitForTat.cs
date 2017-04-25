@@ -1,6 +1,6 @@
 ﻿/*
-    Class           :   StratTitForTat.cs
-    Description     :   Tit-for-tat strategy
+    Class           :   StratReverseTitForTat.cs
+    Description     :   Reverse Tit-for-tat strategy, same as tit for tat but every output is inverted
                         http://www.investopedia.com/terms/t/tit-for-tat.asp
 
     Author          :   SEEMULLER Julien
@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace PrisonersDilemmaCA
 {
-    public class StratTitForTat : Strategy
+    public class StratReverseTitForTat : Strategy
     {
         #region fields
         #endregion
@@ -31,7 +31,7 @@ namespace PrisonersDilemmaCA
         public override Move chooseMove(Cell cell, List<Cell> neighbors)
         {
             // Cooperates on first move, then copies his best openent
-            Move result = Move.Cooperate;
+            Move result = Move.Defect;
 
             // If this wasn't our first round, we look at our neighbors
             if (cell.History.First() != Move.None)
@@ -47,7 +47,17 @@ namespace PrisonersDilemmaCA
                     if (minScore > neighbor.Score)
                     {
                         minScore = neighbor.Score;
-                        result = neighbor.History.First();
+
+                        // Return the opposite to the neighbors move
+                        switch (neighbor.History.First())
+                        {
+                            case Move.Cooperate:
+                                result = Move.Defect;
+                                break;
+                            case Move.Defect:
+                                result = Move.Cooperate;
+                                break;
+                        }
                     }
                 }
             }
@@ -57,7 +67,7 @@ namespace PrisonersDilemmaCA
 
         public override Color getColor()
         {
-            return Color.FromArgb(200, 200, 200);
+            return Color.FromArgb(149, 165, 166);
         }
         #endregion
     }

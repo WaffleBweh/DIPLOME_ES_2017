@@ -42,7 +42,7 @@ namespace PrisonersDilemmaCA
             nbOfStrategies = strategies.Count;
 
             // Define some values to create our view dynamically 
-            spacing = heightOfComponents / 2;
+            spacing = heightOfComponents;
             formHeight = 0;
             formWidth = 0;
 
@@ -56,7 +56,7 @@ namespace PrisonersDilemmaCA
             {
                 Label tmpLabel = new Label();
                 int x = spacing;
-                int y = i * (heightOfComponents + spacing);
+                int y = i * (heightOfComponents / 3 + spacing);
 
                 // Set the location of the label
                 tmpLabel.Location = new Point(x, y);
@@ -112,7 +112,7 @@ namespace PrisonersDilemmaCA
                 this.Controls.Add(tmpTrackbarLabel);
 
                 // Set the form width and height
-                formHeight += heightOfComponents + spacing * 3;
+                formHeight += heightOfComponents + spacing;
             }
             formWidth = lblTitle.Width + spacing * 3;
 

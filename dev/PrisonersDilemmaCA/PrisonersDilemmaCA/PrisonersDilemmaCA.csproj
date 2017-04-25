@@ -59,6 +59,7 @@
     <Compile Include="PayoffMatrixView.Designer.cs">
       <DependentUpon>PayoffMatrixView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Strategies\StratBlinker.cs" />
     <Compile Include="Strategies\StratRandom.cs" />
     <Compile Include="Classes\Vector2.cs" />
     <Compile Include="MainView.cs">
@@ -75,6 +76,8 @@
     <Compile Include="Strategies\StratAlwaysDefect.cs" />
     <Compile Include="Strategies\StratAlwaysCooperate.cs" />
     <Compile Include="Strategies\StratGrimTrigger.cs" />
+    <Compile Include="Strategies\StratReverseTitForTat.cs" />
+    <Compile Include="Strategies\StratTitForTwoTats.cs" />
     <Compile Include="Strategies\StratTitForTat.cs" />
     <EmbeddedResource Include="GenerateView.resx">
       <DependentUpon>GenerateView.cs</DependentUpon>

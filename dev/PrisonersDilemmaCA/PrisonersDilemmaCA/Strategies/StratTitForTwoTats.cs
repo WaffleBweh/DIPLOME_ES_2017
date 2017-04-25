@@ -1,7 +1,7 @@
 ﻿/*
-    Class           :   StratTitForTat.cs
-    Description     :   Tit-for-tat strategy
-                        http://www.investopedia.com/terms/t/tit-for-tat.asp
+    Class           :   StratTitForTwoTat.cs
+    Description     :   Tit-for-two-tats strategy, copies a neighbors if 
+                        he plays the same move twice in a row.
 
     Author          :   SEEMULLER Julien
     Date            :   10.04.2017
@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace PrisonersDilemmaCA
 {
-    public class StratTitForTat : Strategy
+    public class StratTitForTwoTats : Strategy
     {
         #region fields
         #endregion
@@ -33,31 +33,35 @@ namespace PrisonersDilemmaCA
             // Cooperates on first move, then copies his best openent
             Move result = Move.Cooperate;
 
+
             // If this wasn't our first round, we look at our neighbors
             if (cell.History.First() != Move.None)
             {
                 // We initialise our variables with the first neighbor in the list
-                int minScore = neighbors[0].Score;
-                result = neighbors[0].History.First();
+                result = cell.History.First();
+                int min = cell.Score;
 
-                // The objective is to copy the opponent's move with the lowest score
                 foreach (Cell neighbor in neighbors)
                 {
-                    // Find the opponents with the best move and copy it
-                    if (minScore > neighbor.Score)
+                    if (min > neighbor.Score)
                     {
-                        minScore = neighbor.Score;
-                        result = neighbor.History.First();
+                        min = neighbor.Score;
+                        // If one of our neighbors makes a move twice in a row we copy it
+                        if (neighbor.History.ElementAt(0) == neighbor.History.ElementAt(1))
+                        {
+                            result = neighbor.History.First();
+                        }
                     }
                 }
             }
+
 
             return result;
         }
 
         public override Color getColor()
         {
-            return Color.FromArgb(200, 200, 200);
+            return Color.FromArgb(100, 100, 100);
         }
         #endregion
     }

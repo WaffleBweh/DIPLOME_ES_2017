@@ -37,9 +37,12 @@ namespace PrisonersDilemmaCA
             // To add more strategies, add them to the list
             availableStrategies.Add(new StratRandom());
             availableStrategies.Add(new StratTitForTat());
-            availableStrategies.Add(new StratGrimTrigger());
+            availableStrategies.Add(new StratBlinker());
             availableStrategies.Add(new StratAlwaysCooperate());
             availableStrategies.Add(new StratAlwaysDefect());
+            availableStrategies.Add(new StratTitForTwoTats());
+            availableStrategies.Add(new StratGrimTrigger());
+            availableStrategies.Add(new StratReverseTitForTat());
 
             // Sort the list
             availableStrategies.Sort();
