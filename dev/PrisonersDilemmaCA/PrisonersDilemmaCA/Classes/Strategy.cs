@@ -54,7 +54,7 @@ namespace PrisonersDilemmaCA
             return this.ToString().CompareTo((obj as Strategy).ToString());
         }
 
-        public int findPercentOnGrid(Grid grid)
+        public double findPercentOnGrid(Grid grid)
         {
             double count = 0;
 
@@ -68,9 +68,10 @@ namespace PrisonersDilemmaCA
             }
 
             // Find the percentage from the count
-            count = count / grid.Cells.Length * 100;
+            count = (count / (double)grid.Cells.Length) * 100;
 
-            return (int)Math.Floor(count);
+            // Return the result rounded down to two decimal places
+            return Math.Round(count, 2);
         }
         #endregion
     }
