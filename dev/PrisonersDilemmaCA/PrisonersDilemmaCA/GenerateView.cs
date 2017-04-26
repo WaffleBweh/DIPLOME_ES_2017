@@ -194,9 +194,12 @@ namespace PrisonersDilemmaCA
                 }
             }
 
+            Grid tmpGrid = new Grid(currentGrid.Width, currentGrid.Height, currentGrid.NbLines, currentGrid.NbCols, currentGrid.PayoffMatrix);
 
             // Generate a new board
-            currentGrid.generate(stratAndPercent);
+            tmpGrid.generate(stratAndPercent);
+
+            currentGrid.Cells = tmpGrid.Cells;
 
             // Close the form
             this.Close();

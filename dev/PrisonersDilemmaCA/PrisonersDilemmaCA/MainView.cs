@@ -12,6 +12,10 @@ namespace PrisonersDilemmaCA
 {
     public partial class MainView : Form
     {
+
+        /**************************************************************************
+         *                            GLOBAL VARIABLES                            *
+         **************************************************************************/
         Grid mainGrid;
         PayoffMatrix payoffMatrix;
         List<Strategy> availableStrategies;
@@ -20,6 +24,13 @@ namespace PrisonersDilemmaCA
         int mouseX = 0;
         int mouseY = 0;
 
+
+        /**************************************************************************
+         *                                EVENTS                                  *
+         **************************************************************************/
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public MainView()
         {
             InitializeComponent();
@@ -42,7 +53,7 @@ namespace PrisonersDilemmaCA
             availableStrategies.Add(new StratAlwaysDefect());
             availableStrategies.Add(new StratTitForTwoTats());
             availableStrategies.Add(new StratGrimTrigger());
-            availableStrategies.Add(new StratReverseTitForTat());
+            //availableStrategies.Add(new StratReverseTitForTat());     // [WIP]
 
             // Sort the list
             availableStrategies.Sort();
@@ -63,6 +74,9 @@ namespace PrisonersDilemmaCA
             lblUserHelp.Text = "Click on a cell to change its strategy."
                 + Environment.NewLine + "The default strategy is "
                 + Cell.DEFAULT_STRATEGY.ToString();
+
+            // Update the other labels
+            updateLabels();
         }
 
         /// <summary>
@@ -89,7 +103,7 @@ namespace PrisonersDilemmaCA
         /// <param name="e"></param>
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            UpdateGrid();
+            updateGrid();
         }
 
         /// <summary>
@@ -99,17 +113,7 @@ namespace PrisonersDilemmaCA
         /// <param name="e"></param>
         private void trackBar2_Scroll(object sender, EventArgs e)
         {
-            UpdateGrid();
-        }
-
-        /// <summary>
-        /// Updates the grid with new values (Re-create the grid)
-        /// </summary>
-        private void UpdateGrid()
-        {
-            // Interrupt the autoplay if it is running
-            interruptTimer();
-            mainGrid = new Grid(pbGrid.Width, pbGrid.Height, tbLines.Value, tbColumns.Value, payoffMatrix);
+            updateGrid();
         }
 
         // Open the generation form
@@ -121,7 +125,11 @@ namespace PrisonersDilemmaCA
             GenerateView generateView = new GenerateView();
             generateView.currentGrid = this.mainGrid;
             generateView.strategies = this.availableStrategies;
-            generateView.Show();
+
+            if (generateView.ShowDialog() == DialogResult.OK)
+            {
+                // The user has validated his input
+            }
         }
 
         // Open the payoff matrix parameters
@@ -132,7 +140,11 @@ namespace PrisonersDilemmaCA
             // Pass the PayoffMatrix object as parameter to the form and open it
             PayoffMatrixView matrixView = new PayoffMatrixView();
             matrixView.currentMatrix = this.payoffMatrix;
-            matrixView.Show();
+
+            if (matrixView.ShowDialog() == DialogResult.OK)
+            {
+                // The user has validated his input
+            }
         }
 
         /// <summary>
@@ -170,25 +182,6 @@ namespace PrisonersDilemmaCA
         }
 
         /// <summary>
-        /// If the user is clicking on the grid, update the cell under the user's cursor
-        /// </summary>
-        public void updateCellState()
-        {
-            if (isClickingOnGrid)
-            {
-                Strategy selectedStrategy = availableStrategies[cbStrategies.SelectedIndex];
-                this.mainGrid.onClick(mouseX, mouseY, selectedStrategy);
-
-                // Interrupt the autoplay if it is running
-                interruptTimer();
-
-                // Change the color mode
-                mainGrid.setColorMode(ColorMode.Strategy);
-                Refresh();
-            }
-        }
-
-        /// <summary>
         /// 
         /// </summary>
         /// <param name="sender"></param>
@@ -197,14 +190,6 @@ namespace PrisonersDilemmaCA
         {
             // Change the button's text and launch the timer
             switchPlayPauseState();
-        }
-
-        /// <summary>
-        /// Steps forward in time
-        /// </summary>
-        private void stepForward()
-        {
-            mainGrid.step();
         }
 
         /// <summary>
@@ -227,10 +212,15 @@ namespace PrisonersDilemmaCA
             stepForward();
         }
 
+        /// <summary>
+        /// Change the autostep speed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbTimerSpeed_Scroll(object sender, EventArgs e)
         {
             StepTimer.Interval = tbTimerSpeed.Value;
-            lblSpeedValue.Text = "automatically steps every " + tbTimerSpeed.Value + " [ms]";
+            updateLabels();
         }
 
 
@@ -244,18 +234,20 @@ namespace PrisonersDilemmaCA
             // Interrupt the autoplay if it is running
             interruptTimer();
             mainGrid.setColorMode(ColorMode.Strategy);
+            updateLabels();
             Refresh();
         }
 
-        // Pause the timer if it is running
-        public void interruptTimer()
+        // Clears the board and fills it with the default cell
+        private void btnClear_Click(object sender, EventArgs e)
         {
-            if (isAutoplaying)
-            {
-                switchPlayPauseState();
-            }
+            updateGrid();
         }
 
+
+        /**************************************************************************
+         *                                FUNCTIONS                               *
+         **************************************************************************/
         /// <summary>
         /// Switch the states between play and pause
         /// </summary>
@@ -274,6 +266,79 @@ namespace PrisonersDilemmaCA
 
             // Invert the state
             isAutoplaying = !isAutoplaying;
+        }
+
+
+        /// <summary>
+        /// Steps forward in time
+        /// </summary>
+        private void stepForward()
+        {
+            mainGrid.step();
+            mainGrid.setColorMode(ColorMode.Playing);
+            updateLabels();
+        }
+
+
+
+        /// <summary>
+        /// Pause the "autostep" timer if it is running
+        /// </summary>
+        public void interruptTimer()
+        {
+            if (isAutoplaying)
+            {
+                switchPlayPauseState();
+            }
+        }
+
+        /// <summary>
+        /// Updates the labels with new information
+        /// </summary>
+        private void updateLabels()
+        {
+            // Trackbar labels
+            lblLines.Text = String.Format("Rows : {0}", tbLines.Value);
+            lblCols.Text = String.Format("Columns : {0}", tbColumns.Value);
+
+            // Grid label
+            lblGridInfo.Text = String.Format("{0}x{1} Grid - Color mode : {2}", tbLines.Value, tbColumns.Value, mainGrid.ColorMode.ToString());
+
+            // Speed labels
+            lblSpeedValue.Text = "automatically steps every " + tbTimerSpeed.Value + " [ms]";
+        }
+
+        /// <summary>
+        /// If the user is clicking on the grid, update the cell under the user's cursor
+        /// </summary>
+        public void updateCellState()
+        {
+            if (isClickingOnGrid)
+            {
+                Strategy selectedStrategy = availableStrategies[cbStrategies.SelectedIndex];
+                this.mainGrid.onClick(mouseX, mouseY, selectedStrategy);
+
+                // Interrupt the autoplay if it is running
+                interruptTimer();
+
+                // Change the color mode
+                mainGrid.setColorMode(ColorMode.Strategy);
+                updateLabels();
+                Refresh();
+            }
+        }
+
+        /// <summary>
+        /// Updates the grid with new values (Re-create the grid)
+        /// </summary>
+        private void updateGrid()
+        {
+            // Interrupt the autoplay if it is running
+            interruptTimer();
+            mainGrid = new Grid(pbGrid.Width, pbGrid.Height, tbLines.Value, tbColumns.Value, payoffMatrix);
+
+            // Update the labels
+            updateLabels();
         }
     }
 }

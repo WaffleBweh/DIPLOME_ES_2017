@@ -28,17 +28,22 @@ namespace PrisonersDilemmaCA
         #region methods
         public override Move chooseMove(Cell cell, List<Cell> neighbors)
         {
+            // Starts by cooperating
             Move result = Move.Cooperate;
 
-            // Look if we got betrayed by a neighbor
-            foreach (Cell neighbor in neighbors)
+
+            if (cell.History.Count > 1)
             {
-                if (neighbor.History.First() == Move.Defect)
+                // Look if we got betrayed by a neighbor after our first move
+                foreach (Cell neighbor in neighbors)
                 {
-                    // If we are betrayed, we switch to a "Always Defect" strategy
-                    cell.Strategy = new StratAlwaysDefect();
-                    cell.chooseNextMove();
-                    break;
+                    if (neighbor.History.First() == Move.Defect)
+                    {
+                        // If we are betrayed, we switch to a "Always Defect" strategy
+                        cell.Strategy = new StratAlwaysDefect();
+                        cell.chooseNextMove();
+                        break;
+                    }
                 }
             }
 

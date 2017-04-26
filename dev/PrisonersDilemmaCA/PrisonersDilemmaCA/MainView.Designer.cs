@@ -30,12 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pbGrid = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblGridInfo = new System.Windows.Forms.Label();
             this.MainTimer = new System.Windows.Forms.Timer(this.components);
             this.tbColumns = new System.Windows.Forms.TrackBar();
             this.tbLines = new System.Windows.Forms.TrackBar();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblCols = new System.Windows.Forms.Label();
+            this.lblLines = new System.Windows.Forms.Label();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generateNewBoardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,6 +51,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tbTimerSpeed = new System.Windows.Forms.TrackBar();
             this.lblSpeedValue = new System.Windows.Forms.Label();
+            this.btnClear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbColumns)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbLines)).BeginInit();
@@ -71,15 +72,15 @@
             this.pbGrid.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbGrid_MouseMove);
             this.pbGrid.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbGrid_MouseUp);
             // 
-            // label1
+            // lblGridInfo
             // 
-            this.label1.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(304, 19);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Grid";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblGridInfo.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGridInfo.Location = new System.Drawing.Point(9, 24);
+            this.lblGridInfo.Name = "lblGridInfo";
+            this.lblGridInfo.Size = new System.Drawing.Size(304, 19);
+            this.lblGridInfo.TabIndex = 1;
+            this.lblGridInfo.Text = "Grid";
+            this.lblGridInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainTimer
             // 
@@ -94,7 +95,9 @@
             this.tbColumns.Minimum = 5;
             this.tbColumns.Name = "tbColumns";
             this.tbColumns.Size = new System.Drawing.Size(266, 45);
+            this.tbColumns.SmallChange = 5;
             this.tbColumns.TabIndex = 2;
+            this.tbColumns.TickFrequency = 5;
             this.tbColumns.TickStyle = System.Windows.Forms.TickStyle.Both;
             this.tbColumns.Value = 10;
             this.tbColumns.Scroll += new System.EventHandler(this.trackBar1_Scroll);
@@ -106,30 +109,32 @@
             this.tbLines.Minimum = 5;
             this.tbLines.Name = "tbLines";
             this.tbLines.Size = new System.Drawing.Size(266, 45);
+            this.tbLines.SmallChange = 5;
             this.tbLines.TabIndex = 3;
+            this.tbLines.TickFrequency = 5;
             this.tbLines.TickStyle = System.Windows.Forms.TickStyle.Both;
             this.tbLines.Value = 10;
             this.tbLines.Scroll += new System.EventHandler(this.trackBar2_Scroll);
             // 
-            // label2
+            // lblCols
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(319, 40);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 20);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Columns";
+            this.lblCols.AutoSize = true;
+            this.lblCols.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCols.Location = new System.Drawing.Point(319, 40);
+            this.lblCols.Name = "lblCols";
+            this.lblCols.Size = new System.Drawing.Size(82, 20);
+            this.lblCols.TabIndex = 4;
+            this.lblCols.Text = "Columns : 10";
             // 
-            // label3
+            // lblLines
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(318, 116);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 20);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Lines";
+            this.lblLines.AutoSize = true;
+            this.lblLines.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLines.Location = new System.Drawing.Point(318, 116);
+            this.lblLines.Name = "lblLines";
+            this.lblLines.Size = new System.Drawing.Size(63, 20);
+            this.lblLines.TabIndex = 5;
+            this.lblLines.Text = "Rows : 10";
             // 
             // menuStrip
             // 
@@ -138,7 +143,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(593, 24);
+            this.menuStrip.Size = new System.Drawing.Size(595, 24);
             this.menuStrip.TabIndex = 6;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -204,6 +209,7 @@
             this.lblUserHelp.Name = "lblUserHelp";
             this.lblUserHelp.Size = new System.Drawing.Size(300, 34);
             this.lblUserHelp.TabIndex = 9;
+            this.lblUserHelp.Text = "Lorem ipsum dolor sit amet, this displays help for the user";
             this.lblUserHelp.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // btnStep
@@ -259,18 +265,30 @@
             // lblSpeedValue
             // 
             this.lblSpeedValue.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSpeedValue.Location = new System.Drawing.Point(322, 311);
+            this.lblSpeedValue.Location = new System.Drawing.Point(319, 311);
             this.lblSpeedValue.Name = "lblSpeedValue";
-            this.lblSpeedValue.Size = new System.Drawing.Size(259, 23);
+            this.lblSpeedValue.Size = new System.Drawing.Size(265, 21);
             this.lblSpeedValue.TabIndex = 15;
             this.lblSpeedValue.Text = "automatically steps every 115 [ms]";
             this.lblSpeedValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnClear
+            // 
+            this.btnClear.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.Location = new System.Drawing.Point(12, 464);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(300, 33);
+            this.btnClear.TabIndex = 16;
+            this.btnClear.Text = "Clear board";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(593, 471);
+            this.ClientSize = new System.Drawing.Size(595, 512);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.lblSpeedValue);
             this.Controls.Add(this.tbTimerSpeed);
             this.Controls.Add(this.label5);
@@ -279,11 +297,11 @@
             this.Controls.Add(this.lblUserHelp);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cbStrategies);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblLines);
+            this.Controls.Add(this.lblCols);
             this.Controls.Add(this.tbLines);
             this.Controls.Add(this.tbColumns);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblGridInfo);
             this.Controls.Add(this.pbGrid);
             this.Controls.Add(this.menuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -308,12 +326,12 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pbGrid;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblGridInfo;
         private System.Windows.Forms.Timer MainTimer;
         private System.Windows.Forms.TrackBar tbColumns;
         private System.Windows.Forms.TrackBar tbLines;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblCols;
+        private System.Windows.Forms.Label lblLines;
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem generateNewBoardToolStripMenuItem;
@@ -329,6 +347,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TrackBar tbTimerSpeed;
         private System.Windows.Forms.Label lblSpeedValue;
+        private System.Windows.Forms.Button btnClear;
     }
 }
 

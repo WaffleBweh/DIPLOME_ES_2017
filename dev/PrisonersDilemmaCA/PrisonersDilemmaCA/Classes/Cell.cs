@@ -130,8 +130,8 @@ namespace PrisonersDilemmaCA
             // Get the color of the cell from the current strategy
             this.setColorFromStrategy();
 
-            // Starts with no moves
-            this.Move = Move.None;
+            // Starts with a move relevent to the strategy
+            this.chooseNextMove();
             this.History.Push(this.Move);
         }
 
@@ -220,10 +220,15 @@ namespace PrisonersDilemmaCA
         {
             Rectangle hitbox = this;
 
-            // If we are the cell that is hit, update our strategy
+            // If we are the cell that is hit, update our strategy and clear it's history
             if (hitbox.Contains(x, y))
             {
                 this.Strategy = strat;
+                this.History.Clear();
+
+                // Updates the cell's move with the new strategy
+                this.chooseNextMove();
+                this.updateLastMove();
             }
         }
 
@@ -237,7 +242,7 @@ namespace PrisonersDilemmaCA
                 case Move.Cooperate:
                     if (this.History.First() == Move.Defect)
                     {
-                        this.Color = Color.FromArgb(211, 84, 0); // ORANGE
+                        this.Color = Color.FromArgb(230, 126, 34); // ORANGE
                     }
                     else
                     {

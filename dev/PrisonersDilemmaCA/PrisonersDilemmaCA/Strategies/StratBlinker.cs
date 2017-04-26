@@ -32,13 +32,16 @@ namespace PrisonersDilemmaCA
             Move result = Move.Cooperate;
 
             // Then alternates between "defect" and "cooperate"
-            if (cell.History.First() == Move.Cooperate)
+            if (cell.History.Count > 1)
             {
-                result = Move.Defect;
-            }
-            else if (cell.History.First() == Move.Defect)
-            {
-                result = Move.Cooperate;
+                if (cell.History.First() == Move.Cooperate)
+                {
+                    result = Move.Defect;
+                }
+                else if (cell.History.First() == Move.Defect)
+                {
+                    result = Move.Cooperate;
+                }
             }
 
             return result;

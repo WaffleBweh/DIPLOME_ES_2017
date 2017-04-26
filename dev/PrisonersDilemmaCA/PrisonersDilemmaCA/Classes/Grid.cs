@@ -28,6 +28,7 @@ namespace PrisonersDilemmaCA
         private int _nbLines;                           // Number of lines in the grid (y)
         private int _nbCols;                            // Number of columns in the grid (x)
         private PayoffMatrix _payoffMatrix;             // Payoff matrix to be distributed to cells
+        private ColorMode _colorMode;                   // The current color mode of the grid (cf. ColorMode enum)
         #endregion
 
         #region properties
@@ -66,6 +67,12 @@ namespace PrisonersDilemmaCA
             get { return _payoffMatrix; }
             set { _payoffMatrix = value; }
         }
+
+        public ColorMode ColorMode
+        {
+            get { return _colorMode; }
+            set { _colorMode = value; }
+        }
         #endregion
 
         #region constructors
@@ -83,6 +90,7 @@ namespace PrisonersDilemmaCA
             this.NbLines = nbLines;
             this.NbCols = nbCols;
             this.PayoffMatrix = matrix;
+            this.ColorMode = ColorMode.Strategy;
 
             // Initialize our list of cells
             this.Cells = new Cell[nbLines, nbCols];
@@ -338,10 +346,12 @@ namespace PrisonersDilemmaCA
                 case ColorMode.Strategy:
                     this.setColorFromStrategy();
                     break;
-                case ColorMode.Move:
+                case ColorMode.Playing:
                     this.setColorFromMove();
                     break;
             }
+
+            this.ColorMode = mode;
         }
 
         /// <summary>
