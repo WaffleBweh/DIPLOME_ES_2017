@@ -52,6 +52,9 @@
             this.tbTimerSpeed = new System.Windows.Forms.TrackBar();
             this.lblSpeedValue = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
+            this.tsExtendedView = new JCS.ToggleSwitch();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pieStrategy = new LiveCharts.WinForms.PieChart();
             ((System.ComponentModel.ISupportInitialize)(this.pbGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbColumns)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbLines)).BeginInit();
@@ -143,7 +146,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(595, 24);
+            this.menuStrip.Size = new System.Drawing.Size(594, 24);
             this.menuStrip.TabIndex = 6;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -283,11 +286,46 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // tsExtendedView
+            // 
+            this.tsExtendedView.Location = new System.Drawing.Point(464, 464);
+            this.tsExtendedView.Name = "tsExtendedView";
+            this.tsExtendedView.OffFont = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsExtendedView.OffText = "OFF";
+            this.tsExtendedView.OnFont = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
+            this.tsExtendedView.OnForeColor = System.Drawing.Color.White;
+            this.tsExtendedView.OnText = "ON";
+            this.tsExtendedView.Size = new System.Drawing.Size(117, 33);
+            this.tsExtendedView.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Iphone;
+            this.tsExtendedView.TabIndex = 17;
+            this.tsExtendedView.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.tsExtendedView_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(463, 441);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(88, 20);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Extended view";
+            // 
+            // pieStrategy
+            // 
+            this.pieStrategy.Location = new System.Drawing.Point(590, 46);
+            this.pieStrategy.Name = "pieStrategy";
+            this.pieStrategy.Size = new System.Drawing.Size(482, 262);
+            this.pieStrategy.TabIndex = 19;
+            this.pieStrategy.Text = "pieChart1";
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(595, 512);
+            this.ClientSize = new System.Drawing.Size(594, 512);
+            this.Controls.Add(this.pieStrategy);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.tsExtendedView);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.lblSpeedValue);
             this.Controls.Add(this.tbTimerSpeed);
@@ -304,6 +342,7 @@
             this.Controls.Add(this.lblGridInfo);
             this.Controls.Add(this.pbGrid);
             this.Controls.Add(this.menuStrip);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MainMenuStrip = this.menuStrip;
             this.MaximizeBox = false;
@@ -348,6 +387,9 @@
         private System.Windows.Forms.TrackBar tbTimerSpeed;
         private System.Windows.Forms.Label lblSpeedValue;
         private System.Windows.Forms.Button btnClear;
+        private JCS.ToggleSwitch tsExtendedView;
+        private System.Windows.Forms.Label label1;
+        private LiveCharts.WinForms.PieChart pieStrategy;
     }
 }
 

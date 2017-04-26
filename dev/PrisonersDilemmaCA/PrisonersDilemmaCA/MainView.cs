@@ -1,10 +1,14 @@
-﻿using System;
+﻿using LiveCharts;
+using LiveCharts.Wpf;
+using LiveCharts.WinForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -24,7 +28,8 @@ namespace PrisonersDilemmaCA
         int mouseX = 0;
         int mouseY = 0;
 
-
+        const int DEFAULT_NORMAL_VIEW_WIDTH = 610;
+        const int DEFAULT_EXTENDED_VIEW_WIDTH = 1100;
         /**************************************************************************
          *                                EVENTS                                  *
          **************************************************************************/
@@ -77,6 +82,15 @@ namespace PrisonersDilemmaCA
 
             // Update the other labels
             updateLabels();
+
+            // CHARTS
+
+            // Pie chart
+            pieStrategy.InnerRadius = 100;
+            pieStrategy.LegendLocation = LegendLocation.Right;
+            pieStrategy.Series = new SeriesCollection();
+
+            updateChartData();
         }
 
         /// <summary>
@@ -129,6 +143,7 @@ namespace PrisonersDilemmaCA
             if (generateView.ShowDialog() == DialogResult.OK)
             {
                 // The user has validated his input
+                updateChartData();
             }
         }
 
@@ -245,6 +260,26 @@ namespace PrisonersDilemmaCA
         }
 
 
+        /// <summary>
+        /// Alternates between normal and extended view
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsExtendedView_CheckedChanged(object sender, EventArgs e)
+        {
+            if (tsExtendedView.Checked)
+            {
+                // Switch to extended view
+                this.Width = DEFAULT_EXTENDED_VIEW_WIDTH;
+            }
+            else
+            {
+                // Switch to normal view
+                this.Width = DEFAULT_NORMAL_VIEW_WIDTH;
+            }
+        }
+
+
         /**************************************************************************
          *                                FUNCTIONS                               *
          **************************************************************************/
@@ -277,6 +312,7 @@ namespace PrisonersDilemmaCA
             mainGrid.step();
             mainGrid.setColorMode(ColorMode.Playing);
             updateLabels();
+            updateChartData();
         }
 
 
@@ -324,6 +360,7 @@ namespace PrisonersDilemmaCA
                 // Change the color mode
                 mainGrid.setColorMode(ColorMode.Strategy);
                 updateLabels();
+                updateChartData();
                 Refresh();
             }
         }
@@ -339,6 +376,50 @@ namespace PrisonersDilemmaCA
 
             // Update the labels
             updateLabels();
+            updateChartData();
+        }
+
+        private void updateChartData()
+        {
+            /*
+            int count = 0;
+
+            foreach (Strategy strategy in availableStrategies)
+            {
+                if (strategy.findPercentOnGrid(mainGrid) > 0)
+                {
+                    pieStrategy.Series[count].Values = new ChartValues<double> {strategy.findPercentOnGrid(mainGrid)};
+                    count++;
+                }
+            }
+            */
+
+            pieStrategy.Series = new SeriesCollection();
+
+            foreach (Strategy strategy in availableStrategies)
+            {
+                if (strategy.findPercentOnGrid(mainGrid) > 0)
+                {
+                    // Get the color from the strategy
+                    System.Windows.Media.BrushConverter converter = new System.Windows.Media.BrushConverter();
+                    System.Windows.Media.Brush brush = (System.Windows.Media.Brush)converter.ConvertFromString(strategy.getColor().ToHex());
+
+                    // Create an object for storing values on the pie chart
+                    PieSeries stratToAdd = new PieSeries
+                    {
+                        Title = strategy.ToString(),
+                        Values = new ChartValues<double> 
+                        {
+                            strategy.findPercentOnGrid(mainGrid) 
+                        },
+                        DataLabels = true,
+                        Fill = brush
+                    };
+
+                    // Add the values to the pie chart
+                    pieStrategy.Series.Add(stratToAdd);
+                }
+            }
         }
     }
 }

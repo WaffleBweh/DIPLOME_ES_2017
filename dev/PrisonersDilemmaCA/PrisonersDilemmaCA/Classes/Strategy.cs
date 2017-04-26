@@ -53,6 +53,25 @@ namespace PrisonersDilemmaCA
         {
             return this.ToString().CompareTo((obj as Strategy).ToString());
         }
+
+        public int findPercentOnGrid(Grid grid)
+        {
+            double count = 0;
+
+            foreach (Cell cell in grid.Cells)
+            {
+                // Find every cell that has the same type as the current strategy
+                if (this.GetType() == cell.Strategy.GetType())
+                {
+                    count++;
+                }
+            }
+
+            // Find the percentage from the count
+            count = count / grid.Cells.Length * 100;
+
+            return (int)Math.Floor(count);
+        }
         #endregion
     }
 }
