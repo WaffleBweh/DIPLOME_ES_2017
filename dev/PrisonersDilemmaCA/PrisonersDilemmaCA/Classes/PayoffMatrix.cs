@@ -122,10 +122,6 @@ namespace PrisonersDilemmaCA
                         payoff = this.Punishment;
                     }
                     break;
-
-                case Move.None:
-                    // Return an error if one of the player didnt choose a move
-                    throw new NotImplementedException();
             }
 
             return payoff;
