@@ -27,6 +27,7 @@ namespace PrisonersDilemmaCA
         bool isAutoplaying = false;
         int mouseX = 0;
         int mouseY = 0;
+        int generation = 0;
 
         const int DEFAULT_NORMAL_VIEW_WIDTH = 610;
         const int DEFAULT_EXTENDED_VIEW_WIDTH = 1100;
@@ -86,11 +87,54 @@ namespace PrisonersDilemmaCA
             // CHARTS
 
             // Pie chart
-            pieStrategy.InnerRadius = 100;
+            pieStrategy.InnerRadius = 50;
             pieStrategy.LegendLocation = LegendLocation.Right;
+            pieStrategy.DisableAnimations = true;
             pieStrategy.Series = new SeriesCollection();
 
-            updateChartData();
+            foreach (Strategy strategy in availableStrategies)
+            {
+                // Get the color from the strategy
+                System.Windows.Media.BrushConverter converter = new System.Windows.Media.BrushConverter();
+                System.Windows.Media.Brush brush = (System.Windows.Media.Brush)converter.ConvertFromString(strategy.getColor().ToHex());
+
+                // Create an object for storing values on the pie chart
+                PieSeries stratToAdd = new PieSeries
+                {
+                    Title = strategy.ToString(),
+                    Values = new ChartValues<double> 
+                        {
+                            mainGrid.findCountOfStrategy(strategy) 
+                        },
+                    DataLabels = true,
+                    Fill = brush
+                };
+
+                stratToAdd.Visibility = System.Windows.Visibility.Hidden;
+
+
+                // Add the values to the pie chart
+                pieStrategy.Series.Add(stratToAdd);
+            }
+
+            // Cartesian
+            cartesianStrategy.LegendLocation = LegendLocation.Right;
+            cartesianStrategy.AxisX.Add(new Axis
+            {
+                Title = "Current Generation",
+                LabelFormatter = value => value.ToString()
+            });
+
+            cartesianStrategy.AxisY.Add(new Axis
+            {
+                Title = "Number of Days in Prison",
+                LabelFormatter = value => value.ToString(),
+
+            });
+
+            // Initialize the cartesian chart
+            initializeChart();
+            updateDonutChart();
         }
 
         /// <summary>
@@ -143,7 +187,13 @@ namespace PrisonersDilemmaCA
             if (generateView.ShowDialog() == DialogResult.OK)
             {
                 // The user has validated his input
-                updateChartData();
+                // Reset the generation count
+                generation = 0;
+
+                // Update the GUI
+                updateLabels();
+                updateDonutChart();
+                initializeChart();
             }
         }
 
@@ -182,6 +232,7 @@ namespace PrisonersDilemmaCA
         {
             isClickingOnGrid = false;
             updateCellState();
+            updateDonutChart();
         }
 
         /// <summary>
@@ -257,6 +308,7 @@ namespace PrisonersDilemmaCA
         private void btnClear_Click(object sender, EventArgs e)
         {
             updateGrid();
+            initializeChart();
         }
 
 
@@ -309,10 +361,17 @@ namespace PrisonersDilemmaCA
         /// </summary>
         private void stepForward()
         {
+            // Steps forward
             mainGrid.step();
             mainGrid.setColorMode(ColorMode.Playing);
+
+            // Increment the generation count
+            generation++;
+
+            // Update the GUI
             updateLabels();
-            updateChartData();
+            updateDonutChart();
+            addDataToChart();
         }
 
 
@@ -338,7 +397,7 @@ namespace PrisonersDilemmaCA
             lblCols.Text = String.Format("Columns : {0}", tbColumns.Value);
 
             // Grid label
-            lblGridInfo.Text = String.Format("{0}x{1} Grid - Color mode : {2}", tbLines.Value, tbColumns.Value, mainGrid.ColorMode.ToString());
+            lblGridInfo.Text = String.Format("{0}x{1} Grid - Color mode : {2} - Generation {3}", tbLines.Value, tbColumns.Value, mainGrid.ColorMode.ToString(), generation);
 
             // Speed labels
             lblSpeedValue.Text = "automatically steps every " + tbTimerSpeed.Value + " [ms]";
@@ -360,7 +419,6 @@ namespace PrisonersDilemmaCA
                 // Change the color mode
                 mainGrid.setColorMode(ColorMode.Strategy);
                 updateLabels();
-                updateChartData();
                 Refresh();
             }
         }
@@ -374,51 +432,104 @@ namespace PrisonersDilemmaCA
             interruptTimer();
             mainGrid = new Grid(pbGrid.Width, pbGrid.Height, tbLines.Value, tbColumns.Value, payoffMatrix);
 
-            // Update the labels
+            // Reset the generation count
+            generation = 0;
+
+            // Update the labels and chart
             updateLabels();
-            updateChartData();
+            updateDonutChart();
         }
 
-        private void updateChartData()
+        /// <summary>
+        /// Updates the donut chart on the main view
+        /// </summary>
+        private void updateDonutChart()
         {
-            /*
+            // Update the donut chart
+            int count = 0;
+            foreach (Series serie in pieStrategy.Series)
+            {
+                if (mainGrid.findCountOfStrategy(availableStrategies[count]) > 0)
+                {
+                    serie.Visibility = System.Windows.Visibility.Visible;
+                    serie.Values = new ChartValues<double> { mainGrid.findCountOfStrategy(availableStrategies[count]) };
+                }
+                else
+                {
+                    serie.Visibility = System.Windows.Visibility.Hidden;
+                }
+
+                count++;
+            }
+        }
+
+        /// <summary>
+        /// Initialize the cartesian chart with the base values
+        /// </summary>
+        public void initializeChart()
+        {
+            cartesianStrategy.Series = new SeriesCollection();
+            foreach (Strategy strategy in availableStrategies)
+            {
+                // Get the color from the strategy
+                System.Windows.Media.BrushConverter converter = new System.Windows.Media.BrushConverter();
+                System.Windows.Media.Brush brush = (System.Windows.Media.Brush)converter.ConvertFromString(strategy.getColor().ToHex(60));
+                System.Windows.Media.Brush stroke = (System.Windows.Media.Brush)converter.ConvertFromString(strategy.getColor().ToHex());
+
+                // Create an object for storing values on the line chart
+                LineSeries stratToAdd = new LineSeries
+                {
+                    Title = strategy.ToString(),
+                    Values = new ChartValues<double> { 0 },
+                    PointGeometry = DefaultGeometries.None,
+                    PointGeometrySize = 15,
+                    Fill = brush,
+                    Stroke = stroke
+                };
+
+                // Hide the unused strategies
+                if (mainGrid.findCountOfStrategy(strategy) <= 0)
+                {
+                    stratToAdd.Visibility = System.Windows.Visibility.Hidden;
+                }
+
+                // Add the values to the pie chart
+                cartesianStrategy.Series.Add(stratToAdd);
+            }
+        }
+
+        /// <summary>
+        /// Adds data to the cartesian chart
+        /// </summary>
+        private void addDataToChart()
+        {
             int count = 0;
 
-            foreach (Strategy strategy in availableStrategies)
+            // Readjust the X axis
+            cartesianStrategy.AxisX[0].MaxValue = generation;
+            if (generation > 10)
             {
-                if (strategy.findPercentOnGrid(mainGrid) > 0)
-                {
-                    pieStrategy.Series[count].Values = new ChartValues<double> {strategy.findPercentOnGrid(mainGrid)};
-                    count++;
-                }
+                cartesianStrategy.AxisX[0].MinValue = generation - 10;
             }
-            */
 
-            pieStrategy.Series = new SeriesCollection();
-
-            foreach (Strategy strategy in availableStrategies)
+            foreach (Series serie in cartesianStrategy.Series)
             {
-                if (strategy.findPercentOnGrid(mainGrid) > 0)
+
+                // Check the currently used strategies
+                if (mainGrid.findCountOfStrategy(availableStrategies[count]) > 0)
                 {
-                    // Get the color from the strategy
-                    System.Windows.Media.BrushConverter converter = new System.Windows.Media.BrushConverter();
-                    System.Windows.Media.Brush brush = (System.Windows.Media.Brush)converter.ConvertFromString(strategy.getColor().ToHex());
-
-                    // Create an object for storing values on the pie chart
-                    PieSeries stratToAdd = new PieSeries
-                    {
-                        Title = strategy.ToString(),
-                        Values = new ChartValues<double> 
-                        {
-                            strategy.findPercentOnGrid(mainGrid) 
-                        },
-                        DataLabels = true,
-                        Fill = brush
-                    };
-
-                    // Add the values to the pie chart
-                    pieStrategy.Series.Add(stratToAdd);
+                    // Add the average score of each used strategy
+                    serie.Values.Add(mainGrid.findAverageScoreOfStrategy(availableStrategies[count]));
+                    serie.Visibility = System.Windows.Visibility.Visible;
                 }
+                else
+                {
+                    // Add 0 to the unused values (allows the graph to stay synced)
+                    serie.Values.Add((double)0);
+                    serie.Visibility = System.Windows.Visibility.Hidden;
+                }
+
+                count++;
             }
         }
     }
