@@ -45,13 +45,12 @@ namespace PrisonersDilemmaCA.Tests
         [TestMethod()]
         public void isValidStaticTest()
         {
-            int t = 5; int r = 3; int p = 2; int s = 0;
+            int t = 0; int r = 1; int p = 3; int s = 5;
 
             Assert.AreEqual(true, PayoffMatrix.isValid(t, r, p, s));
-            r = 5;
+            r = 0;
             Assert.AreEqual(false, PayoffMatrix.isValid(t, r, p, s));
-            p = 3;
-            t = 6;
+            r = 1;
             Assert.AreEqual(true, PayoffMatrix.isValid(t, r, p, s));
 
         }
@@ -59,14 +58,13 @@ namespace PrisonersDilemmaCA.Tests
         [TestMethod()]
         public void isValidConvenianceTest()
         {
-            int t = 5; int r = 3; int p = 2; int s = 0;
+            int t = 0; int r = 1; int p = 3; int s = 5;
             PayoffMatrix myMatrix = new PayoffMatrix(t, r, p, s);
 
             Assert.AreEqual(true, myMatrix.isValid());
-            myMatrix.Reward = 5;
+            myMatrix.Reward = 0;
             Assert.AreEqual(false, myMatrix.isValid());
-            myMatrix.Punishment = 3;
-            myMatrix.Temptation = 6;
+            myMatrix.Reward = 1;
             Assert.AreEqual(true, myMatrix.isValid());
         }
     }

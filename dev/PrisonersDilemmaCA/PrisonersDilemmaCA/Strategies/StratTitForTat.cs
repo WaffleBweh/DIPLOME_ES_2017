@@ -33,21 +33,21 @@ namespace PrisonersDilemmaCA
             // Cooperates on first move, then copies his best openent
             Move result = Move.Cooperate;
 
+
             // If this wasn't our first round, we look at our neighbors
             if (cell.History.Count > 1)
             {
                 // We initialise our variables with the first neighbor in the list
-                int minScore = neighbors[0].Score;
-                result = neighbors[0].History.First();
+                result = cell.History.First();
+                int min = cell.Score;
 
-                // The objective is to copy the opponent's move with the lowest score
                 foreach (Cell neighbor in neighbors)
                 {
-                    // Find the opponents with the best move and copy it
-                    if (minScore > neighbor.Score)
+                    if (min > neighbor.Score)
                     {
-                        minScore = neighbor.Score;
+                        min = neighbor.Score;
                         result = neighbor.History.First();
+
                     }
                 }
             }

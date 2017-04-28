@@ -8,16 +8,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace PrisonersDilemmaCA.Tests
 {
     [TestClass()]
-    public class Vector2Tests
+    public class StratTitForTatTests
     {
         [TestMethod()]
-        public void Vector2Test()
+        public void chooseMoveTest()
         {
-            int x = 12; int y = 30;
-            Vector2 myVector2 = new Vector2(x, y);
-
-            Assert.AreEqual(x, myVector2.X);
-            Assert.AreEqual(y, myVector2.Y);
+            Assert.Fail();
         }
     }
 }

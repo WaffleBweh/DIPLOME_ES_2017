@@ -239,7 +239,7 @@ namespace PrisonersDilemmaCA
         public Cell getCell(int x, int y)
         {
             // Find the corrisponding point in a toroidal fashion if we go out of bounds
-            Vector2 point = getPointClampedInGrid(x, y);
+            Point point = getPointClampedInGrid(x, y);
             int newX = point.X;
             int newY = point.Y;
 
@@ -254,7 +254,7 @@ namespace PrisonersDilemmaCA
         /// <param name="x">The x coordinate of the point to check</param>
         /// <param name="y">The x coordinate of the point to check</param>
         /// <returns></returns>
-        public Vector2 getPointClampedInGrid(int x, int y)
+        public Point getPointClampedInGrid(int x, int y)
         {
             int newX = x;
             int newY = y;
@@ -285,7 +285,7 @@ namespace PrisonersDilemmaCA
                 newY = Convert.ToInt32(this.NbLines) + newY;
             }
 
-            return new Vector2(newX, newY);
+            return new Point(newX, newY);
         }
 
 

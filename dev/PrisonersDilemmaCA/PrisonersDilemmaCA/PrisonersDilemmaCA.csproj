@@ -82,7 +82,6 @@
     </Compile>
     <Compile Include="Strategies\StratBlinker.cs" />
     <Compile Include="Strategies\StratRandom.cs" />
-    <Compile Include="Classes\Vector2.cs" />
     <Compile Include="MainView.cs">
       <SubType>Form</SubType>
     </Compile>

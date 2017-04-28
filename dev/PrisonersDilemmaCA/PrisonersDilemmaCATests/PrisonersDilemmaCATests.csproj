@@ -36,6 +36,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -51,10 +53,20 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CellTests.cs" />
+    <Compile Include="Classes\ComboBoxExtensionsTests.cs" />
+    <Compile Include="Classes\StrategyTests.cs" />
+    <Compile Include="ColorExtensionsTests.cs" />
     <Compile Include="GridTests.cs" />
     <Compile Include="PayoffMatrixTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Vector2Tests.cs" />
+    <Compile Include="Strategies\StratAlwaysCooperateTests.cs" />
+    <Compile Include="Strategies\StratAlwaysDefectTests.cs" />
+    <Compile Include="Strategies\StratBlinkerTests.cs" />
+    <Compile Include="Strategies\StratGrimTriggerTests.cs" />
+    <Compile Include="Strategies\StratRandomTests.cs" />
+    <Compile Include="Strategies\StratReverseTitForTatTests.cs" />
+    <Compile Include="Strategies\StratTitForTatTests.cs" />
+    <Compile Include="Strategies\StratTitForTwoTatsTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PrisonersDilemmaCA\PrisonersDilemmaCA.csproj">

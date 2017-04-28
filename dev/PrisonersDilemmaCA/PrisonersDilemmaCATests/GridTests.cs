@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PrisonersDilemmaCA;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Drawing;
 namespace PrisonersDilemmaCA.Tests
 {
     [TestClass()]
@@ -38,10 +39,10 @@ namespace PrisonersDilemmaCA.Tests
             int sentY2 = -1;
 
             // Get our positions
-            Vector2 actual1 = myGrid.getPointClampedInGrid(sentX1, sentY1);
-            Vector2 actual2 = myGrid.getPointClampedInGrid(sentX2, sentY2);
-            Vector2 expected1 = new Vector2(2, 0);
-            Vector2 expected2 = new Vector2(8, 9);
+            Point actual1 = myGrid.getPointClampedInGrid(sentX1, sentY1);
+            Point actual2 = myGrid.getPointClampedInGrid(sentX2, sentY2);
+            Point expected1 = new Point(2, 0);
+            Point expected2 = new Point(8, 9);
 
             // Check for equality
             Assert.AreEqual(expected1.X, actual1.X);
