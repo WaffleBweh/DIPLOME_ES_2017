@@ -375,48 +375,6 @@ namespace PrisonersDilemmaCA
                 cell.setColorFromMove();
             }
         }
-
-
-
-        public int findCountOfStrategy(Strategy strategy)
-        {
-            int count = 0;
-
-            foreach (Cell cell in this.Cells)
-            {
-                // Find every cell that has the same type as the current strategy
-                if (strategy.GetType() == cell.Strategy.GetType())
-                {
-                    count++;
-                }
-            }
-
-            // Return the result rounded down to two decimal places
-            return count;
-        }
-
-        public double findAverageScoreOfStrategy(Strategy strategy)
-        {
-            double count = 0;
-            int i = 0;
-
-            foreach (Cell cell in this.Cells)
-            {
-                // Find every cell that has the same type as the current strategy
-                if (strategy.GetType() == cell.Strategy.GetType())
-                {
-                    // Increment the total score and the count
-                    count += cell.Score;
-                    i++;
-                }
-            }
-
-            // Find the percentage from the count
-            count = (count / i);
-
-            // Return the result rounded down to two decimal places
-            return Math.Round(count, 2);
-        }
         #endregion
     }
 }
