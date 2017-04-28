@@ -55,6 +55,10 @@
             this.tsExtendedView = new JCS.ToggleSwitch();
             this.label1 = new System.Windows.Forms.Label();
             this.pieStrategy = new LiveCharts.WinForms.PieChart();
+            this.lblPieChart = new System.Windows.Forms.Label();
+            this.lblSeparator = new System.Windows.Forms.Label();
+            this.cartesianStrategy = new LiveCharts.WinForms.CartesianChart();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbColumns)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbLines)).BeginInit();
@@ -77,7 +81,7 @@
             // 
             // lblGridInfo
             // 
-            this.lblGridInfo.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGridInfo.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGridInfo.Location = new System.Drawing.Point(9, 24);
             this.lblGridInfo.Name = "lblGridInfo";
             this.lblGridInfo.Size = new System.Drawing.Size(304, 19);
@@ -312,17 +316,63 @@
             // 
             // pieStrategy
             // 
-            this.pieStrategy.Location = new System.Drawing.Point(590, 46);
+            this.pieStrategy.Location = new System.Drawing.Point(611, 63);
             this.pieStrategy.Name = "pieStrategy";
-            this.pieStrategy.Size = new System.Drawing.Size(482, 262);
+            this.pieStrategy.Size = new System.Drawing.Size(461, 164);
             this.pieStrategy.TabIndex = 19;
             this.pieStrategy.Text = "pieChart1";
+            // 
+            // lblPieChart
+            // 
+            this.lblPieChart.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPieChart.Location = new System.Drawing.Point(611, 42);
+            this.lblPieChart.Name = "lblPieChart";
+            this.lblPieChart.Size = new System.Drawing.Size(461, 19);
+            this.lblPieChart.TabIndex = 20;
+            this.lblPieChart.Text = "Strategy Distribution Across the Grid";
+            this.lblPieChart.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblSeparator
+            // 
+            this.lblSeparator.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblSeparator.Location = new System.Drawing.Point(601, 40);
+            this.lblSeparator.Name = "lblSeparator";
+            this.lblSeparator.Size = new System.Drawing.Size(1, 450);
+            this.lblSeparator.TabIndex = 21;
+            // 
+            // cartesianStrategy
+            // 
+            this.cartesianStrategy.Hoverable = true;
+            this.cartesianStrategy.Location = new System.Drawing.Point(611, 263);
+            this.cartesianStrategy.Name = "cartesianStrategy";
+            this.cartesianStrategy.ScrollHorizontalFrom = 0D;
+            this.cartesianStrategy.ScrollHorizontalTo = 0D;
+            this.cartesianStrategy.ScrollMode = LiveCharts.ScrollMode.None;
+            this.cartesianStrategy.ScrollVerticalFrom = 0D;
+            this.cartesianStrategy.ScrollVerticalTo = 0D;
+            this.cartesianStrategy.Size = new System.Drawing.Size(461, 227);
+            this.cartesianStrategy.TabIndex = 22;
+            this.cartesianStrategy.Text = "cartesianChart1";
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(611, 240);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(461, 19);
+            this.label2.TabIndex = 23;
+            this.label2.Text = "Average Days in Jail by Strategy";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(594, 512);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cartesianStrategy);
+            this.Controls.Add(this.lblSeparator);
+            this.Controls.Add(this.lblPieChart);
             this.Controls.Add(this.pieStrategy);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tsExtendedView);
@@ -390,6 +440,10 @@
         private JCS.ToggleSwitch tsExtendedView;
         private System.Windows.Forms.Label label1;
         private LiveCharts.WinForms.PieChart pieStrategy;
+        private System.Windows.Forms.Label lblPieChart;
+        private System.Windows.Forms.Label lblSeparator;
+        private LiveCharts.WinForms.CartesianChart cartesianStrategy;
+        private System.Windows.Forms.Label label2;
     }
 }
 
