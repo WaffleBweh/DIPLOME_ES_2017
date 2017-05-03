@@ -377,7 +377,11 @@ namespace PrisonersDilemmaCA
         }
 
 
-
+        /// <summary>
+        /// Finds the number of times the given strategy appears on the board
+        /// </summary>
+        /// <param name="strategy"></param>
+        /// <returns></returns>
         public int findCountOfStrategy(Strategy strategy)
         {
             int count = 0;
@@ -395,7 +399,7 @@ namespace PrisonersDilemmaCA
             return count;
         }
 
-        public double findAverageScoreOfStrategy(Strategy strategy)
+        public double findAvgScoreOfStrategy(Strategy strategy)
         {
             double count = 0;
             int i = 0;

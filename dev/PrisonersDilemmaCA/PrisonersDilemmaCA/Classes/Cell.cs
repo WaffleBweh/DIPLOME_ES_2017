@@ -5,13 +5,9 @@
     Date            :   10.04.2017
 */
 
-using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace PrisonersDilemmaCA
 {
@@ -32,7 +28,7 @@ namespace PrisonersDilemmaCA
         private List<Cell> _neighbors;      // A list of references to the cells neighbors
         private PayoffMatrix _payoffMatrix; // The payoff matrix used by the cell
         private Move _move;                 // What the cell intends to do this turn (ex : Defect)
-        private Stack<Move> _history;      // Complete history of the cell's actions (ex : C, C, C, D, C, D, etc...)
+        private Stack<Move> _history;       // Complete history of the cell's actions (ex : C, C, C, D, C, D, etc...)
         #endregion
 
         #region properties
@@ -192,12 +188,8 @@ namespace PrisonersDilemmaCA
         {
             SolidBrush brush = new SolidBrush(this.Color);
 
-            // Calculate the positions
-            int realXPos = this.X * this.Width;
-            int realYPos = this.Y * this.Height;
-
             // Draw the cell
-            g.FillRectangle(brush, realXPos, realYPos, this.Width, this.Height);
+            g.FillRectangle(brush, this); // Implicitly converted as a rectangle
         }
 
 

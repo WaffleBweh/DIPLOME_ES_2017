@@ -519,7 +519,7 @@ namespace PrisonersDilemmaCA
                 if (mainGrid.findCountOfStrategy(availableStrategies[count]) > 0)
                 {
                     // Add the average score of each used strategy
-                    serie.Values.Add(mainGrid.findAverageScoreOfStrategy(availableStrategies[count]));
+                    serie.Values.Add(mainGrid.findAvgScoreOfStrategy(availableStrategies[count]));
                     serie.Visibility = System.Windows.Visibility.Visible;
                 }
                 else

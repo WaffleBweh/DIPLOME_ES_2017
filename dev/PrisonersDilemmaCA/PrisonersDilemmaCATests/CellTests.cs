@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PrisonersDilemmaCA;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Drawing;
 namespace PrisonersDilemmaCA.Tests
 {
     [TestClass()]
@@ -51,6 +52,22 @@ namespace PrisonersDilemmaCA.Tests
 
             // Compare the strategies names (SHOULD BE EQUAL)
             Assert.AreEqual(rndStrat.ToString(), myCell.Strategy.ToString());
+        }
+
+        [TestMethod()]
+        public void ImplicitConversionTest()
+        {       
+                                                                //  x    y      x    y
+            Cell myCell = new Cell(1, 1, new PayoffMatrix());   // [10, 10] to [20, 20]
+            myCell.Width = 10;
+            myCell.Height = 10;
+            Rectangle expected = new Rectangle(10, 10, 10, 10); // [10, 10] to [20, 20]
+            Rectangle actual = myCell;
+
+            Assert.AreEqual(expected.X, actual.X);
+            Assert.AreEqual(expected.Y, actual.Y);
+            Assert.AreEqual(expected.Width, actual.Width);
+            Assert.AreEqual(expected.Height, actual.Height);
         }
     }
 }
