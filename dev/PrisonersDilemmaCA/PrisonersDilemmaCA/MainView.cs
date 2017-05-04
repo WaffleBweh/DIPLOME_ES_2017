@@ -59,7 +59,7 @@ namespace PrisonersDilemmaCA
             availableStrategies.Add(new StratAlwaysDefect());
             availableStrategies.Add(new StratTitForTwoTats());
             availableStrategies.Add(new StratGrimTrigger());
-            //availableStrategies.Add(new StratReverseTitForTat());     // [WIP]
+            availableStrategies.Add(new StratReverseTitForTat());     // [WIP]
 
             // Sort the list
             availableStrategies.Sort();
@@ -85,7 +85,6 @@ namespace PrisonersDilemmaCA
             updateLabels();
 
             // CHARTS
-
             // Pie chart
             pieStrategy.InnerRadius = 50;
             pieStrategy.LegendLocation = LegendLocation.Right;

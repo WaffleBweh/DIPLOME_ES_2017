@@ -1,0 +1,2 @@
+"C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" "C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" /Logger:trx
+pause

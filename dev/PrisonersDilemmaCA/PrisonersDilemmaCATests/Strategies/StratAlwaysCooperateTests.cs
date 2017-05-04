@@ -13,7 +13,18 @@ namespace PrisonersDilemmaCA.Tests
         [TestMethod()]
         public void chooseMoveTest()
         {
-            Assert.Fail();
+            // Initialize
+            Grid myGrid = new Grid(200, 200, 10, 10, new PayoffMatrix());
+            myGrid.onClick(5, 5, new StratAlwaysCooperate());
+
+            // Steps forward to get the last move in the history
+            myGrid.step();
+
+
+            Move expected = Move.Cooperate;
+
+            // Compare the last move with what we expected
+            Assert.AreEqual(expected, myGrid.Cells[0, 0].History.First());
         }
 
     }
