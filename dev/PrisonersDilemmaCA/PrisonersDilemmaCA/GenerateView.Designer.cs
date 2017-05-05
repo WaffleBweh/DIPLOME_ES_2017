@@ -103,6 +103,7 @@
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnApply);
+            this.HelpButton = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(200, 200);
@@ -110,6 +111,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Generate new board";
             this.TransparencyKey = System.Drawing.Color.Maroon;
+            this.HelpButtonClicked += new System.ComponentModel.CancelEventHandler(this.GenerateView_HelpButtonClicked);
             this.Load += new System.EventHandler(this.GenerateView_Load);
             this.ResumeLayout(false);
 

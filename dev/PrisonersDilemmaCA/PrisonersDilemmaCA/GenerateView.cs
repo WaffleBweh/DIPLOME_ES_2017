@@ -204,5 +204,20 @@ namespace PrisonersDilemmaCA
             // Close the form
             this.Close();
         }
+
+        /// <summary>
+        /// Open the help form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GenerateView_HelpButtonClicked(object sender, CancelEventArgs e)
+        {
+            GenerateHelpView helpView = new GenerateHelpView();
+
+            if (helpView.ShowDialog() == DialogResult.OK)
+            {
+                // User pressed the close button
+            }
+        }
     }
 }

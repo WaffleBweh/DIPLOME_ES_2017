@@ -64,15 +64,33 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutView.Designer.cs">
+      <DependentUpon>AboutView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Classes\Cell.cs" />
     <Compile Include="Classes\ColorExtensions.cs" />
     <Compile Include="Classes\Enums.cs" />
     <Compile Include="Classes\ComboBoxExtensions.cs" />
+    <Compile Include="GenerateHelpView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerateHelpView.Designer.cs">
+      <DependentUpon>GenerateHelpView.cs</DependentUpon>
+    </Compile>
     <Compile Include="GenerateView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GenerateView.Designer.cs">
       <DependentUpon>GenerateView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PayoffMatrixHelpView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PayoffMatrixHelpView.Designer.cs">
+      <DependentUpon>PayoffMatrixHelpView.cs</DependentUpon>
     </Compile>
     <Compile Include="PayoffMatrixView.cs">
       <SubType>Form</SubType>
@@ -99,11 +117,20 @@
     <Compile Include="Strategies\StratReverseTitForTat.cs" />
     <Compile Include="Strategies\StratTitForTwoTats.cs" />
     <Compile Include="Strategies\StratTitForTat.cs" />
+    <EmbeddedResource Include="AboutView.resx">
+      <DependentUpon>AboutView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerateHelpView.resx">
+      <DependentUpon>GenerateHelpView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GenerateView.resx">
       <DependentUpon>GenerateView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PayoffMatrixHelpView.resx">
+      <DependentUpon>PayoffMatrixHelpView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PayoffMatrixView.resx">
       <DependentUpon>PayoffMatrixView.cs</DependentUpon>
@@ -116,6 +143,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -129,6 +157,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\payoff_matrix.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

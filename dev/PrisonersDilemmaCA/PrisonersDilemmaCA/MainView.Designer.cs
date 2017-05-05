@@ -29,14 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.pbGrid = new System.Windows.Forms.PictureBox();
             this.lblGridInfo = new System.Windows.Forms.Label();
             this.MainTimer = new System.Windows.Forms.Timer(this.components);
             this.tbColumns = new System.Windows.Forms.TrackBar();
             this.tbLines = new System.Windows.Forms.TrackBar();
             this.lblCols = new System.Windows.Forms.Label();
             this.lblLines = new System.Windows.Forms.Label();
-            this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generateNewBoardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
@@ -59,25 +58,13 @@
             this.lblSeparator = new System.Windows.Forms.Label();
             this.cartesianStrategy = new LiveCharts.WinForms.CartesianChart();
             this.label2 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pbGrid)).BeginInit();
+            this.pbGrid = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.tbColumns)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbLines)).BeginInit();
-            this.menuStrip.SuspendLayout();
+            this.MenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbTimerSpeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbGrid)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pbGrid
-            // 
-            this.pbGrid.BackColor = System.Drawing.Color.White;
-            this.pbGrid.Location = new System.Drawing.Point(12, 46);
-            this.pbGrid.Name = "pbGrid";
-            this.pbGrid.Size = new System.Drawing.Size(300, 300);
-            this.pbGrid.TabIndex = 0;
-            this.pbGrid.TabStop = false;
-            this.pbGrid.Paint += new System.Windows.Forms.PaintEventHandler(this.pbGrid_Paint);
-            this.pbGrid.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbGrid_MouseDown);
-            this.pbGrid.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbGrid_MouseMove);
-            this.pbGrid.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbGrid_MouseUp);
             // 
             // lblGridInfo
             // 
@@ -143,16 +130,16 @@
             this.lblLines.TabIndex = 5;
             this.lblLines.Text = "Rows : 10";
             // 
-            // menuStrip
+            // MenuStrip
             // 
-            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsToolStripMenuItem,
             this.helpToolStripMenuItem});
-            this.menuStrip.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(594, 24);
-            this.menuStrip.TabIndex = 6;
-            this.menuStrip.Text = "menuStrip1";
+            this.MenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.MenuStrip.Name = "MenuStrip";
+            this.MenuStrip.Size = new System.Drawing.Size(594, 24);
+            this.MenuStrip.TabIndex = 6;
+            this.MenuStrip.Text = "menuStrip1";
             // 
             // settingsToolStripMenuItem
             // 
@@ -188,6 +175,7 @@
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.helpToolStripMenuItem.Text = "About";
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
             // cbStrategies
             // 
@@ -364,6 +352,19 @@
             this.label2.Text = "Average Days in Jail by Strategy";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // pbGrid
+            // 
+            this.pbGrid.BackColor = System.Drawing.Color.White;
+            this.pbGrid.Location = new System.Drawing.Point(12, 46);
+            this.pbGrid.Name = "pbGrid";
+            this.pbGrid.Size = new System.Drawing.Size(300, 300);
+            this.pbGrid.TabIndex = 0;
+            this.pbGrid.TabStop = false;
+            this.pbGrid.Paint += new System.Windows.Forms.PaintEventHandler(this.pbGrid_Paint);
+            this.pbGrid.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbGrid_MouseDown);
+            this.pbGrid.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbGrid_MouseMove);
+            this.pbGrid.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbGrid_MouseUp);
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -391,22 +392,22 @@
             this.Controls.Add(this.tbColumns);
             this.Controls.Add(this.lblGridInfo);
             this.Controls.Add(this.pbGrid);
-            this.Controls.Add(this.menuStrip);
+            this.Controls.Add(this.MenuStrip);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MainMenuStrip = this.menuStrip;
+            this.MainMenuStrip = this.MenuStrip;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "The Prisoner\'s Dilemma, Cellular Automaton";
             this.Load += new System.EventHandler(this.MainView_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pbGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbColumns)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbLines)).EndInit();
-            this.menuStrip.ResumeLayout(false);
-            this.menuStrip.PerformLayout();
+            this.MenuStrip.ResumeLayout(false);
+            this.MenuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbTimerSpeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -421,7 +422,7 @@
         private System.Windows.Forms.TrackBar tbLines;
         private System.Windows.Forms.Label lblCols;
         private System.Windows.Forms.Label lblLines;
-        private System.Windows.Forms.MenuStrip menuStrip;
+        private System.Windows.Forms.MenuStrip MenuStrip;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem generateNewBoardToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;

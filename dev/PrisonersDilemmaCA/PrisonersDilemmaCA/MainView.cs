@@ -59,7 +59,7 @@ namespace PrisonersDilemmaCA
             availableStrategies.Add(new StratAlwaysDefect());
             availableStrategies.Add(new StratTitForTwoTats());
             availableStrategies.Add(new StratGrimTrigger());
-            availableStrategies.Add(new StratReverseTitForTat());     // [WIP]
+            availableStrategies.Add(new StratReverseTitForTat());
 
             // Sort the list
             availableStrategies.Sort();
@@ -173,7 +173,11 @@ namespace PrisonersDilemmaCA
             updateGrid();
         }
 
-        // Open the generation form
+        /// <summary>
+        /// Open the generation form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void generateNewBoardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             interruptTimer();
@@ -196,7 +200,11 @@ namespace PrisonersDilemmaCA
             }
         }
 
-        // Open the payoff matrix parameters
+        /// <summary>
+        /// Open the payoff matrix parameters
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void payoffMatrixToolStripMenuItem_Click(object sender, EventArgs e)
         {
             interruptTimer();
@@ -205,7 +213,22 @@ namespace PrisonersDilemmaCA
             PayoffMatrixView matrixView = new PayoffMatrixView();
             matrixView.currentMatrix = this.payoffMatrix;
 
-            if (matrixView.ShowDialog() == DialogResult.OK)
+            if (matrixView.ShowDialog() == DialogResult.Yes)
+            {
+                // The user has validated his input
+            }
+        }
+
+        /// <summary>
+        /// Open the about window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutView view = new AboutView();
+
+            if (view.ShowDialog() == DialogResult.OK)
             {
                 // The user has validated his input
             }

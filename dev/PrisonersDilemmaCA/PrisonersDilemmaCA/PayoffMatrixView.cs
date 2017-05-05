@@ -38,14 +38,18 @@ namespace PrisonersDilemmaCA
             int s = Convert.ToInt32(rtbSucker.Text);
 
             // Check for matrix validity
-            // T > R > P > S
+            // T < R < P < S
             if (!(PayoffMatrix.isValid(t, r, p, s)))
             {
                 // If it is not valid we abort and tell the user
                 MessageBox.Show(
                         "The selected matrix is not valid."
                         + Environment.NewLine
-                        + "Rule : T > R > P > S"
+                        + "Rules :"
+                        + Environment.NewLine
+                        + "[Temptation < Reward < Punishment < Sucker]"
+                        + Environment.NewLine
+                        + "[2 * Reward < Temptation + Sucker]"
                     );
             }
             else
@@ -65,6 +69,16 @@ namespace PrisonersDilemmaCA
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void PayoffMatrixView_HelpButtonClicked(object sender, CancelEventArgs e)
+        {
+            PayoffMatrixHelpView helpForm = new PayoffMatrixHelpView();
+
+            if (helpForm.ShowDialog() == DialogResult.OK)
+            {
+                // User clicked on ok
+            }
         }
 
     }
