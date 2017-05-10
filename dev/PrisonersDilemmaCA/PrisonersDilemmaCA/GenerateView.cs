@@ -119,7 +119,15 @@ namespace PrisonersDilemmaCA
             // Set the form's dimensions
             this.MinimumSize = new Size(formWidth, formHeight);
 
-            // Refresh the progressbar
+            // Center the form on screen
+            Rectangle screenSize = Screen.PrimaryScreen.Bounds;
+            int newX = screenSize.Width / 2 - this.Width / 2;
+            int newY = screenSize.Height / 2 - this.Height / 2;
+
+            this.Left = newX;
+            this.Top = newY;
+
+            // Update the controls
             UpdateValues(null, null);
         }
 
@@ -198,7 +206,6 @@ namespace PrisonersDilemmaCA
 
             // Generate a new board
             tmpGrid.generate(stratAndPercent);
-
             currentGrid.Cells = tmpGrid.Cells;
 
             // Close the form

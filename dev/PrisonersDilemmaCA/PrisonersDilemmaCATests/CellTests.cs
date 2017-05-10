@@ -35,23 +35,20 @@ namespace PrisonersDilemmaCA.Tests
         [TestMethod()]
         public void onClickTest()
         {
-            Cell myCell = new Cell(1, 1, new PayoffMatrix());
+            Grid myGrid = new Grid(100, 100, 1, 1, new PayoffMatrix());
             StratRandom rndStrat = new StratRandom();
 
-            myCell.Width = 15;
-            myCell.Height = 15;
-
             // Click outside the cell
-            myCell.onClick(60, 60, rndStrat);
+            myGrid.onClick(60, 60, rndStrat);
 
             // Compare the strategies names (SHOULD BE NOT EQUAL)
-            Assert.AreNotEqual(rndStrat.ToString(), myCell.Strategy.ToString());
+            Assert.AreNotEqual(rndStrat.ToString(), myGrid.Cells[0,0].ToString());
 
             // Click inside the cell
-            myCell.onClick(20, 20, rndStrat);
+            myGrid.onClick(20, 20, rndStrat);
 
             // Compare the strategies names (SHOULD BE EQUAL)
-            Assert.AreEqual(rndStrat.ToString(), myCell.Strategy.ToString());
+            Assert.AreEqual(rndStrat.ToString(), myGrid.Cells[0, 0].ToString());
         }
 
         [TestMethod()]

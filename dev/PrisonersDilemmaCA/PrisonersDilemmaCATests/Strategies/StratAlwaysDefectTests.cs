@@ -16,10 +16,6 @@ namespace PrisonersDilemmaCA.Tests
             // Initialize
             Grid myGrid = new Grid(200, 200, 10, 10, new PayoffMatrix());
             myGrid.onClick(5, 5, new StratAlwaysDefect());
-
-            // Steps forward to get the last move in the history
-            myGrid.step();
-
             Move expected = Move.Defect;
 
             // Compare the last move with what we expected

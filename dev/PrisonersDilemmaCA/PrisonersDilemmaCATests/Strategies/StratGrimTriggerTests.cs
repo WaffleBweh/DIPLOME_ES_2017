@@ -16,10 +16,6 @@ namespace PrisonersDilemmaCA.Tests
             // Initialize
             Grid myGrid = new Grid(100, 100, 10, 10, new PayoffMatrix());
             myGrid.onClick(5, 5, new StratGrimTrigger());
-
-            // Steps forward to get the last move in the history
-            myGrid.step();
-
             Move expected = Move.Cooperate;
 
             // Compare the last move with what we expected
@@ -32,7 +28,7 @@ namespace PrisonersDilemmaCA.Tests
 
             Assert.AreEqual(expected, myGrid.Cells[0, 0].History.First());
             myGrid.step();
-            expected = Move.Cooperate;
+            expected = Move.Defect;
 
             Assert.AreEqual(expected, myGrid.Cells[0, 0].History.First());
             myGrid.step();

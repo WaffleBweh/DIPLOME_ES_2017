@@ -15,10 +15,7 @@ namespace PrisonersDilemmaCA.Tests
         {
             // Initialize
             Grid myGrid = new Grid(100, 100, 10, 10, new PayoffMatrix());
-
-            // Steps forward to get the last move in the history
-            myGrid.step();
-
+            myGrid.onClick(5, 5, new StratTitForTwoTats());
             Move expected = Move.Cooperate;
 
             // Compare the last move with what we expected
@@ -42,7 +39,7 @@ namespace PrisonersDilemmaCA.Tests
 
             Assert.AreEqual(expected, myGrid.Cells[0, 0].History.First());
             myGrid.step();
-            expected = Move.Cooperate;
+            expected = Move.Defect;
 
             // Tit for two tats mimics the defector after 2 moves
             Assert.AreEqual(expected, myGrid.Cells[0, 0].History.First());

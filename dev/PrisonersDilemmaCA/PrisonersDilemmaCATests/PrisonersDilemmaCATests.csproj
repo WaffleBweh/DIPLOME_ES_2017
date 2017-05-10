@@ -53,8 +53,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CellTests.cs" />
-    <Compile Include="Classes\ComboBoxExtensionsTests.cs" />
-    <Compile Include="Classes\StrategyTests.cs" />
+    <Compile Include="ComboBoxExtensionsTests.cs" />
+    <Compile Include="Strategies\StratFortressTests.cs" />
+    <Compile Include="StrategyTests.cs" />
     <Compile Include="ColorExtensionsTests.cs" />
     <Compile Include="GridTests.cs" />
     <Compile Include="PayoffMatrixTests.cs" />
@@ -64,7 +65,6 @@
     <Compile Include="Strategies\StratBlinkerTests.cs" />
     <Compile Include="Strategies\StratGrimTriggerTests.cs" />
     <Compile Include="Strategies\StratRandomTests.cs" />
-    <Compile Include="Strategies\StratReverseTitForTatTests.cs" />
     <Compile Include="Strategies\StratTitForTatTests.cs" />
     <Compile Include="Strategies\StratTitForTwoTatsTests.cs" />
   </ItemGroup>

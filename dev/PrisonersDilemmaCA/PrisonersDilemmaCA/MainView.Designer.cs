@@ -59,6 +59,8 @@
             this.cartesianStrategy = new LiveCharts.WinForms.CartesianChart();
             this.label2 = new System.Windows.Forms.Label();
             this.pbGrid = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tsWrapMode = new JCS.ToggleSwitch();
             ((System.ComponentModel.ISupportInitialize)(this.tbColumns)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbLines)).BeginInit();
             this.MenuStrip.SuspendLayout();
@@ -365,11 +367,37 @@
             this.pbGrid.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbGrid_MouseMove);
             this.pbGrid.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbGrid_MouseUp);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(322, 441);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(72, 20);
+            this.label3.TabIndex = 25;
+            this.label3.Text = "Torus wrap";
+            // 
+            // tsWrapMode
+            // 
+            this.tsWrapMode.Location = new System.Drawing.Point(323, 464);
+            this.tsWrapMode.Name = "tsWrapMode";
+            this.tsWrapMode.OffFont = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsWrapMode.OffText = "OFF";
+            this.tsWrapMode.OnFont = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
+            this.tsWrapMode.OnForeColor = System.Drawing.Color.White;
+            this.tsWrapMode.OnText = "ON";
+            this.tsWrapMode.Size = new System.Drawing.Size(117, 33);
+            this.tsWrapMode.Style = JCS.ToggleSwitch.ToggleSwitchStyle.Iphone;
+            this.tsWrapMode.TabIndex = 24;
+            this.tsWrapMode.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.tsWrapMode_CheckedChanged);
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(594, 512);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.tsWrapMode);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cartesianStrategy);
             this.Controls.Add(this.lblSeparator);
@@ -445,6 +473,8 @@
         private System.Windows.Forms.Label lblSeparator;
         private LiveCharts.WinForms.CartesianChart cartesianStrategy;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private JCS.ToggleSwitch tsWrapMode;
     }
 }
 

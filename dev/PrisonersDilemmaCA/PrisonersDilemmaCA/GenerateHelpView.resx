@@ -117,4 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label3.Text" xml:space="preserve">
+    <value>This windows allows the generation of new boards. The strategies are placed randomly according to a certain proportion.
+
+You may choose the total percentage of each strategy on the board up to a total of 100%.
+</value>
+  </data>
 </root>

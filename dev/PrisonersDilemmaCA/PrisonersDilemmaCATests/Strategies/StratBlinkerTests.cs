@@ -17,22 +17,18 @@ namespace PrisonersDilemmaCA.Tests
             Grid myGrid = new Grid(200, 200, 10, 10, new PayoffMatrix());
             myGrid.onClick(5, 5, new StratBlinker());
 
-            // Steps forward to get the last move in the history
-            myGrid.step();
-
-            Move expected = Move.Cooperate;
+            Move expected = Move.Defect;
 
             // Compare the last move with what we expected
-            Assert.AreEqual(expected, myGrid.Cells[0, 0].History.First());
-            myGrid.step();
-            expected = Move.Defect;
-            
             Assert.AreEqual(expected, myGrid.Cells[0, 0].History.First());
             myGrid.step();
             expected = Move.Cooperate;
             
             Assert.AreEqual(expected, myGrid.Cells[0, 0].History.First());
             myGrid.step();
+            expected = Move.Defect;
+            
+            Assert.AreEqual(expected, myGrid.Cells[0, 0].History.First());
         }
 
     }

@@ -17,12 +17,22 @@ namespace PrisonersDilemmaCA
     public class StratGrimTrigger : Strategy
     {
         #region fields
+        private bool _wasBetrayed;
         #endregion
 
         #region properties
+        public bool WasBetrayed
+        {
+            get { return _wasBetrayed; }
+            set { _wasBetrayed = value; }
+        }
         #endregion
 
         #region constructors
+        public StratGrimTrigger()
+        {
+            this.WasBetrayed = false;
+        }
         #endregion
 
         #region methods
@@ -31,18 +41,26 @@ namespace PrisonersDilemmaCA
             // Starts by cooperating
             Move result = Move.Cooperate;
 
-
-            if (cell.History.Count > 1)
+            // Check if we were betrayed in the past
+            if (WasBetrayed)
             {
-                // Look if we got betrayed by a neighbor after our first move
-                foreach (Cell neighbor in neighbors)
+                result = Move.Defect;
+            }
+            else
+            {
+                // If we didn't get betrayed yet, we look at our neighbors
+                if (cell.History.Count > 1)
                 {
-                    if (neighbor.History.First() == Move.Defect)
+                    // Look if we got betrayed by a neighbor after our first move
+                    foreach (Cell neighbor in neighbors)
                     {
-                        // If we are betrayed, we switch to a "Always Defect" strategy
-                        cell.Strategy = new StratAlwaysDefect();
-                        cell.chooseNextMove();
-                        break;
+                        if (neighbor.History.First() == Move.Defect)
+                        {
+                            // If we are betrayed, we switch to a "Always Defect" strategy
+                            this.WasBetrayed = true;
+                            result = Move.Defect;
+                            break;
+                        }
                     }
                 }
             }

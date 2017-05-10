@@ -5,6 +5,7 @@
     Date            :   10.04.2017
 */
 
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -67,7 +68,8 @@ namespace PrisonersDilemmaCA
             get { return _strategy; }
             set
             {
-                _strategy = value;
+                // Make sure it is a new instance of the strategy
+                _strategy = (Strategy)Activator.CreateInstance(value.GetType());
                 // Set the color when we change the strategy
                 this.Color = this.Strategy.getColor();
             }
@@ -128,7 +130,6 @@ namespace PrisonersDilemmaCA
 
             // Starts with a move relevent to the strategy
             this.chooseNextMove();
-            this.History.Push(this.Move);
         }
 
         /// <summary>
@@ -215,13 +216,26 @@ namespace PrisonersDilemmaCA
             // If we are the cell that is hit, update our strategy and clear it's history
             if (hitbox.Contains(x, y))
             {
-                this.Strategy = strat;
-                this.History.Clear();
-
-                // Updates the cell's move with the new strategy
-                this.chooseNextMove();
-                this.updateLastMove();
+                updateStrategy(strat);
             }
+        }
+
+        /// <summary>
+        /// Updates the strategy of the cell
+        /// </summary>
+        /// <param name="strat"></param>
+        public void updateStrategy(Strategy strat)
+        {
+            // Change the strategy
+            this.Strategy = strat;
+
+            // Updates the cell's move with the new strategy
+            this.History.Clear();
+
+            // Play a game with our neighbors to set our base state
+            this.chooseNextMove();
+            this.updateLastMove();
+            this.step();
         }
 
         /// <summary>

@@ -38,8 +38,8 @@ namespace PrisonersDilemmaCA
             if (cell.History.Count > 1)
             {
                 // We initialise our variables with the first neighbor in the list
-                result = cell.History.First();
-                int min = cell.Score;
+                result = neighbors[0].History.First();
+                int min = neighbors[0].Score;
 
                 foreach (Cell neighbor in neighbors)
                 {
@@ -47,7 +47,6 @@ namespace PrisonersDilemmaCA
                     {
                         min = neighbor.Score;
                         result = neighbor.History.First();
-
                     }
                 }
             }

@@ -20,6 +20,7 @@ namespace PrisonersDilemmaCA
 
         #region consts
         public const int NEAREST_NEIGHBOR_RANGE = 1;    // Change the "radius" at which we consider cells neighbors
+        public const WrapMode DEFAULT_WRAP_MODE = WrapMode.Torus;
         #endregion
 
         private Cell[,] _cells;                         // 2D array containing the cells
@@ -29,6 +30,7 @@ namespace PrisonersDilemmaCA
         private int _nbCols;                            // Number of columns in the grid (x)
         private PayoffMatrix _payoffMatrix;             // Payoff matrix to be distributed to cells
         private ColorMode _colorMode;                   // The current color mode of the grid (cf. ColorMode enum)
+        private WrapMode _wrapMode;                     // The current wrapping mode of the grid (cf. WrapMode enum)
         #endregion
 
         #region properties
@@ -73,6 +75,12 @@ namespace PrisonersDilemmaCA
             get { return _colorMode; }
             set { _colorMode = value; }
         }
+
+        public WrapMode WrapMode
+        {
+            get { return _wrapMode; }
+            set { _wrapMode = value; }
+        }
         #endregion
 
         #region constructors
@@ -83,7 +91,7 @@ namespace PrisonersDilemmaCA
         /// <param name="height">The height of the grid in pixels</param>
         /// <param name="nbCols">The number of columns of the grid</param>
         /// <param name="nbLines">The number of lines of the grid</param>
-        public Grid(int width, int height, int nbLines, int nbCols, PayoffMatrix matrix)
+        public Grid(int width, int height, int nbLines, int nbCols, PayoffMatrix matrix, WrapMode wrapmode)
         {
             this.Width = width;
             this.Height = height;
@@ -91,6 +99,7 @@ namespace PrisonersDilemmaCA
             this.NbCols = nbCols;
             this.PayoffMatrix = matrix;
             this.ColorMode = ColorMode.Strategy;
+            this.WrapMode = wrapmode;
 
             // Initialize our list of cells
             this.Cells = new Cell[nbLines, nbCols];
@@ -121,6 +130,15 @@ namespace PrisonersDilemmaCA
                 // Make each cell aware of its neighbors
                 cell.Neighbors = findCellNeighbors(cell);
             }
+        }
+
+        /// <summary>
+        /// Conveniance constructor
+        /// </summary>
+        public Grid(int width, int height, int nbLines, int nbCols, PayoffMatrix matrix)
+            : this(width, height, nbLines, nbCols, matrix, DEFAULT_WRAP_MODE)
+        {
+            // No code
         }
         #endregion
 
@@ -226,7 +244,7 @@ namespace PrisonersDilemmaCA
             {
                 // Choose a random strategy in the list and apply it to the current cell
                 int rnd = rng.Next(strategyPopulation.Count);
-                cell.Strategy = strategyPopulation[rnd];
+                cell.updateStrategy(strategyPopulation[rnd]);
             }
         }
 
@@ -306,8 +324,22 @@ namespace PrisonersDilemmaCA
                     // Avoid our own cell
                     if (!((x == cell.X) && (y == cell.Y)))
                     {
-                        // Add the neighbor
-                        neighbors.Add(this.getCell(x, y));
+                        // Add the neighbor depending on the mode
+                        switch (this.WrapMode)
+                        {
+                            case WrapMode.Default:
+                                // In default mode, check if we are inside the grid
+                                if ((x >= 0) && (y >= 0) && (x < this.NbCols) && (y < this.NbLines))
+                                {
+                                    neighbors.Add(this.getCell(x, y));
+                                }
+                                break;
+
+                            case WrapMode.Torus:
+                                neighbors.Add(this.getCell(x, y));
+                                break;
+                        }
+
                     }
                 }
             }

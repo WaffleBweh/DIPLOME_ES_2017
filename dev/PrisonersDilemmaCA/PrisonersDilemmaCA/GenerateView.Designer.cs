@@ -68,7 +68,7 @@
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(460, 36);
             this.lblTitle.TabIndex = 2;
-            this.lblTitle.Text = "Choose strategies and their percentage of appearance";
+            this.lblTitle.Text = "Generate a new board with this proportion of strategy";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbPercentage

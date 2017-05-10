@@ -28,7 +28,9 @@ namespace PrisonersDilemmaCA
         int mouseX = 0;
         int mouseY = 0;
         int generation = 0;
+        WrapMode gridWrappingMode = WrapMode.Default;
 
+        const int MAX_NB_ELEMENTS_IN_CHART = 10;
         const int DEFAULT_NORMAL_VIEW_WIDTH = 610;
         const int DEFAULT_EXTENDED_VIEW_WIDTH = 1100;
         /**************************************************************************
@@ -51,6 +53,7 @@ namespace PrisonersDilemmaCA
         {
             // Make a list of all our available strategies
             availableStrategies = new List<Strategy>();
+
             // To add more strategies, add them to the list
             availableStrategies.Add(new StratRandom());
             availableStrategies.Add(new StratTitForTat());
@@ -59,7 +62,7 @@ namespace PrisonersDilemmaCA
             availableStrategies.Add(new StratAlwaysDefect());
             availableStrategies.Add(new StratTitForTwoTats());
             availableStrategies.Add(new StratGrimTrigger());
-            availableStrategies.Add(new StratReverseTitForTat());
+            availableStrategies.Add(new StratFortress());
 
             // Sort the list
             availableStrategies.Sort();
@@ -68,7 +71,7 @@ namespace PrisonersDilemmaCA
             payoffMatrix = new PayoffMatrix();
 
             // Initialize our grid of cells
-            mainGrid = new Grid(pbGrid.Width, pbGrid.Height, tbLines.Value, tbColumns.Value, payoffMatrix);
+            mainGrid = new Grid(pbGrid.Width, pbGrid.Height, tbLines.Value, tbColumns.Value, payoffMatrix, gridWrappingMode);
 
             // Initialise the combobox with strategies and colors
             cbStrategies.AddStrategies(availableStrategies);
@@ -330,7 +333,6 @@ namespace PrisonersDilemmaCA
         private void btnClear_Click(object sender, EventArgs e)
         {
             updateGrid();
-            initializeChart();
         }
 
 
@@ -353,6 +355,25 @@ namespace PrisonersDilemmaCA
             }
         }
 
+        /// <summary>
+        /// Alternates between default and torus wrapping mode
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsWrapMode_CheckedChanged(object sender, EventArgs e)
+        {
+            if (tsWrapMode.Checked)
+            {
+                gridWrappingMode = WrapMode.Torus;
+            }
+            else
+            {
+                gridWrappingMode = WrapMode.Default;
+            }
+
+            // Reset the grid to regenerate the neighbors lists
+            updateGrid();
+        }
 
         /**************************************************************************
          *                                FUNCTIONS                               *
@@ -419,7 +440,7 @@ namespace PrisonersDilemmaCA
             lblCols.Text = String.Format("Columns : {0}", tbColumns.Value);
 
             // Grid label
-            lblGridInfo.Text = String.Format("{0}x{1} Grid - Color mode : {2} - Generation {3}", tbLines.Value, tbColumns.Value, mainGrid.ColorMode.ToString(), generation);
+            lblGridInfo.Text = String.Format("{0}x{1} Grid - Mode : {2} - Generation {3}", tbLines.Value, tbColumns.Value, mainGrid.ColorMode.ToString(), generation);
 
             // Speed labels
             lblSpeedValue.Text = "automatically steps every " + tbTimerSpeed.Value + " [ms]";
@@ -452,7 +473,7 @@ namespace PrisonersDilemmaCA
         {
             // Interrupt the autoplay if it is running
             interruptTimer();
-            mainGrid = new Grid(pbGrid.Width, pbGrid.Height, tbLines.Value, tbColumns.Value, payoffMatrix);
+            mainGrid = new Grid(pbGrid.Width, pbGrid.Height, tbLines.Value, tbColumns.Value, payoffMatrix, gridWrappingMode);
 
             // Reset the generation count
             generation = 0;
@@ -460,6 +481,7 @@ namespace PrisonersDilemmaCA
             // Update the labels and chart
             updateLabels();
             updateDonutChart();
+            initializeChart();
         }
 
         /// <summary>
@@ -515,6 +537,9 @@ namespace PrisonersDilemmaCA
                     stratToAdd.Visibility = System.Windows.Visibility.Hidden;
                 }
 
+                cartesianStrategy.AxisX[0].MinValue = 0;
+                cartesianStrategy.AxisX[0].MaxValue = MAX_NB_ELEMENTS_IN_CHART;
+
                 // Add the values to the pie chart
                 cartesianStrategy.Series.Add(stratToAdd);
             }
@@ -529,9 +554,9 @@ namespace PrisonersDilemmaCA
 
             // Readjust the X axis
             cartesianStrategy.AxisX[0].MaxValue = generation;
-            if (generation > 10)
+            if (generation > MAX_NB_ELEMENTS_IN_CHART)
             {
-                cartesianStrategy.AxisX[0].MinValue = generation - 10;
+                cartesianStrategy.AxisX[0].MinValue = generation - MAX_NB_ELEMENTS_IN_CHART;
             }
 
             foreach (Series serie in cartesianStrategy.Series)

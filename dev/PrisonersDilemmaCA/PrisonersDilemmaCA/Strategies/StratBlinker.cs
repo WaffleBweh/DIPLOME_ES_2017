@@ -28,21 +28,17 @@ namespace PrisonersDilemmaCA
         #region methods
         public override Move chooseMove(Cell cell, List<Cell> neighbors)
         {
-            // Starts by cooperating
-            Move result = Move.Cooperate;
+            Move result;
 
-            // Then alternates between "defect" and "cooperate"
-            if (cell.History.Count > 1)
+            if (cell.History.Count % 2 == 0)
             {
-                if (cell.History.First() == Move.Cooperate)
-                {
-                    result = Move.Defect;
-                }
-                else if (cell.History.First() == Move.Defect)
-                {
-                    result = Move.Cooperate;
-                }
+                result = Move.Cooperate;
             }
+            else
+            {
+                result = Move.Defect;
+            }
+
 
             return result;
         }

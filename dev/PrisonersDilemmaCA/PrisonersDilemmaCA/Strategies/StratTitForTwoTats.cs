@@ -30,29 +30,35 @@ namespace PrisonersDilemmaCA
         #region methods
         public override Move chooseMove(Cell cell, List<Cell> neighbors)
         {
-            // Cooperates on first move, then copies his best openent
-            Move result = Move.Cooperate;
+            Move result;
+            bool hasToDefect = false;
 
-
-            // If this wasn't our first round, we look at our neighbors
+            // If this wasn't our first round, we look at our neighbors, else we cooperate
             if (cell.History.Count > 1)
             {
-                // We initialise our variables with the first neighbor in the list
-                result = cell.History.First();
-                int min = cell.Score;
-
+                // If one of our neighbors defects twice in a row, we 
                 foreach (Cell neighbor in neighbors)
                 {
-                    if (min > neighbor.Score)
+                    // Check if our neighbor has played at least 2 turns before proceeding
+                    if (neighbor.History.Count >= 2)
                     {
-                        min = neighbor.Score;
-                        // If one of our neighbors makes a move twice in a row we copy it
-                        if (neighbor.History.ElementAt(0) == neighbor.History.ElementAt(1))
+                        if (neighbor.History.ElementAt(0) == Move.Defect && neighbor.History.ElementAt(1) == Move.Defect)
                         {
-                            result = neighbor.History.First();
+                            hasToDefect = true;
+                            break;
                         }
                     }
                 }
+            }
+
+            // Send back the correct result
+            if (hasToDefect)
+            {
+                result = Move.Defect;
+            }
+            else
+            {
+                result = Move.Cooperate;
             }
 
 

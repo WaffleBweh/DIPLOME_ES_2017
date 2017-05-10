@@ -99,6 +99,7 @@
       <DependentUpon>PayoffMatrixView.cs</DependentUpon>
     </Compile>
     <Compile Include="Strategies\StratBlinker.cs" />
+    <Compile Include="Strategies\StratFortress.cs" />
     <Compile Include="Strategies\StratRandom.cs" />
     <Compile Include="MainView.cs">
       <SubType>Form</SubType>
@@ -114,7 +115,6 @@
     <Compile Include="Strategies\StratAlwaysDefect.cs" />
     <Compile Include="Strategies\StratAlwaysCooperate.cs" />
     <Compile Include="Strategies\StratGrimTrigger.cs" />
-    <Compile Include="Strategies\StratReverseTitForTat.cs" />
     <Compile Include="Strategies\StratTitForTwoTats.cs" />
     <Compile Include="Strategies\StratTitForTat.cs" />
     <EmbeddedResource Include="AboutView.resx">
@@ -160,6 +160,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\payoff_matrix.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\percentage.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
