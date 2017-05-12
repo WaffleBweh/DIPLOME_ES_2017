@@ -26,11 +26,11 @@ namespace PrisonersDilemmaCA.Tests
 
             Assert.AreEqual(expected, myGrid.Cells[0, 0].History.First());
             myGrid.step();
-            expected = Move.Cooperate;
+            expected = Move.Defect;
 
             Assert.AreEqual(expected, myGrid.Cells[0, 0].History.First());
             myGrid.step();
-            expected = Move.Defect;
+            expected = Move.Cooperate;
 
             Assert.AreEqual(expected, myGrid.Cells[0, 0].History.First());
 

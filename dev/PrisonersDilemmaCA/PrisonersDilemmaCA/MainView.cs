@@ -200,6 +200,7 @@ namespace PrisonersDilemmaCA
                 updateLabels();
                 updateDonutChart();
                 initializeChart();
+                mainGrid.setColorMode(ColorMode.Strategy);
             }
         }
 
