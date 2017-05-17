@@ -14,7 +14,7 @@ namespace PrisonersDilemmaCA.Tests
         [TestMethod()]
         public void DesignatedConstructorTest()
         {
-            Grid myGrid = new Grid(50, 100, 10, 20, new PayoffMatrix());
+            GridModel myGrid = new GridModel(50, 100, 10, 20, new PayoffMatrix());
 
             // Check if we have the correct number of cells
             int expectedNbCells = 10 * 20;
@@ -30,7 +30,7 @@ namespace PrisonersDilemmaCA.Tests
         [TestMethod()]
         public void getPointClampedInGridTest()
         {
-            Grid myGrid = new Grid(100, 100, 10, 10, new PayoffMatrix());
+            GridModel myGrid = new GridModel(100, 100, 10, 10, new PayoffMatrix());
 
             // Values to send through the function
             int sentX1 = 12;
@@ -55,7 +55,7 @@ namespace PrisonersDilemmaCA.Tests
         [TestMethod()]
         public void getCellTest()
         {
-            Grid myGrid = new Grid(100, 100, 10, 10, new PayoffMatrix());
+            GridModel myGrid = new GridModel(100, 100, 10, 10, new PayoffMatrix());
             Cell actual;
 
             // Values to send through the function
@@ -94,13 +94,13 @@ namespace PrisonersDilemmaCA.Tests
         [TestMethod()]
         public void findCellNeighborsTest()
         {
-            Grid myGrid = new Grid(100, 100, 20, 20, new PayoffMatrix());
+            GridModel myGrid = new GridModel(100, 100, 20, 20, new PayoffMatrix());
             List<Cell> actual = myGrid.findCellNeighbors(myGrid.getCell(11,0));
 
             // Test the actual number of neighbors
             // 1) Find the width of the "grid" around our cell (neighbor grid)
             // 2) Find the area of the grid and substract our own cell (in the center)
-            int diameterOfNeighborGrid = (Grid.NEAREST_NEIGHBOR_RANGE * 2) + 1;
+            int diameterOfNeighborGrid = (GridModel.NEAREST_NEIGHBOR_RANGE * 2) + 1;
             int expectedCount = (diameterOfNeighborGrid * diameterOfNeighborGrid) - 1;
 
             Assert.AreEqual(expectedCount, actual.Count);

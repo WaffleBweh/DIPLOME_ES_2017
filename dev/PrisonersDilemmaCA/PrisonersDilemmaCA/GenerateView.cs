@@ -13,7 +13,7 @@ namespace PrisonersDilemmaCA
 {
     public partial class GenerateView : Form
     {
-        public Grid currentGrid { get; set; }
+        public GridModel currentGrid { get; set; }
         public List<Strategy> strategies { get; set; }
 
         int nbOfStrategies;
@@ -202,7 +202,7 @@ namespace PrisonersDilemmaCA
                 }
             }
 
-            Grid tmpGrid = new Grid(currentGrid.Width, currentGrid.Height, currentGrid.NbLines, currentGrid.NbCols, currentGrid.PayoffMatrix);
+            GridModel tmpGrid = new GridModel(currentGrid.Width, currentGrid.Height, currentGrid.NbLines, currentGrid.NbCols, currentGrid.PayoffMatrix);
 
             // Generate a new board
             tmpGrid.generate(stratAndPercent);

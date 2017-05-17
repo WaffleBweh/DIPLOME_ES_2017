@@ -20,9 +20,14 @@ namespace PrisonersDilemmaCA
         /**************************************************************************
          *                            GLOBAL VARIABLES                            *
          **************************************************************************/
-        Grid mainGrid;
-        PayoffMatrix payoffMatrix;
-        List<Strategy> availableStrategies;
+        GridController _ctrl;
+
+        public GridController Ctrl
+        {
+            get { return _ctrl; }
+            set { _ctrl = value; }
+        } 
+
         bool isClickingOnGrid = false;
         bool isAutoplaying = false;
         int mouseX = 0;
@@ -51,30 +56,10 @@ namespace PrisonersDilemmaCA
         /// <param name="e"></param>
         private void MainView_Load(object sender, EventArgs e)
         {
-            // Make a list of all our available strategies
-            availableStrategies = new List<Strategy>();
-
-            // To add more strategies, add them to the list
-            availableStrategies.Add(new StratRandom());
-            availableStrategies.Add(new StratTitForTat());
-            availableStrategies.Add(new StratBlinker());
-            availableStrategies.Add(new StratAlwaysCooperate());
-            availableStrategies.Add(new StratAlwaysDefect());
-            availableStrategies.Add(new StratTitForTwoTats());
-            availableStrategies.Add(new StratGrimTrigger());
-            availableStrategies.Add(new StratFortress());
-
-            // Sort the list
-            availableStrategies.Sort();
-
-            // Initialize the payoff matrix with default values
-            payoffMatrix = new PayoffMatrix();
-
-            // Initialize our grid of cells
-            mainGrid = new Grid(pbGrid.Width, pbGrid.Height, tbLines.Value, tbColumns.Value, payoffMatrix, gridWrappingMode);
+            this.Ctrl = new GridController(pbGrid.Width, pbGrid.Height, tbLines.Value, tbColumns.Value, gridWrappingMode);
 
             // Initialise the combobox with strategies and colors
-            cbStrategies.AddStrategies(availableStrategies);
+            cbStrategies.AddStrategies(this.Ctrl.AvailableStrategies);
 
             // Select the first element by default
             cbStrategies.SelectedIndex = 0;
@@ -94,7 +79,7 @@ namespace PrisonersDilemmaCA
             pieStrategy.DisableAnimations = true;
             pieStrategy.Series = new SeriesCollection();
 
-            foreach (Strategy strategy in availableStrategies)
+            foreach (Strategy strategy in this.Ctrl.AvailableStrategies)
             {
                 // Get the color from the strategy
                 System.Windows.Media.BrushConverter converter = new System.Windows.Media.BrushConverter();
@@ -106,7 +91,7 @@ namespace PrisonersDilemmaCA
                     Title = strategy.ToString(),
                     Values = new ChartValues<double> 
                         {
-                            mainGrid.findCountOfStrategy(strategy) 
+                            this.Ctrl.findCountOfStrategy(strategy) 
                         },
                     DataLabels = true,
                     Fill = brush
@@ -153,7 +138,7 @@ namespace PrisonersDilemmaCA
         private void pbGrid_Paint(object sender, PaintEventArgs e)
         {
             // Draw code here
-            mainGrid.draw(e.Graphics);
+            this.Ctrl.draw(e.Graphics);
         }
 
         /// <summary>
@@ -187,8 +172,8 @@ namespace PrisonersDilemmaCA
 
             // Pass the grid and list of strategies to the form and open them
             GenerateView generateView = new GenerateView();
-            generateView.currentGrid = this.mainGrid;
-            generateView.strategies = this.availableStrategies;
+            generateView.currentGrid = this.Ctrl.Grid;                                   // TO CHANGE, NOT MVC !!
+            generateView.strategies = this.Ctrl.AvailableStrategies;                     // TO CHANGE, NOT MVC !!
 
             if (generateView.ShowDialog() == DialogResult.OK)
             {
@@ -200,7 +185,7 @@ namespace PrisonersDilemmaCA
                 updateLabels();
                 updateDonutChart();
                 initializeChart();
-                mainGrid.setColorMode(ColorMode.Strategy);
+                this.Ctrl.setColorMode(ColorMode.Strategy);
             }
         }
 
@@ -215,7 +200,7 @@ namespace PrisonersDilemmaCA
 
             // Pass the PayoffMatrix object as parameter to the form and open it
             PayoffMatrixView matrixView = new PayoffMatrixView();
-            matrixView.currentMatrix = this.payoffMatrix;
+            matrixView.currentMatrix = this.Ctrl.PayoffMatrix;                          // TO CHANGE, NOT MVC !!
 
             if (matrixView.ShowDialog() == DialogResult.Yes)
             {
@@ -325,7 +310,7 @@ namespace PrisonersDilemmaCA
         {
             // Interrupt the autoplay if it is running
             interruptTimer();
-            mainGrid.setColorMode(ColorMode.Strategy);
+            this.Ctrl.setColorMode(ColorMode.Strategy);
             updateLabels();
             Refresh();
         }
@@ -376,6 +361,29 @@ namespace PrisonersDilemmaCA
             updateGrid();
         }
 
+        /// <summary>
+        /// Serialize and save the grid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void saveGridToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Ctrl.saveData();
+            MessageBox.Show("Data successfully exported !");
+        }
+
+        /// <summary>
+        /// Load the serialized grid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void loadAGridToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Ctrl.loadData();
+            MessageBox.Show("Data successfully loaded !");
+            Refresh();
+        }
+
         /**************************************************************************
          *                                FUNCTIONS                               *
          **************************************************************************/
@@ -406,8 +414,8 @@ namespace PrisonersDilemmaCA
         private void stepForward()
         {
             // Steps forward
-            mainGrid.step();
-            mainGrid.setColorMode(ColorMode.Playing);
+            this.Ctrl.step();
+            this.Ctrl.setColorMode(ColorMode.Playing);
 
             // Increment the generation count
             generation++;
@@ -441,7 +449,7 @@ namespace PrisonersDilemmaCA
             lblCols.Text = String.Format("Columns : {0}", tbColumns.Value);
 
             // Grid label
-            lblGridInfo.Text = String.Format("{0}x{1} Grid - Mode : {2} - Generation {3}", tbLines.Value, tbColumns.Value, mainGrid.ColorMode.ToString(), generation);
+            lblGridInfo.Text = String.Format("{0}x{1} Grid - Mode : {2} - Generation {3}", tbLines.Value, tbColumns.Value, this.Ctrl.getColorMode().ToString(), generation);
 
             // Speed labels
             lblSpeedValue.Text = "automatically steps every " + tbTimerSpeed.Value + " [ms]";
@@ -454,14 +462,14 @@ namespace PrisonersDilemmaCA
         {
             if (isClickingOnGrid)
             {
-                Strategy selectedStrategy = availableStrategies[cbStrategies.SelectedIndex];
-                this.mainGrid.onClick(mouseX, mouseY, selectedStrategy);
+                Strategy selectedStrategy = this.Ctrl.AvailableStrategies[cbStrategies.SelectedIndex];         // TO CHANGE
+                this.Ctrl.onClick(mouseX, mouseY, selectedStrategy);
 
                 // Interrupt the autoplay if it is running
                 interruptTimer();
 
                 // Change the color mode
-                mainGrid.setColorMode(ColorMode.Strategy);
+                this.Ctrl.setColorMode(ColorMode.Strategy);
                 updateLabels();
                 Refresh();
             }
@@ -474,7 +482,7 @@ namespace PrisonersDilemmaCA
         {
             // Interrupt the autoplay if it is running
             interruptTimer();
-            mainGrid = new Grid(pbGrid.Width, pbGrid.Height, tbLines.Value, tbColumns.Value, payoffMatrix, gridWrappingMode);
+            this.Ctrl = new GridController(pbGrid.Width, pbGrid.Height, tbLines.Value, tbColumns.Value, gridWrappingMode);
 
             // Reset the generation count
             generation = 0;
@@ -494,10 +502,10 @@ namespace PrisonersDilemmaCA
             int count = 0;
             foreach (Series serie in pieStrategy.Series)
             {
-                if (mainGrid.findCountOfStrategy(availableStrategies[count]) > 0)
+                if (this.Ctrl.findCountOfStrategy(this.Ctrl.AvailableStrategies[count]) > 0)                    // TO CHANGE, NOT MVC
                 {
                     serie.Visibility = System.Windows.Visibility.Visible;
-                    serie.Values = new ChartValues<double> { mainGrid.findCountOfStrategy(availableStrategies[count]) };
+                    serie.Values = new ChartValues<double> { this.Ctrl.findCountOfStrategy(this.Ctrl.AvailableStrategies[count]) };
                 }
                 else
                 {
@@ -514,7 +522,7 @@ namespace PrisonersDilemmaCA
         public void initializeChart()
         {
             cartesianStrategy.Series = new SeriesCollection();
-            foreach (Strategy strategy in availableStrategies)
+            foreach (Strategy strategy in this.Ctrl.AvailableStrategies)                    // TO CHANGE, NOT MVC
             {
                 // Get the color from the strategy
                 System.Windows.Media.BrushConverter converter = new System.Windows.Media.BrushConverter();
@@ -533,7 +541,7 @@ namespace PrisonersDilemmaCA
                 };
 
                 // Hide the unused strategies
-                if (mainGrid.findCountOfStrategy(strategy) <= 0)
+                if (this.Ctrl.findCountOfStrategy(strategy) <= 0)
                 {
                     stratToAdd.Visibility = System.Windows.Visibility.Hidden;
                 }
@@ -564,10 +572,10 @@ namespace PrisonersDilemmaCA
             {
 
                 // Check the currently used strategies
-                if (mainGrid.findCountOfStrategy(availableStrategies[count]) > 0)
+                if (this.Ctrl.findCountOfStrategy(this.Ctrl.AvailableStrategies[count]) > 0)    // TO CHANGE, NOT MVC
                 {
                     // Add the average score of each used strategy
-                    serie.Values.Add(mainGrid.findAvgScoreOfStrategy(availableStrategies[count]));
+                    serie.Values.Add(this.Ctrl.findAvgScoreOfStrategy(this.Ctrl.AvailableStrategies[count]));    // TO CHANGE, NOT MVC
                     serie.Visibility = System.Windows.Visibility.Visible;
                 }
                 else

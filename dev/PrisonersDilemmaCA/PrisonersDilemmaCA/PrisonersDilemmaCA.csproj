@@ -70,10 +70,12 @@
     <Compile Include="AboutView.Designer.cs">
       <DependentUpon>AboutView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Extensions\ArrayExtensions.cs" />
     <Compile Include="Classes\Cell.cs" />
-    <Compile Include="Classes\ColorExtensions.cs" />
+    <Compile Include="Classes\Extensions\ColorExtensions.cs" />
     <Compile Include="Classes\Enums.cs" />
-    <Compile Include="Classes\ComboBoxExtensions.cs" />
+    <Compile Include="Classes\Extensions\ComboBoxExtensions.cs" />
+    <Compile Include="Classes\GridController.cs" />
     <Compile Include="GenerateHelpView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,25 +100,25 @@
     <Compile Include="PayoffMatrixView.Designer.cs">
       <DependentUpon>PayoffMatrixView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Strategies\StratBlinker.cs" />
-    <Compile Include="Strategies\StratFortress.cs" />
-    <Compile Include="Strategies\StratRandom.cs" />
+    <Compile Include="Classes\Strategies\StratBlinker.cs" />
+    <Compile Include="Classes\Strategies\StratFortress.cs" />
+    <Compile Include="Classes\Strategies\StratRandom.cs" />
     <Compile Include="MainView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Grid.cs" />
+    <Compile Include="Classes\GridModel.cs" />
     <Compile Include="Classes\Strategy.cs" />
     <Compile Include="Classes\PayoffMatrix.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Strategies\StratAlwaysDefect.cs" />
-    <Compile Include="Strategies\StratAlwaysCooperate.cs" />
-    <Compile Include="Strategies\StratGrimTrigger.cs" />
-    <Compile Include="Strategies\StratTitForTwoTats.cs" />
-    <Compile Include="Strategies\StratTitForTat.cs" />
+    <Compile Include="Classes\Strategies\StratAlwaysDefect.cs" />
+    <Compile Include="Classes\Strategies\StratAlwaysCooperate.cs" />
+    <Compile Include="Classes\Strategies\StratGrimTrigger.cs" />
+    <Compile Include="Classes\Strategies\StratTitForTwoTats.cs" />
+    <Compile Include="Classes\Strategies\StratTitForTat.cs" />
     <EmbeddedResource Include="AboutView.resx">
       <DependentUpon>AboutView.cs</DependentUpon>
     </EmbeddedResource>

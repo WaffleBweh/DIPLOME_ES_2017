@@ -38,8 +38,11 @@
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generateNewBoardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.payoffMatrixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.exportImportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadAGridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveGridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cbStrategies = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -147,8 +150,9 @@
             // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.generateNewBoardToolStripMenuItem,
+            this.payoffMatrixToolStripMenuItem,
             this.toolStripMenuItem1,
-            this.payoffMatrixToolStripMenuItem});
+            this.exportImportToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.settingsToolStripMenuItem.Text = "Settings";
@@ -156,21 +160,44 @@
             // generateNewBoardToolStripMenuItem
             // 
             this.generateNewBoardToolStripMenuItem.Name = "generateNewBoardToolStripMenuItem";
-            this.generateNewBoardToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.generateNewBoardToolStripMenuItem.Text = "Generate new board";
+            this.generateNewBoardToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.generateNewBoardToolStripMenuItem.Text = "Generate new board...";
             this.generateNewBoardToolStripMenuItem.Click += new System.EventHandler(this.generateNewBoardToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
             // 
             // payoffMatrixToolStripMenuItem
             // 
             this.payoffMatrixToolStripMenuItem.Name = "payoffMatrixToolStripMenuItem";
-            this.payoffMatrixToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.payoffMatrixToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.payoffMatrixToolStripMenuItem.Text = "Payoff matrix...";
             this.payoffMatrixToolStripMenuItem.Click += new System.EventHandler(this.payoffMatrixToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(186, 6);
+            // 
+            // exportImportToolStripMenuItem
+            // 
+            this.exportImportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveGridToolStripMenuItem,
+            this.loadAGridToolStripMenuItem});
+            this.exportImportToolStripMenuItem.Name = "exportImportToolStripMenuItem";
+            this.exportImportToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.exportImportToolStripMenuItem.Text = "Export / Import...";
+            // 
+            // loadAGridToolStripMenuItem
+            // 
+            this.loadAGridToolStripMenuItem.Name = "loadAGridToolStripMenuItem";
+            this.loadAGridToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadAGridToolStripMenuItem.Text = "Load a grid...";
+            this.loadAGridToolStripMenuItem.Click += new System.EventHandler(this.loadAGridToolStripMenuItem_Click);
+            // 
+            // saveGridToolStripMenuItem
+            // 
+            this.saveGridToolStripMenuItem.Name = "saveGridToolStripMenuItem";
+            this.saveGridToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveGridToolStripMenuItem.Text = "Save grid...";
+            this.saveGridToolStripMenuItem.Click += new System.EventHandler(this.saveGridToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -475,6 +502,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private JCS.ToggleSwitch tsWrapMode;
+        private System.Windows.Forms.ToolStripMenuItem exportImportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadAGridToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveGridToolStripMenuItem;
     }
 }
 

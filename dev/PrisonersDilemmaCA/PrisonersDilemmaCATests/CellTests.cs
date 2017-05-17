@@ -35,7 +35,7 @@ namespace PrisonersDilemmaCA.Tests
         [TestMethod()]
         public void onClickTest()
         {
-            Grid myGrid = new Grid(100, 100, 1, 2, new PayoffMatrix());
+            GridModel myGrid = new GridModel(100, 100, 1, 2, new PayoffMatrix());
             StratRandom rndStrat = new StratRandom();
 
             // Click outside the cell
