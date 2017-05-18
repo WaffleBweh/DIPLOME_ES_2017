@@ -185,7 +185,10 @@ namespace PrisonersDilemmaCA
                 updateLabels();
                 updateDonutChart();
                 initializeChart();
+<<<<<<< HEAD
                 this.Ctrl.setColorMode(ColorMode.Strategy);
+=======
+>>>>>>> parent of b4e9bbc... Weekend commit
             }
         }
 

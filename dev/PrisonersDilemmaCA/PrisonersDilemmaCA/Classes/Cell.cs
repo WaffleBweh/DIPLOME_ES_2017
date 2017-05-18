@@ -209,7 +209,11 @@ namespace PrisonersDilemmaCA
 
 
         /// <summary>
+<<<<<<< HEAD
         /// Implicit conversion to rectangle to simplify other functions
+=======
+        /// Implicit conversion to rectangle to use its contains function easily
+>>>>>>> parent of b4e9bbc... Weekend commit
         /// </summary>
         /// <param name="cell"></param>
         /// <returns></returns>
@@ -246,7 +250,7 @@ namespace PrisonersDilemmaCA
             // Updates the cell's move with the new strategy
             this.History.Clear();
 
-            // We play a game with our neighbors to sync with the current game
+            // Play a game with our neighbors to set our base state
             this.chooseNextMove();
             this.updateLastMove();
             this.step();
