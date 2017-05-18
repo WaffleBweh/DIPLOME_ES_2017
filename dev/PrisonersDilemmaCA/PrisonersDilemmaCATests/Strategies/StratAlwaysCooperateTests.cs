@@ -14,7 +14,7 @@ namespace PrisonersDilemmaCA.Tests
         public void chooseMoveTest()
         {
             // Initialize
-            GridModel myGrid = new GridModel(200, 200, 10, 10, new PayoffMatrix());
+            Grid myGrid = new Grid(200, 200, 10, 10, new PayoffMatrix());
             myGrid.onClick(5, 5, new StratAlwaysCooperate());
             Move expected = Move.Cooperate;
 

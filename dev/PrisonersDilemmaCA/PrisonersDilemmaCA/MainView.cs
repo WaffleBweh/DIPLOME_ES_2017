@@ -20,14 +20,9 @@ namespace PrisonersDilemmaCA
         /**************************************************************************
          *                            GLOBAL VARIABLES                            *
          **************************************************************************/
-        GridController _ctrl;
-
-        public GridController Ctrl
-        {
-            get { return _ctrl; }
-            set { _ctrl = value; }
-        } 
-
+        Grid mainGrid;
+        PayoffMatrix payoffMatrix;
+        List<Strategy> availableStrategies;
         bool isClickingOnGrid = false;
         bool isAutoplaying = false;
         int mouseX = 0;
@@ -56,10 +51,30 @@ namespace PrisonersDilemmaCA
         /// <param name="e"></param>
         private void MainView_Load(object sender, EventArgs e)
         {
-            this.Ctrl = new GridController(pbGrid.Width, pbGrid.Height, tbLines.Value, tbColumns.Value, gridWrappingMode);
+            // Make a list of all our available strategies
+            availableStrategies = new List<Strategy>();
+
+            // To add more strategies, add them to the list
+            availableStrategies.Add(new StratRandom());
+            availableStrategies.Add(new StratTitForTat());
+            availableStrategies.Add(new StratBlinker());
+            availableStrategies.Add(new StratAlwaysCooperate());
+            availableStrategies.Add(new StratAlwaysDefect());
+            availableStrategies.Add(new StratTitForTwoTats());
+            availableStrategies.Add(new StratGrimTrigger());
+            availableStrategies.Add(new StratFortress());
+
+            // Sort the list
+            availableStrategies.Sort();
+
+            // Initialize the payoff matrix with default values
+            payoffMatrix = new PayoffMatrix();
+
+            // Initialize our grid of cells
+            mainGrid = new Grid(pbGrid.Width, pbGrid.Height, tbLines.Value, tbColumns.Value, payoffMatrix, gridWrappingMode);
 
             // Initialise the combobox with strategies and colors
-            cbStrategies.AddStrategies(this.Ctrl.AvailableStrategies);
+            cbStrategies.AddStrategies(availableStrategies);
 
             // Select the first element by default
             cbStrategies.SelectedIndex = 0;
@@ -79,7 +94,7 @@ namespace PrisonersDilemmaCA
             pieStrategy.DisableAnimations = true;
             pieStrategy.Series = new SeriesCollection();
 
-            foreach (Strategy strategy in this.Ctrl.AvailableStrategies)
+            foreach (Strategy strategy in availableStrategies)
             {
                 // Get the color from the strategy
                 System.Windows.Media.BrushConverter converter = new System.Windows.Media.BrushConverter();
@@ -89,9 +104,9 @@ namespace PrisonersDilemmaCA
                 PieSeries stratToAdd = new PieSeries
                 {
                     Title = strategy.ToString(),
-                    Values = new ChartValues<double> 
+                    Values = new ChartValues<double>
                         {
-                            this.Ctrl.findCountOfStrategy(strategy) 
+                            mainGrid.findCountOfStrategy(strategy)
                         },
                     DataLabels = true,
                     Fill = brush
@@ -138,7 +153,7 @@ namespace PrisonersDilemmaCA
         private void pbGrid_Paint(object sender, PaintEventArgs e)
         {
             // Draw code here
-            this.Ctrl.draw(e.Graphics);
+            mainGrid.draw(e.Graphics);
         }
 
         /// <summary>
@@ -172,8 +187,8 @@ namespace PrisonersDilemmaCA
 
             // Pass the grid and list of strategies to the form and open them
             GenerateView generateView = new GenerateView();
-            generateView.currentGrid = this.Ctrl.Grid;                                   // TO CHANGE, NOT MVC !!
-            generateView.strategies = this.Ctrl.AvailableStrategies;                     // TO CHANGE, NOT MVC !!
+            generateView.currentGrid = this.mainGrid;
+            generateView.strategies = this.availableStrategies;
 
             if (generateView.ShowDialog() == DialogResult.OK)
             {
@@ -185,10 +200,7 @@ namespace PrisonersDilemmaCA
                 updateLabels();
                 updateDonutChart();
                 initializeChart();
-<<<<<<< HEAD
-                this.Ctrl.setColorMode(ColorMode.Strategy);
-=======
->>>>>>> parent of b4e9bbc... Weekend commit
+                mainGrid.setColorMode(ColorMode.Strategy);
             }
         }
 
@@ -203,7 +215,7 @@ namespace PrisonersDilemmaCA
 
             // Pass the PayoffMatrix object as parameter to the form and open it
             PayoffMatrixView matrixView = new PayoffMatrixView();
-            matrixView.currentMatrix = this.Ctrl.PayoffMatrix;                          // TO CHANGE, NOT MVC !!
+            matrixView.currentMatrix = this.payoffMatrix;
 
             if (matrixView.ShowDialog() == DialogResult.Yes)
             {
@@ -313,7 +325,7 @@ namespace PrisonersDilemmaCA
         {
             // Interrupt the autoplay if it is running
             interruptTimer();
-            this.Ctrl.setColorMode(ColorMode.Strategy);
+            mainGrid.setColorMode(ColorMode.Strategy);
             updateLabels();
             Refresh();
         }
@@ -364,29 +376,6 @@ namespace PrisonersDilemmaCA
             updateGrid();
         }
 
-        /// <summary>
-        /// Serialize and save the grid
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void saveGridToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Ctrl.saveData();
-            MessageBox.Show("Data successfully exported !");
-        }
-
-        /// <summary>
-        /// Load the serialized grid
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void loadAGridToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Ctrl.loadData();
-            MessageBox.Show("Data successfully loaded !");
-            Refresh();
-        }
-
         /**************************************************************************
          *                                FUNCTIONS                               *
          **************************************************************************/
@@ -417,8 +406,8 @@ namespace PrisonersDilemmaCA
         private void stepForward()
         {
             // Steps forward
-            this.Ctrl.step();
-            this.Ctrl.setColorMode(ColorMode.Playing);
+            mainGrid.step();
+            mainGrid.setColorMode(ColorMode.Playing);
 
             // Increment the generation count
             generation++;
@@ -452,7 +441,7 @@ namespace PrisonersDilemmaCA
             lblCols.Text = String.Format("Columns : {0}", tbColumns.Value);
 
             // Grid label
-            lblGridInfo.Text = String.Format("{0}x{1} Grid - Mode : {2} - Generation {3}", tbLines.Value, tbColumns.Value, this.Ctrl.getColorMode().ToString(), generation);
+            lblGridInfo.Text = String.Format("{0}x{1} Grid - Mode : {2} - Generation {3}", tbLines.Value, tbColumns.Value, mainGrid.ColorMode.ToString(), generation);
 
             // Speed labels
             lblSpeedValue.Text = "automatically steps every " + tbTimerSpeed.Value + " [ms]";
@@ -465,14 +454,14 @@ namespace PrisonersDilemmaCA
         {
             if (isClickingOnGrid)
             {
-                Strategy selectedStrategy = this.Ctrl.AvailableStrategies[cbStrategies.SelectedIndex];         // TO CHANGE
-                this.Ctrl.onClick(mouseX, mouseY, selectedStrategy);
+                Strategy selectedStrategy = availableStrategies[cbStrategies.SelectedIndex];
+                this.mainGrid.onClick(mouseX, mouseY, selectedStrategy);
 
                 // Interrupt the autoplay if it is running
                 interruptTimer();
 
                 // Change the color mode
-                this.Ctrl.setColorMode(ColorMode.Strategy);
+                mainGrid.setColorMode(ColorMode.Strategy);
                 updateLabels();
                 Refresh();
             }
@@ -485,7 +474,7 @@ namespace PrisonersDilemmaCA
         {
             // Interrupt the autoplay if it is running
             interruptTimer();
-            this.Ctrl = new GridController(pbGrid.Width, pbGrid.Height, tbLines.Value, tbColumns.Value, gridWrappingMode);
+            mainGrid = new Grid(pbGrid.Width, pbGrid.Height, tbLines.Value, tbColumns.Value, payoffMatrix, gridWrappingMode);
 
             // Reset the generation count
             generation = 0;
@@ -505,10 +494,10 @@ namespace PrisonersDilemmaCA
             int count = 0;
             foreach (Series serie in pieStrategy.Series)
             {
-                if (this.Ctrl.findCountOfStrategy(this.Ctrl.AvailableStrategies[count]) > 0)                    // TO CHANGE, NOT MVC
+                if (mainGrid.findCountOfStrategy(availableStrategies[count]) > 0)
                 {
                     serie.Visibility = System.Windows.Visibility.Visible;
-                    serie.Values = new ChartValues<double> { this.Ctrl.findCountOfStrategy(this.Ctrl.AvailableStrategies[count]) };
+                    serie.Values = new ChartValues<double> { mainGrid.findCountOfStrategy(availableStrategies[count]) };
                 }
                 else
                 {
@@ -525,7 +514,7 @@ namespace PrisonersDilemmaCA
         public void initializeChart()
         {
             cartesianStrategy.Series = new SeriesCollection();
-            foreach (Strategy strategy in this.Ctrl.AvailableStrategies)                    // TO CHANGE, NOT MVC
+            foreach (Strategy strategy in availableStrategies)
             {
                 // Get the color from the strategy
                 System.Windows.Media.BrushConverter converter = new System.Windows.Media.BrushConverter();
@@ -544,7 +533,7 @@ namespace PrisonersDilemmaCA
                 };
 
                 // Hide the unused strategies
-                if (this.Ctrl.findCountOfStrategy(strategy) <= 0)
+                if (mainGrid.findCountOfStrategy(strategy) <= 0)
                 {
                     stratToAdd.Visibility = System.Windows.Visibility.Hidden;
                 }
@@ -575,10 +564,10 @@ namespace PrisonersDilemmaCA
             {
 
                 // Check the currently used strategies
-                if (this.Ctrl.findCountOfStrategy(this.Ctrl.AvailableStrategies[count]) > 0)    // TO CHANGE, NOT MVC
+                if (mainGrid.findCountOfStrategy(availableStrategies[count]) > 0)
                 {
                     // Add the average score of each used strategy
-                    serie.Values.Add(this.Ctrl.findAvgScoreOfStrategy(this.Ctrl.AvailableStrategies[count]));    // TO CHANGE, NOT MVC
+                    serie.Values.Add(mainGrid.findAvgScoreOfStrategy(availableStrategies[count]));
                     serie.Visibility = System.Windows.Visibility.Visible;
                 }
                 else
@@ -589,6 +578,53 @@ namespace PrisonersDilemmaCA
                 }
 
                 count++;
+            }
+        }
+
+        /// <summary>
+        /// Save the current grid in a serialized format
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void saveGridToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Open a file dialog for the user to save the file
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "XML files|*.xml";
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                // Save the data to the path
+                mainGrid.saveData(sfd.FileName);
+
+                // Notify the user
+                MessageBox.Show("Grid exported successfully");
+            }
+        }
+
+        /// <summary>
+        /// Load the current grid from a serialized file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void loadGridToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Open a file dialog for the user to load the file
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "XML files|*.xml";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                // Load the data from the path
+                mainGrid.loadData(ofd.FileName);
+
+                // Update the trackbars manually
+                tbLines.Value = mainGrid.NbLines;
+                tbColumns.Value = mainGrid.NbCols;
+                this.updateLabels();
+
+                // Notify the user
+                MessageBox.Show("Grid loaded successfully");
             }
         }
     }

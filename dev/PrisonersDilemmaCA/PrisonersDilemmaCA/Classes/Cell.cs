@@ -209,11 +209,7 @@ namespace PrisonersDilemmaCA
 
 
         /// <summary>
-<<<<<<< HEAD
         /// Implicit conversion to rectangle to simplify other functions
-=======
-        /// Implicit conversion to rectangle to use its contains function easily
->>>>>>> parent of b4e9bbc... Weekend commit
         /// </summary>
         /// <param name="cell"></param>
         /// <returns></returns>
@@ -250,7 +246,7 @@ namespace PrisonersDilemmaCA
             // Updates the cell's move with the new strategy
             this.History.Clear();
 
-            // Play a game with our neighbors to set our base state
+            // We play a game with our neighbors to sync with the current game
             this.chooseNextMove();
             this.updateLastMove();
             this.step();
@@ -315,108 +311,110 @@ namespace PrisonersDilemmaCA
             return null;
         }
 
+
         /// <summary>
         /// Reads through a serialized XML file to get the values for a cell
         /// </summary>
         /// <param name="reader"></param>
         public void ReadXml(XmlReader reader)
         {
+
             int R = -1;
             int G = -1;
             int B = -1;
 
-            while (reader.Read())
+            reader.Read(); // Skip the beggining tab
+            if (reader.Name == "X")
             {
-                if (reader.NodeType == XmlNodeType.Element)
-                {
-                    if (reader.Name == "X")
-                    {
-                        if (reader.Read())
-                        {
-                            this.X = int.Parse(reader.Value);
-                        }
-                    }
+                reader.Read(); // Read past the name tag
+                this.X = int.Parse(reader.Value);
+                reader.Read(); // Read past the value 
 
-                    if (reader.Name == "Y")
-                    {
-                        if (reader.Read())
-                        {
-                            this.Y = int.Parse(reader.Value);
-                        }
-                    }
-
-                    if (reader.Name == "Width")
-                    {
-                        if (reader.Read())
-                        {
-                            this.Width = int.Parse(reader.Value);
-                        }
-                    }
-
-                    if (reader.Name == "Height")
-                    {
-                        if (reader.Read())
-                        {
-                            this.Height = int.Parse(reader.Value);
-                        }
-                    }
-
-                    if (reader.Name == "Strategy")
-                    {
-                        if (reader.Read())
-                        {
-                            // Create a new instance of the strategy
-                            Type elementType = Type.GetType(reader.Value);
-                            this.Strategy = (Strategy)Activator.CreateInstance(elementType);
-                        }
-                    }
-
-                    if (reader.Name == "R")
-                    {
-                        if (reader.Read())
-                        {
-                            R = int.Parse(reader.Value);
-                        }
-                    }
-
-                    if (reader.Name == "G")
-                    {
-                        if (reader.Read())
-                        {
-                            G = int.Parse(reader.Value);
-                        }
-                    }
-
-                    if (reader.Name == "B")
-                    {
-                        if (reader.Read())
-                        {
-                            B = int.Parse(reader.Value);
-                        }
-                    }
-
-                    // Check if the RGB values are assigned
-                    if (R > 0 && G > 0 && B > 0)
-                    {
-                        // Create a color
-                        this.Color = Color.FromArgb(R, G, B);
-
-                        // Reset the color
-                        R = -1;
-                        G = -1;
-                        B = -1;
-                    }
-
-                    if (reader.Name == "Choice")
-                    {
-                        if (reader.Read())
-                        {
-                            // Tries to parse the reader value as a "Move" enum
-                            this.Choice = (Move)Enum.Parse(typeof(Move), reader.Value);
-                        }
-                    }
-                }
             }
+            reader.Read(); // Read past the closing tag
+
+            // repeat this process for every value...
+
+            if (reader.Name == "Y")
+            {
+                reader.Read();
+                this.Y = int.Parse(reader.Value);
+                reader.Read();
+            }
+            reader.Read();
+
+            if (reader.Name == "Width")
+            {
+                reader.Read();
+                this.Width = int.Parse(reader.Value);
+                reader.Read();
+            }
+            reader.Read();
+
+            if (reader.Name == "Height")
+            {
+                reader.Read();
+                this.Height = int.Parse(reader.Value);
+                reader.Read();
+            }
+            reader.Read();
+
+            if (reader.Name == "Strategy")
+            {
+                reader.Read();
+                // Create a new instance of the strategy
+                Type elementType = Type.GetType(reader.Value);
+                this.Strategy = (Strategy)Activator.CreateInstance(elementType);
+                reader.Read();
+            }
+            reader.Read();
+
+
+            if (reader.Name == "R")
+            {
+                reader.Read();
+                R = int.Parse(reader.Value);
+                reader.Read();
+            }
+            reader.Read();
+
+            if (reader.Name == "G")
+            {
+                reader.Read();
+                G = int.Parse(reader.Value);
+                reader.Read();
+            }
+            reader.Read();
+
+            if (reader.Name == "B")
+            {
+                reader.Read();
+                B = int.Parse(reader.Value);
+                reader.Read();
+            }
+            reader.Read();
+
+            // Check if the RGB values are assigned
+            if (R > 0 && G > 0 && B > 0)
+            {
+                // Create a color
+                this.Color = Color.FromArgb(R, G, B);
+
+                // Reset the color
+                R = -1;
+                G = -1;
+                B = -1;
+            }
+
+            if (reader.Name == "Score")
+            {
+                reader.Read();
+                // Tries to parse the reader value as a "Move" enum
+                this.Score = int.Parse(reader.Value);
+                reader.Read();
+            }
+            reader.Read();
+            reader.Read(); // Skip ending tag
         }
 
 
@@ -428,9 +426,6 @@ namespace PrisonersDilemmaCA
         {
             // Set color from strategy before continuing
             setColorFromStrategy();
-
-            // Begin <Cell> tag
-            writer.WriteStartElement("Cell");
 
             // Write the content of the cell to xml format
             writer.WriteStartElement("X");
@@ -465,8 +460,8 @@ namespace PrisonersDilemmaCA
             writer.WriteString(this.Color.B.ToString());
             writer.WriteEndElement();
 
-            writer.WriteStartElement("Choice");
-            writer.WriteString(this.Choice.ToString());
+            writer.WriteStartElement("Score");
+            writer.WriteString(this.Score.ToString());
             writer.WriteEndElement();
 
             /* HISTORY - UNUSED, INCREASED SIZE OF FILE EXPONENTIALLY WITH EACH GENERATION
@@ -479,9 +474,6 @@ namespace PrisonersDilemmaCA
             }
             writer.WriteEndElement();
             */
-
-            // Close <Cell> tag
-            writer.WriteEndElement();
         }
         #endregion
     }
