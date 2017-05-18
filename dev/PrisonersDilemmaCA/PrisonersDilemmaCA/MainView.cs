@@ -104,9 +104,9 @@ namespace PrisonersDilemmaCA
                 PieSeries stratToAdd = new PieSeries
                 {
                     Title = strategy.ToString(),
-                    Values = new ChartValues<double> 
+                    Values = new ChartValues<double>
                         {
-                            mainGrid.findCountOfStrategy(strategy) 
+                            mainGrid.findCountOfStrategy(strategy)
                         },
                     DataLabels = true,
                     Fill = brush
@@ -578,6 +578,53 @@ namespace PrisonersDilemmaCA
                 }
 
                 count++;
+            }
+        }
+
+        /// <summary>
+        /// Save the current grid in a serialized format
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void saveGridToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Open a file dialog for the user to save the file
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "XML files|*.xml";
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                // Save the data to the path
+                mainGrid.saveData(sfd.FileName);
+
+                // Notify the user
+                MessageBox.Show("Grid exported successfully");
+            }
+        }
+
+        /// <summary>
+        /// Load the current grid from a serialized file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void loadGridToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Open a file dialog for the user to load the file
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "XML files|*.xml";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                // Load the data from the path
+                mainGrid.loadData(ofd.FileName);
+
+                // Update the trackbars manually
+                tbLines.Value = mainGrid.NbLines;
+                tbColumns.Value = mainGrid.NbCols;
+                this.updateLabels();
+
+                // Notify the user
+                MessageBox.Show("Grid loaded successfully");
             }
         }
     }

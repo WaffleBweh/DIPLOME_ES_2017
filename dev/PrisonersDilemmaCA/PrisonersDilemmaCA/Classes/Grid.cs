@@ -8,9 +8,11 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace PrisonersDilemmaCA
 {
@@ -20,6 +22,12 @@ namespace PrisonersDilemmaCA
 
         #region consts
         public const int NEAREST_NEIGHBOR_RANGE = 1;    // Change the "radius" at which we consider cells neighbors
+        private const int DEFAULT_HEIGHT = 100;
+        private const int DEFAULT_WIDTH = 100;
+        private const int DEFAULT_NB_COLS = 10;
+        private const int DEFAULT_NB_LINES = 10;
+        private const string DEFAULT_DATA_FILENAME = "xml/grid.xml";
+
         public const WrapMode DEFAULT_WRAP_MODE = WrapMode.Torus;
         #endregion
 
@@ -31,13 +39,21 @@ namespace PrisonersDilemmaCA
         private PayoffMatrix _payoffMatrix;             // Payoff matrix to be distributed to cells
         private ColorMode _colorMode;                   // The current color mode of the grid (cf. ColorMode enum)
         private WrapMode _wrapMode;                     // The current wrapping mode of the grid (cf. WrapMode enum)
+        private List<Cell> _serializableCells;          // Since [,] is not serializable, we make a list of cell before serializing.
         #endregion
 
         #region properties
+        [XmlIgnore]
         public Cell[,] Cells
         {
             get { return _cells; }
             set { _cells = value; }
+        }
+
+        public List<Cell> SerializableCells
+        {
+            get { return _serializableCells; }
+            set { _serializableCells = value; }
         }
 
         public int Width
@@ -137,6 +153,25 @@ namespace PrisonersDilemmaCA
         /// </summary>
         public Grid(int width, int height, int nbLines, int nbCols, PayoffMatrix matrix)
             : this(width, height, nbLines, nbCols, matrix, DEFAULT_WRAP_MODE)
+        {
+            // No code
+        }
+
+        /// <summary>
+        /// Conveniance constructor 2
+        /// </summary>
+        public Grid(int width, int height, int nbLines, int nbCols)
+            : this(width, height, nbLines, nbCols, new PayoffMatrix(), DEFAULT_WRAP_MODE)
+        {
+            // No code
+        }
+
+        /// <summary>
+        /// Default constructor
+        /// (Required for serialization)
+        /// </summary>
+        public Grid()
+            : this(DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_NB_LINES, DEFAULT_NB_COLS, new PayoffMatrix())
         {
             // No code
         }
@@ -452,6 +487,72 @@ namespace PrisonersDilemmaCA
 
             // Return the result rounded down to two decimal places
             return Math.Round(count, 2);
+        }
+
+
+        /// <summary>
+        /// Serializes and saves grid data to a path
+        /// </summary>
+        /// <param name="path"></param>
+        public void saveData(string path)
+        {
+            // Extract the name of the directory from the path
+            Directory.CreateDirectory("xml");
+
+            this.SerializableCells = this.Cells.asList();
+            FileStream fs = new FileStream(path, FileMode.Create);
+            XmlSerializer xs = new XmlSerializer(typeof(Grid));
+            xs.Serialize(fs, this);
+            fs.Close();
+        }
+
+
+        /// <summary>
+        /// Serialize and saves grid data to the default location
+        /// </summary>
+        public void saveData()
+        {
+            this.saveData(DEFAULT_DATA_FILENAME);
+        }
+
+
+        /// <summary>
+        /// Load serialized data from a path
+        /// </summary>
+        /// <param name="path"></param>
+        public void loadData(string path)
+        {
+            Grid newGrid;
+
+            XmlSerializer xs = new XmlSerializer(typeof(Grid));
+            using (StreamReader rd = new StreamReader(path))
+            {
+                newGrid = xs.Deserialize(rd) as Grid;
+            }
+
+            // rebuild the neighbors
+            newGrid.Cells = newGrid.SerializableCells.asArrayOfArray(newGrid.NbLines, newGrid.NbCols);
+            foreach (var cell in newGrid.Cells)
+            {
+                cell.Neighbors = newGrid.findCellNeighbors(cell);
+            }
+
+            // Set each of the values from the serialized data
+            this.Width = newGrid.Width;
+            this.Height = newGrid.Height;
+            this.NbCols = newGrid.NbCols;
+            this.NbLines = newGrid.NbLines;
+            this.Cells = newGrid.Cells;
+            this.PayoffMatrix = newGrid.PayoffMatrix;
+            this.WrapMode = newGrid.WrapMode;
+        }
+
+        /// <summary>
+        /// Loads the serialized data from the default location
+        /// </summary>
+        public void loadData()
+        {
+            this.loadData(DEFAULT_DATA_FILENAME);
         }
         #endregion
     }

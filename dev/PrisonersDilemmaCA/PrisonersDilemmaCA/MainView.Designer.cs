@@ -61,6 +61,9 @@
             this.pbGrid = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tsWrapMode = new JCS.ToggleSwitch();
+            this.importOrExportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveGridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadGridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.tbColumns)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbLines)).BeginInit();
             this.MenuStrip.SuspendLayout();
@@ -147,8 +150,9 @@
             // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.generateNewBoardToolStripMenuItem,
+            this.payoffMatrixToolStripMenuItem,
             this.toolStripMenuItem1,
-            this.payoffMatrixToolStripMenuItem});
+            this.importOrExportToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.settingsToolStripMenuItem.Text = "Settings";
@@ -156,8 +160,8 @@
             // generateNewBoardToolStripMenuItem
             // 
             this.generateNewBoardToolStripMenuItem.Name = "generateNewBoardToolStripMenuItem";
-            this.generateNewBoardToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.generateNewBoardToolStripMenuItem.Text = "Generate new board";
+            this.generateNewBoardToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.generateNewBoardToolStripMenuItem.Text = "Generate new board...";
             this.generateNewBoardToolStripMenuItem.Click += new System.EventHandler(this.generateNewBoardToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
@@ -391,6 +395,29 @@
             this.tsWrapMode.TabIndex = 24;
             this.tsWrapMode.CheckedChanged += new JCS.ToggleSwitch.CheckedChangedDelegate(this.tsWrapMode_CheckedChanged);
             // 
+            // importOrExportToolStripMenuItem
+            // 
+            this.importOrExportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveGridToolStripMenuItem,
+            this.loadGridToolStripMenuItem});
+            this.importOrExportToolStripMenuItem.Name = "importOrExportToolStripMenuItem";
+            this.importOrExportToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.importOrExportToolStripMenuItem.Text = "Import / Export";
+            // 
+            // saveGridToolStripMenuItem
+            // 
+            this.saveGridToolStripMenuItem.Name = "saveGridToolStripMenuItem";
+            this.saveGridToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveGridToolStripMenuItem.Text = "Save grid...";
+            this.saveGridToolStripMenuItem.Click += new System.EventHandler(this.saveGridToolStripMenuItem_Click);
+            // 
+            // loadGridToolStripMenuItem
+            // 
+            this.loadGridToolStripMenuItem.Name = "loadGridToolStripMenuItem";
+            this.loadGridToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadGridToolStripMenuItem.Text = "Load grid...";
+            this.loadGridToolStripMenuItem.Click += new System.EventHandler(this.loadGridToolStripMenuItem_Click);
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -475,6 +502,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private JCS.ToggleSwitch tsWrapMode;
+        private System.Windows.Forms.ToolStripMenuItem importOrExportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveGridToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadGridToolStripMenuItem;
     }
 }
 
