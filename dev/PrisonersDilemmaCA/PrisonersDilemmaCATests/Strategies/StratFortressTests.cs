@@ -14,7 +14,7 @@ namespace PrisonersDilemmaCA.Tests
         public void chooseMoveTest()
         {
             // Initialize
-            GridModel myGrid = new GridModel(200, 200, 10, 10, new PayoffMatrix());
+            Grid myGrid = new Grid(200, 200, 10, 10, new PayoffMatrix());
             myGrid.onClick(5, 5, new StratFortress());
 
             Move expected = Move.Defect;
@@ -26,11 +26,11 @@ namespace PrisonersDilemmaCA.Tests
 
             Assert.AreEqual(expected, myGrid.Cells[0, 0].History.First());
             myGrid.step();
-            expected = Move.Cooperate;
+            expected = Move.Defect;
 
             Assert.AreEqual(expected, myGrid.Cells[0, 0].History.First());
             myGrid.step();
-            expected = Move.Defect;
+            expected = Move.Cooperate;
 
             Assert.AreEqual(expected, myGrid.Cells[0, 0].History.First());
 

@@ -1,5 +1,5 @@
 ﻿/*
-    Class           :   GridModel.cs
+    Class           :   Grid.cs
     Description     :   Stores the cells of the cellular automaton
     Author          :   SEEMULLER Julien
     Date            :   10.04.2017
@@ -8,24 +8,19 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
-using System.Xml.Serialization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace PrisonersDilemmaCA
 {
-    [System.Serializable]
-    public class GridModel
+    public class Grid
     {
         #region fields
 
         #region consts
         public const int NEAREST_NEIGHBOR_RANGE = 1;    // Change the "radius" at which we consider cells neighbors
-
         public const WrapMode DEFAULT_WRAP_MODE = WrapMode.Torus;
-        private const int DEFAULT_HEIGHT = 100;
-        private const int DEFAULT_WIDTH = 100;
-        private const int DEFAULT_NB_COLS = 10;
-        private const int DEFAULT_NB_LINES = 10;
         #endregion
 
         private Cell[,] _cells;                         // 2D array containing the cells
@@ -36,21 +31,13 @@ namespace PrisonersDilemmaCA
         private PayoffMatrix _payoffMatrix;             // Payoff matrix to be distributed to cells
         private ColorMode _colorMode;                   // The current color mode of the grid (cf. ColorMode enum)
         private WrapMode _wrapMode;                     // The current wrapping mode of the grid (cf. WrapMode enum)
-        private List<Cell> _serializableCells;          // Since [,] is not serializable, we make a list of cell before serializing.
         #endregion
 
         #region properties
-        [XmlIgnore]
         public Cell[,] Cells
         {
             get { return _cells; }
             set { _cells = value; }
-        }
-
-        public List<Cell> SerializableCells
-        {
-            get { return _serializableCells; }
-            set { _serializableCells = value; }
         }
 
         public int Width
@@ -76,7 +63,6 @@ namespace PrisonersDilemmaCA
             get { return _nbLines; }
             set { _nbLines = value; }
         }
-
 
         public PayoffMatrix PayoffMatrix
         {
@@ -105,7 +91,7 @@ namespace PrisonersDilemmaCA
         /// <param name="height">The height of the grid in pixels</param>
         /// <param name="nbCols">The number of columns of the grid</param>
         /// <param name="nbLines">The number of lines of the grid</param>
-        public GridModel(int width, int height, int nbLines, int nbCols, PayoffMatrix matrix, WrapMode wrapmode)
+        public Grid(int width, int height, int nbLines, int nbCols, PayoffMatrix matrix, WrapMode wrapmode)
         {
             this.Width = width;
             this.Height = height;
@@ -149,27 +135,8 @@ namespace PrisonersDilemmaCA
         /// <summary>
         /// Conveniance constructor
         /// </summary>
-        public GridModel(int width, int height, int nbLines, int nbCols, PayoffMatrix matrix)
+        public Grid(int width, int height, int nbLines, int nbCols, PayoffMatrix matrix)
             : this(width, height, nbLines, nbCols, matrix, DEFAULT_WRAP_MODE)
-        {
-            // No code
-        }
-
-        /// <summary>
-        /// Conveniance constructor 2
-        /// </summary>
-        public GridModel(int width, int height, int nbLines, int nbCols)
-            : this(width, height, nbLines, nbCols, new PayoffMatrix(), DEFAULT_WRAP_MODE)
-        {
-            // No code
-        }
-
-        /// <summary>
-        /// Default constructor
-        /// (Required for serialization)
-        /// </summary>
-        public GridModel()
-            : this(DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_NB_LINES, DEFAULT_NB_COLS, new PayoffMatrix())
         {
             // No code
         }
@@ -254,11 +221,6 @@ namespace PrisonersDilemmaCA
             }
         }
 
-        /// <summary>
-        /// Generates a grid randomly from a dictionary of the available
-        /// strategies and thier proportions
-        /// </summary>
-        /// <param name="strategyAndPercentages"></param>
         public void generate(Dictionary<Strategy, int> strategyAndPercentages)
         {
             // Create a new random number generator
@@ -469,11 +431,6 @@ namespace PrisonersDilemmaCA
             return count;
         }
 
-        /// <summary>
-        /// Returns the average score of a strategy on the grid
-        /// </summary>
-        /// <param name="strategy"></param>
-        /// <returns></returns>
         public double findAvgScoreOfStrategy(Strategy strategy)
         {
             double count = 0;

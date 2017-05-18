@@ -35,24 +35,20 @@ namespace PrisonersDilemmaCA.Tests
         [TestMethod()]
         public void onClickTest()
         {
-<<<<<<< HEAD
-            GridModel myGrid = new GridModel(100, 100, 1, 2, new PayoffMatrix());
-=======
-            Grid myGrid = new Grid(100, 100, 1, 1, new PayoffMatrix());
->>>>>>> parent of b4e9bbc... Weekend commit
+            Grid myGrid = new Grid(100, 100, 1, 2, new PayoffMatrix());
             StratRandom rndStrat = new StratRandom();
 
             // Click outside the cell
             myGrid.onClick(60, 60, rndStrat);
 
             // Compare the strategies names (SHOULD BE NOT EQUAL)
-            Assert.AreNotEqual(rndStrat.ToString(), myGrid.Cells[0,0].ToString());
+            Assert.AreNotEqual(rndStrat.ToString(), myGrid.Cells[0,0].Strategy.ToString());
 
             // Click inside the cell
             myGrid.onClick(20, 20, rndStrat);
 
             // Compare the strategies names (SHOULD BE EQUAL)
-            Assert.AreEqual(rndStrat.ToString(), myGrid.Cells[0, 0].ToString());
+            Assert.AreEqual(rndStrat.ToString(), myGrid.Cells[0, 0].Strategy.ToString());
         }
 
         [TestMethod()]

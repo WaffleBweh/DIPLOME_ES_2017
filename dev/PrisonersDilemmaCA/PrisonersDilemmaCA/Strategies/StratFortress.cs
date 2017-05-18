@@ -43,6 +43,9 @@ namespace PrisonersDilemmaCA
                     result = Move.Defect;
                     break;
                 case 2:
+                    result = Move.Defect;
+                    break;
+                case 3:
                     result = Move.Cooperate;
                     break;
                 // On the fourth and following turns, we look at our neighbors and see if there are

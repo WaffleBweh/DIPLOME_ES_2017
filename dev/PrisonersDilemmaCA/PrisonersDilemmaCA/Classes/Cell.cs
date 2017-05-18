@@ -9,19 +9,14 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Xml;
-using System.Xml.Schema;
-using System.Xml.Serialization;
 
 namespace PrisonersDilemmaCA
 {
-    public class Cell : IXmlSerializable
+    public class Cell
     {
         #region fields
         #region consts
         public static readonly Strategy DEFAULT_STRATEGY = new StratTitForTat();
-        private const int DEFAULT_X = 0;
-        private const int DEFAULT_Y = 0;
         #endregion
 
         private int _x;                     // X position in the grid (should be multiplied by width if used for graphics)
@@ -33,7 +28,7 @@ namespace PrisonersDilemmaCA
         private Color _color;               // The current color of the cell
         private List<Cell> _neighbors;      // A list of references to the cells neighbors
         private PayoffMatrix _payoffMatrix; // The payoff matrix used by the cell
-        private Move _choice;                 // What the cell intends to do this turn (ex : Defect)
+        private Move _move;                 // What the cell intends to do this turn (ex : Defect)
         private Stack<Move> _history;       // Complete history of the cell's actions (ex : C, C, C, D, C, D, etc...)
         #endregion
 
@@ -98,10 +93,10 @@ namespace PrisonersDilemmaCA
             set { _neighbors = value; }
         }
 
-        private Move Choice
+        private Move Move
         {
-            get { return _choice; }
-            set { _choice = value; }
+            get { return _move; }
+            set { _move = value; }
         }
 
         public Stack<Move> History
@@ -138,7 +133,7 @@ namespace PrisonersDilemmaCA
         }
 
         /// <summary>
-        /// Conveniance constructor
+        /// Default constructor
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -146,15 +141,6 @@ namespace PrisonersDilemmaCA
             : this(x, y, DEFAULT_STRATEGY, matrix)
         {
             // No code
-        }
-
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        public Cell()
-            : this(DEFAULT_X, DEFAULT_Y, new PayoffMatrix())
-        {
-
         }
         #endregion
 
@@ -169,7 +155,7 @@ namespace PrisonersDilemmaCA
             foreach (Cell neighbor in this.Neighbors)
             {
                 // Play a game and store the result
-                scores.Add(PayoffMatrix.returnPayoff(this.Choice, neighbor.Choice));
+                scores.Add(PayoffMatrix.returnPayoff(this.Move, neighbor.Move));
             }
 
             // We get the best score of the cell
@@ -184,7 +170,7 @@ namespace PrisonersDilemmaCA
         /// </summary>
         public void chooseNextMove()
         {
-            this.Choice = this.Strategy.chooseMove(this, this.Neighbors);
+            this.Move = this.Strategy.chooseMove(this, this.Neighbors);
         }
 
         /// <summary>
@@ -192,7 +178,7 @@ namespace PrisonersDilemmaCA
         /// </summary>
         public void updateLastMove()
         {
-            this.History.Push(this.Choice);
+            this.History.Push(this.Move);
         }
 
         /// <summary>
@@ -209,11 +195,7 @@ namespace PrisonersDilemmaCA
 
 
         /// <summary>
-<<<<<<< HEAD
-        /// Implicit conversion to rectangle to simplify other functions
-=======
-        /// Implicit conversion to rectangle to use its contains function easily
->>>>>>> parent of b4e9bbc... Weekend commit
+        /// Implicit conversion to rectangle to simplify other drawing functions
         /// </summary>
         /// <param name="cell"></param>
         /// <returns></returns>
@@ -250,7 +232,7 @@ namespace PrisonersDilemmaCA
             // Updates the cell's move with the new strategy
             this.History.Clear();
 
-            // Play a game with our neighbors to set our base state
+            // We play a game with our neighbors to sync with the current game
             this.chooseNextMove();
             this.updateLastMove();
             this.step();
@@ -261,7 +243,7 @@ namespace PrisonersDilemmaCA
         /// </summary>
         public void setColorFromMove()
         {
-            switch (this.Choice)
+            switch (this.Move)
             {
                 case Move.Cooperate:
                     if (this.History.First() == Move.Defect)
@@ -295,193 +277,6 @@ namespace PrisonersDilemmaCA
         public void setColorFromStrategy()
         {
             this.Color = this.Strategy.getColor();
-        }
-
-
-
-
-
-        //****************************//
-        // INTERFACE IXMLSERIALIZABLE //
-        //****************************//
-
-        /// <summary>
-        /// Unused, see MSDN documentation :
-        /// "This method is reserved and should not be used. It should always return a null value"
-        /// </summary>
-        /// <returns></returns>
-        public XmlSchema GetSchema()
-        {
-            return null;
-        }
-
-        /// <summary>
-        /// Reads through a serialized XML file to get the values for a cell
-        /// </summary>
-        /// <param name="reader"></param>
-        public void ReadXml(XmlReader reader)
-        {
-            int R = -1;
-            int G = -1;
-            int B = -1;
-
-            while (reader.Read())
-            {
-                if (reader.NodeType == XmlNodeType.Element)
-                {
-                    if (reader.Name == "X")
-                    {
-                        if (reader.Read())
-                        {
-                            this.X = int.Parse(reader.Value);
-                        }
-                    }
-
-                    if (reader.Name == "Y")
-                    {
-                        if (reader.Read())
-                        {
-                            this.Y = int.Parse(reader.Value);
-                        }
-                    }
-
-                    if (reader.Name == "Width")
-                    {
-                        if (reader.Read())
-                        {
-                            this.Width = int.Parse(reader.Value);
-                        }
-                    }
-
-                    if (reader.Name == "Height")
-                    {
-                        if (reader.Read())
-                        {
-                            this.Height = int.Parse(reader.Value);
-                        }
-                    }
-
-                    if (reader.Name == "Strategy")
-                    {
-                        if (reader.Read())
-                        {
-                            // Create a new instance of the strategy
-                            Type elementType = Type.GetType(reader.Value);
-                            this.Strategy = (Strategy)Activator.CreateInstance(elementType);
-                        }
-                    }
-
-                    if (reader.Name == "R")
-                    {
-                        if (reader.Read())
-                        {
-                            R = int.Parse(reader.Value);
-                        }
-                    }
-
-                    if (reader.Name == "G")
-                    {
-                        if (reader.Read())
-                        {
-                            G = int.Parse(reader.Value);
-                        }
-                    }
-
-                    if (reader.Name == "B")
-                    {
-                        if (reader.Read())
-                        {
-                            B = int.Parse(reader.Value);
-                        }
-                    }
-
-                    // Check if the RGB values are assigned
-                    if (R > 0 && G > 0 && B > 0)
-                    {
-                        // Create a color
-                        this.Color = Color.FromArgb(R, G, B);
-
-                        // Reset the color
-                        R = -1;
-                        G = -1;
-                        B = -1;
-                    }
-
-                    if (reader.Name == "Choice")
-                    {
-                        if (reader.Read())
-                        {
-                            // Tries to parse the reader value as a "Move" enum
-                            this.Choice = (Move)Enum.Parse(typeof(Move), reader.Value);
-                        }
-                    }
-                }
-            }
-        }
-
-
-        /// <summary>
-        /// Write the cell's value to a serialized XML file
-        /// </summary>
-        /// <param name="writer"></param>
-        public void WriteXml(XmlWriter writer)
-        {
-            // Set color from strategy before continuing
-            setColorFromStrategy();
-
-            // Begin <Cell> tag
-            writer.WriteStartElement("Cell");
-
-            // Write the content of the cell to xml format
-            writer.WriteStartElement("X");
-            writer.WriteString(this.X.ToString());
-            writer.WriteEndElement();
-
-            writer.WriteStartElement("Y");
-            writer.WriteString(this.Y.ToString());
-            writer.WriteEndElement();
-
-            writer.WriteStartElement("Width");
-            writer.WriteString(this.Width.ToString());
-            writer.WriteEndElement();
-
-            writer.WriteStartElement("Height");
-            writer.WriteString(this.Height.ToString());
-            writer.WriteEndElement();
-
-            writer.WriteStartElement("Strategy");
-            writer.WriteString(this.Strategy.GetType().ToString());
-            writer.WriteEndElement();
-
-            writer.WriteStartElement("R");
-            writer.WriteString(this.Color.R.ToString());
-            writer.WriteEndElement();
-
-            writer.WriteStartElement("G");
-            writer.WriteString(this.Color.G.ToString());
-            writer.WriteEndElement();
-
-            writer.WriteStartElement("B");
-            writer.WriteString(this.Color.B.ToString());
-            writer.WriteEndElement();
-
-            writer.WriteStartElement("Choice");
-            writer.WriteString(this.Choice.ToString());
-            writer.WriteEndElement();
-
-            /* HISTORY - UNUSED, INCREASED SIZE OF FILE EXPONENTIALLY WITH EACH GENERATION
-            writer.WriteStartElement("History");
-            foreach (Move choice in this.History)
-            {
-                writer.WriteStartElement("Choice");
-                writer.WriteString(choice.ToString());
-                writer.WriteEndElement();
-            }
-            writer.WriteEndElement();
-            */
-
-            // Close <Cell> tag
-            writer.WriteEndElement();
         }
         #endregion
     }
