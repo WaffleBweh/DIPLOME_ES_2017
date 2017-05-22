@@ -95,7 +95,7 @@ namespace PrisonersDilemmaCA.Tests
         public void findCellNeighborsTest()
         {
             Grid myGrid = new Grid(100, 100, 20, 20, new PayoffMatrix());
-            List<Cell> actual = myGrid.findCellNeighbors(myGrid.getCell(11,0));
+            List<Cell> actual = myGrid.findCellNeighbors(myGrid.getCell(11, 0));
 
             // Test the actual number of neighbors
             // 1) Find the width of the "grid" around our cell (neighbor grid)

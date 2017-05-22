@@ -40,3 +40,5 @@ C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\DIPLOME_ES_2017\dev\PrisonersDi
 C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\obj\Debug\PrisonersDilemmaCATests.csprojResolveAssemblyReference.cache
 C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\obj\Debug\PrisonersDilemmaCATests.dll
 C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\obj\Debug\PrisonersDilemmaCATests.pdb
+C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\fr\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll

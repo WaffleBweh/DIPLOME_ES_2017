@@ -74,7 +74,7 @@
     <Compile Include="Classes\ColorExtensions.cs" />
     <Compile Include="Classes\Enums.cs" />
     <Compile Include="Classes\ComboBoxExtensions.cs" />
-    <Compile Include="Classes\Strategies\ArrayExtensions.cs" />
+    <Compile Include="Classes\ArrayExtensions.cs" />
     <Compile Include="GenerateHelpView.cs">
       <SubType>Form</SubType>
     </Compile>

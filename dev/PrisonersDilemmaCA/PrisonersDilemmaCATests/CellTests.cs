@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using PrisonersDilemmaCA;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Drawing;
+using System.Xml;
+
 namespace PrisonersDilemmaCA.Tests
 {
     [TestClass()]
@@ -42,7 +44,7 @@ namespace PrisonersDilemmaCA.Tests
             myGrid.onClick(60, 60, rndStrat);
 
             // Compare the strategies names (SHOULD BE NOT EQUAL)
-            Assert.AreNotEqual(rndStrat.ToString(), myGrid.Cells[0,0].Strategy.ToString());
+            Assert.AreNotEqual(rndStrat.ToString(), myGrid.Cells[0, 0].Strategy.ToString());
 
             // Click inside the cell
             myGrid.onClick(20, 20, rndStrat);
@@ -53,7 +55,7 @@ namespace PrisonersDilemmaCA.Tests
 
         [TestMethod()]
         public void ImplicitConversionTest()
-        {       
+        {
                                                                 //  x    y      x    y
             Cell myCell = new Cell(1, 1, new PayoffMatrix());   // [10, 10] to [20, 20]
             myCell.Width = 10;

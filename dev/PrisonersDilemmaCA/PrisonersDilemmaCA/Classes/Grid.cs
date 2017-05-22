@@ -26,7 +26,7 @@ namespace PrisonersDilemmaCA
         private const int DEFAULT_WIDTH = 100;
         private const int DEFAULT_NB_COLS = 10;
         private const int DEFAULT_NB_LINES = 10;
-        private const string DEFAULT_DATA_FILENAME = "xml/grid.xml";
+        private const string DEFAULT_DATA_FILEPATH = "xml/grid.xml";
 
         public const WrapMode DEFAULT_WRAP_MODE = WrapMode.Torus;
         #endregion
@@ -215,45 +215,10 @@ namespace PrisonersDilemmaCA
                 cell.draw(g);
             }
 
-            // Get the cell width (take the first one in the list
-            int cellWidth = this.Cells[0, 0].Width;
-            int cellHeight = this.Cells[0, 0].Height;
-
-            // Draw the lines
-            for (int y = 0; y <= this.NbLines; y++)
-            {
-                int startX = 0;
-                int startY = y * cellHeight;
-                int endX = this.Width;
-                int endY = y * cellHeight;
-
-                // If we are on the last line, account for the 1 extra pixel
-                if (y == this.NbLines)
-                {
-                    startY -= 1;
-                    endY -= 1;
-                }
-
-                g.DrawLine(Pens.Black, startX, startY, endX, endY);
-            }
-
-            // Draw the columns
-            for (int x = 0; x <= this.NbCols; x++)
-            {
-                int startX = x * cellWidth;
-                int startY = 0;
-                int endX = x * cellWidth;
-                int endY = this.Height;
-
-                // If we are on the last line, account for the 1 extra pixel
-                if (x == this.NbCols)
-                {
-                    startX -= 1;
-                    endX -= 1;
-                }
-
-                g.DrawLine(Pens.Black, startX, startY, endX, endY);
-            }
+            // Avoid drawing errors due to rounding
+            Pen borderColor = new Pen(Color.Black, Cell.DEFAULT_BORDER_WIDTH * 2);
+            g.DrawLine(borderColor, 0, this.Height, this.Width, this.Height);
+            g.DrawLine(borderColor, this.Width, 0, this.Width, this.Height);
         }
 
         public void generate(Dictionary<Strategy, int> strategyAndPercentages)
@@ -284,6 +249,26 @@ namespace PrisonersDilemmaCA
         }
 
         /// <summary>
+        /// Allows the use of two lists instead of a dictionary for generating grids.
+        /// </summary>
+        /// <param name="strats"></param>
+        /// <param name="percentages"></param>
+        public void generate(List<Strategy> strats, List<int> percentages)
+        {
+            // Fill a dictionary with strategies and percentages
+            Dictionary<Strategy, int> stratAndPercentage = new Dictionary<Strategy, int>();
+
+            int counter = 0;
+            foreach (var strategy in strats)
+            {
+                stratAndPercentage.Add(strategy, percentages[counter]);
+            }
+
+            // Generate the board
+            this.generate(stratAndPercentage);
+        }
+
+        /// <summary>
         /// Gets the cell at the given position in a toroidal fashion
         /// </summary>
         /// <param name="x"></param>
@@ -301,8 +286,8 @@ namespace PrisonersDilemmaCA
         }
 
         /// <summary>
-        /// Gets a point and wraps around in a toroidal fashion if the point
-        /// is out of bounds
+        /// Gets a point and wraps around in a toroidal fashion if the point is out of bounds.
+        /// The coordinates are in grid format (see nbLines, nbCols)
         /// </summary>
         /// <param name="x">The x coordinate of the point to check</param>
         /// <param name="y">The x coordinate of the point to check</param>
@@ -496,9 +481,6 @@ namespace PrisonersDilemmaCA
         /// <param name="path"></param>
         public void saveData(string path)
         {
-            // Extract the name of the directory from the path
-            Directory.CreateDirectory("xml");
-
             this.SerializableCells = this.Cells.asList();
             FileStream fs = new FileStream(path, FileMode.Create);
             XmlSerializer xs = new XmlSerializer(typeof(Grid));
@@ -512,7 +494,7 @@ namespace PrisonersDilemmaCA
         /// </summary>
         public void saveData()
         {
-            this.saveData(DEFAULT_DATA_FILENAME);
+            this.saveData(DEFAULT_DATA_FILEPATH);
         }
 
 
@@ -552,7 +534,7 @@ namespace PrisonersDilemmaCA
         /// </summary>
         public void loadData()
         {
-            this.loadData(DEFAULT_DATA_FILENAME);
+            this.loadData(DEFAULT_DATA_FILEPATH);
         }
         #endregion
     }

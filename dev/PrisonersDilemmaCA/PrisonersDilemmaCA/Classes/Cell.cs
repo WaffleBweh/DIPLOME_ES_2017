@@ -20,6 +20,7 @@ namespace PrisonersDilemmaCA
         #region fields
         #region consts
         public static readonly Strategy DEFAULT_STRATEGY = new StratTitForTat();
+        public const int DEFAULT_BORDER_WIDTH = 1;
         private const int DEFAULT_X = 0;
         private const int DEFAULT_Y = 0;
         #endregion
@@ -201,10 +202,15 @@ namespace PrisonersDilemmaCA
         /// <param name="g">The graphical element we use to draw</param>
         public void draw(Graphics g)
         {
-            SolidBrush brush = new SolidBrush(this.Color);
+            // Color of the cell
+            SolidBrush cellColor = new SolidBrush(this.Color);
+
+            // Border parameters (color, width)
+            Pen borderColor = new Pen(Color.Black, DEFAULT_BORDER_WIDTH);
 
             // Draw the cell
-            g.FillRectangle(brush, this); // Implicitly converted as a rectangle
+            g.FillRectangle(cellColor, this); // Implicitly converted as a rectangle
+            g.DrawRectangle(borderColor, this);
         }
 
 
