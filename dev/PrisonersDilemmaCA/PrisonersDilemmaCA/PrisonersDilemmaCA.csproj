@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\ca_icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="LiveCharts, Version=0.9.5.0, Culture=neutral, PublicKeyToken=c5935629d38af058, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -75,6 +78,7 @@
     <Compile Include="Classes\Enums.cs" />
     <Compile Include="Classes\ComboBoxExtensions.cs" />
     <Compile Include="Classes\ArrayExtensions.cs" />
+    <Compile Include="Classes\Strategies\StratPavlov.cs" />
     <Compile Include="GenerateHelpView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +168,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\percentage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\app_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ca_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\appIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ca_icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

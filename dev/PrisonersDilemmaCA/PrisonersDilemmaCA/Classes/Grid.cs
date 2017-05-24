@@ -1,6 +1,7 @@
 ﻿/*
     Class           :   Grid.cs
-    Description     :   Stores the cells of the cellular automaton
+    Description     :   Stores the cells of the cellular automaton, 
+                        main model of the cellular automaton
     Author          :   SEEMULLER Julien
     Date            :   10.04.2017
 */
@@ -206,7 +207,7 @@ namespace PrisonersDilemmaCA
         /// <summary>
         /// Draw every cell on the board and the grid around them
         /// </summary>
-        /// <param name="g"></param>
+        /// <param name="g">The graphics element we draw on</param>
         public void draw(Graphics g)
         {
             // Draw each cell
@@ -221,6 +222,10 @@ namespace PrisonersDilemmaCA
             g.DrawLine(borderColor, this.Width, 0, this.Width, this.Height);
         }
 
+        /// <summary>
+        /// Generates a board of cell from a dictionary of strategy and percentages
+        /// </summary>
+        /// <param name="strategyAndPercentages">Dictionary countaining the strategies and their percentage of appearence</param>
         public void generate(Dictionary<Strategy, int> strategyAndPercentages)
         {
             // Create a new random number generator
@@ -249,10 +254,10 @@ namespace PrisonersDilemmaCA
         }
 
         /// <summary>
-        /// Allows the use of two lists instead of a dictionary for generating grids.
+        /// Generates a board of cell from a list of strategy and percentages
         /// </summary>
-        /// <param name="strats"></param>
-        /// <param name="percentages"></param>
+        /// <param name="strats">List of strategies</param>
+        /// <param name="percentages">List of percentages</param>
         public void generate(List<Strategy> strats, List<int> percentages)
         {
             // Fill a dictionary with strategies and percentages
@@ -271,8 +276,8 @@ namespace PrisonersDilemmaCA
         /// <summary>
         /// Gets the cell at the given position in a toroidal fashion
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="x">The x coordinate of the cell (on the board)</param>
+        /// <param name="y">The y coordinate of the cell (on the board)</param>
         /// <returns></returns>
         public Cell getCell(int x, int y)
         {
@@ -289,8 +294,8 @@ namespace PrisonersDilemmaCA
         /// Gets a point and wraps around in a toroidal fashion if the point is out of bounds.
         /// The coordinates are in grid format (see nbLines, nbCols)
         /// </summary>
-        /// <param name="x">The x coordinate of the point to check</param>
-        /// <param name="y">The x coordinate of the point to check</param>
+        /// <param name="x">The x coordinate of a point on the grid</param>
+        /// <param name="y">The y coordinate of a point on the grid</param>
         /// <returns></returns>
         public Point getPointClampedInGrid(int x, int y)
         {
@@ -371,9 +376,9 @@ namespace PrisonersDilemmaCA
         /// <summary>
         /// Update the strategy of the cell that has been hit by the cursor
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="strat"></param>
+        /// <param name="x">The x coordinate in pixels</param>
+        /// <param name="y">The y coordinate in pixels</param>
+        /// <param name="strat">The strategy to apply to the cell if it is hit</param>
         public void onClick(int x, int y, Strategy strat)
         {
             foreach (Cell cell in this.Cells)
@@ -389,7 +394,7 @@ namespace PrisonersDilemmaCA
         /// When in move color mode      :  The color of the last move is shown.
         /// 
         /// </summary>
-        /// <param name="mode"></param>
+        /// <param name="mode">The color mode to use</param>
         public void setColorMode(ColorMode mode)
         {
             // Switch according to the mode
@@ -432,7 +437,7 @@ namespace PrisonersDilemmaCA
         /// <summary>
         /// Finds the number of times the given strategy appears on the board
         /// </summary>
-        /// <param name="strategy"></param>
+        /// <param name="strategy">The strategy to look for</param>
         /// <returns></returns>
         public int findCountOfStrategy(Strategy strategy)
         {
@@ -451,6 +456,11 @@ namespace PrisonersDilemmaCA
             return count;
         }
 
+        /// <summary>
+        /// Returns the average score of a strategy on the board
+        /// </summary>
+        /// <param name="strategy">The strategy to look for</param>
+        /// <returns></returns>
         public double findAvgScoreOfStrategy(Strategy strategy)
         {
             double count = 0;
@@ -478,7 +488,7 @@ namespace PrisonersDilemmaCA
         /// <summary>
         /// Serializes and saves grid data to a path
         /// </summary>
-        /// <param name="path"></param>
+        /// <param name="path">Where to save the file on the user's disk</param>
         public void saveData(string path)
         {
             this.SerializableCells = this.Cells.asList();
@@ -501,7 +511,7 @@ namespace PrisonersDilemmaCA
         /// <summary>
         /// Load serialized data from a path
         /// </summary>
-        /// <param name="path"></param>
+        /// <param name="path">Where to load the file on the user's disk</param>
         public void loadData(string path)
         {
             Grid newGrid;

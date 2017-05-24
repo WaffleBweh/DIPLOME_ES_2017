@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿/*
+    Class           :   AboutView.cs
+    Description     :   Gives general information about the project
+    Author          :   SEEMULLER Julien
+    Date            :   10.04.2017
+*/
+
+using System;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PrisonersDilemmaCA

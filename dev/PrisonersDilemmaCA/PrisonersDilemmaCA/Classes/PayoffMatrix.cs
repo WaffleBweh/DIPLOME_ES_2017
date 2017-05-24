@@ -131,11 +131,11 @@ namespace PrisonersDilemmaCA
         /// Checks the validity of the matrix according to the rules :
         /// T better than R better than P better than S
         /// </summary>
-        /// <param name="t"></param>
-        /// <param name="r"></param>
-        /// <param name="p"></param>
-        /// <param name="s"></param>
-        /// <returns></returns>
+        /// <param name="t">Temptation payoff</param>
+        /// <param name="r">Reward payoff</param>
+        /// <param name="p">Punishment payoff</param>
+        /// <param name="s">Sucker's payoff</param>
+        /// <returns>True if the matrix is valid, false if it is not</returns>
         public static bool isValid(int t, int r, int p, int s)
         {
             bool result = false;
@@ -152,10 +152,12 @@ namespace PrisonersDilemmaCA
             return result;
         }
 
-        /// <summary>
         /// Overloaded function that allows isValid to be used on the current object
+        /// <summary>
+        /// Checks the validity of the matrix according to the rules :
+        /// T better than R better than P better than S
         /// </summary>
-        /// <returns></returns>
+        /// <returns>True if the matrix is valid, false if it is not</returns>
         public bool isValid()
         {
             return PayoffMatrix.isValid(this.Temptation, this.Reward, this.Punishment, this.Sucker);

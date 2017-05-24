@@ -1,15 +1,14 @@
-﻿using LiveCharts;
+﻿/*
+    Class           :   MainView.cs
+    Description     :   Main view of the application.
+    Author          :   SEEMULLER Julien
+    Date            :   10.04.2017
+*/
+
+using LiveCharts;
 using LiveCharts.Wpf;
-using LiveCharts.WinForms;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PrisonersDilemmaCA
@@ -63,6 +62,7 @@ namespace PrisonersDilemmaCA
             availableStrategies.Add(new StratTitForTwoTats());
             availableStrategies.Add(new StratGrimTrigger());
             availableStrategies.Add(new StratFortress());
+            availableStrategies.Add(new StratPavlov());
 
             // Sort the list
             availableStrategies.Sort();

@@ -5,7 +5,7 @@
                         http://csharphelper.com/blog/2016/03/make-a-combobox-display-colors-or-images-in-c/
 
     Date            :   29.03.2016
-    Changes         :   Adapted for use with strategies - SEEMULLER Julien - 24.04.2017
+    Changes         :   24.04.2017, Adapted for use with strategies - SEEMULLER Julien
 */
 
 using System;
@@ -73,8 +73,8 @@ namespace PrisonersDilemmaCA
         /// <summary>
         /// Add a list of strategy to a combobox
         /// </summary>
-        /// <param name="comboBox"></param>
-        /// <param name="strats"></param>
+        /// <param name="comboBox">The combobox we apply the function to</param>
+        /// <param name="strats">The strategies to add to the combobox</param>
         public static void AddStrategies(this ComboBox comboBox, List<Strategy> strats)
         {
             // Make the ComboBox owner-drawn.

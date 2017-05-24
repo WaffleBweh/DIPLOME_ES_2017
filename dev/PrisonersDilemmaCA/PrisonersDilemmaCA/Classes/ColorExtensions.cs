@@ -22,7 +22,7 @@ namespace PrisonersDilemmaCA
         /// <summary>
         /// Converts a color to Hex format
         /// </summary>
-        /// <param name="c"></param>
+        /// <param name="c">The color to convert</param>
         /// <returns></returns>
         public static string ToHex(this Color c)
         {
@@ -32,8 +32,8 @@ namespace PrisonersDilemmaCA
         /// <summary>
         /// Converts a color to Hex format with transparency
         /// </summary>
-        /// <param name="c"></param>
-        /// <param name="transparency"></param>
+        /// <param name="c">The color to convert</param>
+        /// <param name="transparency">The transparency level to apply to the color</param>
         /// <returns></returns>
         public static string ToHex(this Color c, byte transparency)
         {
@@ -43,7 +43,7 @@ namespace PrisonersDilemmaCA
         /// <summary>
         /// Converts a color to RGB format
         /// </summary>
-        /// <param name="c"></param>
+        /// <param name="c">The color to convert</param>
         /// <returns></returns>
         public static string ToRGB(this Color c)
         {

@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿/*
+    Class           :   PayoffMatrixView.cs
+    Description     :   Allows the user to interract with the payoff matrix
+    Author          :   SEEMULLER Julien
+    Date            :   10.04.2017
+*/
+
+using System;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PrisonersDilemmaCA

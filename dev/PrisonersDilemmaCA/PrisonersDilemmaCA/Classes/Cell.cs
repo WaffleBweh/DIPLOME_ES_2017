@@ -217,7 +217,7 @@ namespace PrisonersDilemmaCA
         /// <summary>
         /// Implicit conversion to rectangle to simplify other functions
         /// </summary>
-        /// <param name="cell"></param>
+        /// <param name="cell">The cell used for conversion</param>
         /// <returns></returns>
         public static implicit operator Rectangle(Cell cell)
         {
@@ -227,8 +227,8 @@ namespace PrisonersDilemmaCA
         /// <summary>
         /// On click, we update the cell's strategy with a new one
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="x">The x coordinate in pixels</param>
+        /// <param name="y">The y coordinate in pixels</param>
         public void onClick(int x, int y, Strategy strat)
         {
             Rectangle hitbox = this;
@@ -243,7 +243,7 @@ namespace PrisonersDilemmaCA
         /// <summary>
         /// Updates the strategy of the cell
         /// </summary>
-        /// <param name="strat"></param>
+        /// <param name="strat">The strategy to update the cell with</param>
         public void updateStrategy(Strategy strat)
         {
             // Change the strategy
@@ -321,7 +321,7 @@ namespace PrisonersDilemmaCA
         /// <summary>
         /// Reads through a serialized XML file to get the values for a cell
         /// </summary>
-        /// <param name="reader"></param>
+        /// <param name="reader">The XML reader attached to the serialized file</param>
         public void ReadXml(XmlReader reader)
         {
 
@@ -427,7 +427,7 @@ namespace PrisonersDilemmaCA
         /// <summary>
         /// Write the cell's value to a serialized XML file
         /// </summary>
-        /// <param name="writer"></param>
+        /// <param name="writer">The XML reader attached to the serialized file</param>
         public void WriteXml(XmlWriter writer)
         {
             // Set color from strategy before continuing

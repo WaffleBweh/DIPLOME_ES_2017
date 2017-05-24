@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/*
+    Class           :   PayoffMatrixHelpView.cs
+    Description     :   Gives help to the user on payoff matrixes
+    Author          :   SEEMULLER Julien
+    Date            :   10.04.2017
+*/
+
+using System;
 using System.Windows.Forms;
 
 namespace PrisonersDilemmaCA

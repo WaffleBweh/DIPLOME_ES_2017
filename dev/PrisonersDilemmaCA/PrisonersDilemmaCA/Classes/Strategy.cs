@@ -1,6 +1,7 @@
 ﻿/*
     Class           :   Strategy.cs
     Description     :   Strategy abstract class, Cf. Strategy design pattern.
+                        Used to model other strategies.
     Author          :   SEEMULLER Julien
     Date            :   10.04.2017
 */
@@ -21,8 +22,8 @@ namespace PrisonersDilemmaCA
         /// <summary>
         /// Returns the next move of the cell based on its neighbors
         /// </summary>
-        /// <param name="cell"></param>
-        /// <param name="neighbors"></param>
+        /// <param name="cell">The cell using this function</param>
+        /// <param name="neighbors">The neighbors of the cell using this function</param>
         /// <returns></returns>
         public abstract Move chooseMove(Cell cell, List<Cell> neighbors);
 
@@ -32,6 +33,12 @@ namespace PrisonersDilemmaCA
         /// <returns></returns>
         public abstract Color getColor();
 
+        /// <summary>
+        /// Returns the name of the strategy if it follows the naming convention loosely
+        /// The name of the strategy is taken from the filename
+        /// ex : "StratTitForTat.cs" -> "Tit for tat"
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             // Get the name of the current class

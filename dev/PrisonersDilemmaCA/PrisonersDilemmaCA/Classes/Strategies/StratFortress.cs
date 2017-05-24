@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+    Class           :   StratFortress.cs
+    Description     :   Fortress strategy, tries to find neighbors using fortress 
+                        and cooperates with them.
+    Author          :   SEEMULLER Julien
+    Date            :   10.04.2017
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
