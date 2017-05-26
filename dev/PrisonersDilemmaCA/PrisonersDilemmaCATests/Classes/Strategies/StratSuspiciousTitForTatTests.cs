@@ -1,22 +1,23 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PrisonersDilemmaCA;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PrisonersDilemmaCA;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 namespace PrisonersDilemmaCA.Tests
 {
     [TestClass()]
-    public class StratTitForTatTests
+    public class StratSuspiciousTitForTatTests
     {
         [TestMethod()]
         public void chooseMoveTest()
         {
             // Initialize
-            Grid myGrid = new Grid(100, 100, 10, 10, new PayoffMatrix());
-            myGrid.onClick(5, 5, new StratTitForTat());
-            Move expected = Move.Cooperate;
+            Grid myGrid = new Grid(100, 100, 10, 10, new PayoffMatrix(), WrapMode.Default, new StratAlwaysCooperate());
+            myGrid.onClick(5, 5, new StratSuspiciousTitForTat());
+            Move expected = Move.Defect; // starts by defecting
 
             // Compare the last move with what we expected
             Assert.AreEqual(expected, myGrid.Cells[0, 0].History.First());
@@ -24,7 +25,7 @@ namespace PrisonersDilemmaCA.Tests
 
             // Add a cooperator
             myGrid.onClick(15, 5, new StratAlwaysCooperate());
-            expected = Move.Cooperate;
+            expected = Move.Defect;
             myGrid.step();
 
             // Tit for tat doesn't respond

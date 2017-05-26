@@ -108,7 +108,7 @@ namespace PrisonersDilemmaCA
         /// <param name="height">The height of the grid in pixels</param>
         /// <param name="nbCols">The number of columns of the grid</param>
         /// <param name="nbLines">The number of lines of the grid</param>
-        public Grid(int width, int height, int nbLines, int nbCols, PayoffMatrix matrix, WrapMode wrapmode)
+        public Grid(int width, int height, int nbLines, int nbCols, PayoffMatrix matrix, WrapMode wrapmode, Strategy strategy)
         {
             this.Width = width;
             this.Height = height;
@@ -131,7 +131,7 @@ namespace PrisonersDilemmaCA
                 for (int x = 0; x < this.NbCols; x++)
                 {
                     // Create a temporary cell with the default strategy
-                    Cell tmpCell = new Cell(x, y, this.PayoffMatrix);
+                    Cell tmpCell = new Cell(x, y, strategy, this.PayoffMatrix);
 
                     // Set the cell's height according to the grid's need
                     tmpCell.Width = cellWidth;
@@ -152,8 +152,8 @@ namespace PrisonersDilemmaCA
         /// <summary>
         /// Conveniance constructor
         /// </summary>
-        public Grid(int width, int height, int nbLines, int nbCols, PayoffMatrix matrix)
-            : this(width, height, nbLines, nbCols, matrix, DEFAULT_WRAP_MODE)
+        public Grid(int width, int height, int nbLines, int nbCols, PayoffMatrix matrix, WrapMode wrapmode)
+            : this(width, height, nbLines, nbCols, matrix, wrapmode, Cell.DEFAULT_STRATEGY)
         {
             // No code
         }
@@ -161,8 +161,17 @@ namespace PrisonersDilemmaCA
         /// <summary>
         /// Conveniance constructor 2
         /// </summary>
+        public Grid(int width, int height, int nbLines, int nbCols, PayoffMatrix matrix)
+            : this(width, height, nbLines, nbCols, matrix, DEFAULT_WRAP_MODE, Cell.DEFAULT_STRATEGY)
+        {
+            // No code
+        }
+
+        /// <summary>
+        /// Conveniance constructor 3
+        /// </summary>
         public Grid(int width, int height, int nbLines, int nbCols)
-            : this(width, height, nbLines, nbCols, new PayoffMatrix(), DEFAULT_WRAP_MODE)
+            : this(width, height, nbLines, nbCols, new PayoffMatrix(), DEFAULT_WRAP_MODE, Cell.DEFAULT_STRATEGY)
         {
             // No code
         }

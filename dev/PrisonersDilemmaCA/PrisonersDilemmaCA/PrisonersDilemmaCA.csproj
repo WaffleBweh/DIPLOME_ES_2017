@@ -78,7 +78,8 @@
     <Compile Include="Classes\Enums.cs" />
     <Compile Include="Classes\ComboBoxExtensions.cs" />
     <Compile Include="Classes\ArrayExtensions.cs" />
-    <Compile Include="Classes\Strategies\StratPavlov.cs" />
+    <Compile Include="Classes\Strategies\StratAdaptativePavlov.cs" />
+    <Compile Include="Classes\Strategies\StratSuspiciousTitForTat.cs" />
     <Compile Include="GenerateHelpView.cs">
       <SubType>Form</SubType>
     </Compile>

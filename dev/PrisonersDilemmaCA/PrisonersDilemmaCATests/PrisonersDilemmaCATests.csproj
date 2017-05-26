@@ -55,6 +55,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CellTests.cs" />
+    <Compile Include="Classes\Strategies\StratSuspiciousTitForTatTests.cs" />
     <Compile Include="ComboBoxExtensionsTests.cs" />
     <Compile Include="Strategies\StratFortressTests.cs" />
     <Compile Include="StrategyTests.cs" />

@@ -67,7 +67,7 @@ namespace PrisonersDilemmaCA
                 tmpLabel.Height = heightOfComponents;
 
                 // Set the label font
-                tmpLabel.Font = new Font(FontFamily.GenericSansSerif, 12);
+                tmpLabel.Font = new Font(FontFamily.GenericSansSerif, 11);
 
                 // Add the label content
                 string strategyName = strategies[i - 1].ToString();
@@ -115,7 +115,7 @@ namespace PrisonersDilemmaCA
                 this.Controls.Add(tmpTrackbarLabel);
 
                 // Set the form width and height
-                formHeight += heightOfComponents + spacing;
+                formHeight += heightOfComponents + spacing - 5;
             }
             formWidth = lblTitle.Width + spacing * 3;
 

@@ -62,7 +62,8 @@ namespace PrisonersDilemmaCA
             availableStrategies.Add(new StratTitForTwoTats());
             availableStrategies.Add(new StratGrimTrigger());
             availableStrategies.Add(new StratFortress());
-            availableStrategies.Add(new StratPavlov());
+            availableStrategies.Add(new StratAdaptativePavlov());
+            availableStrategies.Add(new StratSuspiciousTitForTat());
 
             // Sort the list
             availableStrategies.Sort();

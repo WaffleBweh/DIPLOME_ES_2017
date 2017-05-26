@@ -95,7 +95,7 @@
             this.tbColumns.Minimum = 5;
             this.tbColumns.Name = "tbColumns";
             this.tbColumns.Size = new System.Drawing.Size(266, 45);
-            this.tbColumns.SmallChange = 5;
+            this.tbColumns.SmallChange = 2;
             this.tbColumns.TabIndex = 2;
             this.tbColumns.TickFrequency = 5;
             this.tbColumns.TickStyle = System.Windows.Forms.TickStyle.Both;
@@ -109,7 +109,7 @@
             this.tbLines.Minimum = 5;
             this.tbLines.Name = "tbLines";
             this.tbLines.Size = new System.Drawing.Size(266, 45);
-            this.tbLines.SmallChange = 5;
+            this.tbLines.SmallChange = 2;
             this.tbLines.TabIndex = 3;
             this.tbLines.TickFrequency = 5;
             this.tbLines.TickStyle = System.Windows.Forms.TickStyle.Both;
