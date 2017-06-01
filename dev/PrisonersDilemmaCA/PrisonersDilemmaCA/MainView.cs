@@ -225,12 +225,35 @@ namespace PrisonersDilemmaCA
         }
 
         /// <summary>
+        /// Open the strategy benchmark window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void benchmarkStrategiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            interruptTimer();
+
+            // Pass the PayoffMatrix object as parameter to the form and open it
+            BenchmarkView benchmarkView = new BenchmarkView();
+
+            // Pass some values for the view
+            benchmarkView.strategies = availableStrategies;
+            benchmarkView.matrix = payoffMatrix;
+
+            if (benchmarkView.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+        }
+
+        /// <summary>
         /// Open the about window
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            interruptTimer();
             AboutView view = new AboutView();
 
             if (view.ShowDialog() == DialogResult.OK)

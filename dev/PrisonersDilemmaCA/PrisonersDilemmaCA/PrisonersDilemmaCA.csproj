@@ -21,6 +21,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -72,6 +74,12 @@
     </Compile>
     <Compile Include="AboutView.Designer.cs">
       <DependentUpon>AboutView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BenchmarkView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BenchmarkView.Designer.cs">
+      <DependentUpon>BenchmarkView.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Cell.cs" />
     <Compile Include="Classes\ColorExtensions.cs" />
@@ -125,6 +133,9 @@
     <Compile Include="Classes\Strategies\StratTitForTat.cs" />
     <EmbeddedResource Include="AboutView.resx">
       <DependentUpon>AboutView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BenchmarkView.resx">
+      <DependentUpon>BenchmarkView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GenerateHelpView.resx">
       <DependentUpon>GenerateHelpView.cs</DependentUpon>

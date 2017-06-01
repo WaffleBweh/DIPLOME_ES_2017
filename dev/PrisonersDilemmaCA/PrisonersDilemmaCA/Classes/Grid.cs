@@ -397,6 +397,17 @@ namespace PrisonersDilemmaCA
         }
 
         /// <summary>
+        /// Sets a strategy for a cell according to grid coordinates
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="strat"></param>
+        public void setStrategy(int x, int y, Strategy strat)
+        {
+            this.Cells[y, x].updateStrategy(strat);
+        }
+
+        /// <summary>
         /// Set the color depending on the mode
         /// 
         /// When in strategy color mode  :  The color of the strategy is shown.

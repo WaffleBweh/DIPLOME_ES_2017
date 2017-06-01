@@ -35,7 +35,7 @@ namespace PrisonersDilemmaCA
 
 
             // If this wasn't our first round, we look at our neighbors
-            if (cell.History.Count > 1)
+            if (cell.History.Count > 2)
             {
                 // We initialise our variables with the first neighbor in the list
                 result = neighbors[0].History.First();
