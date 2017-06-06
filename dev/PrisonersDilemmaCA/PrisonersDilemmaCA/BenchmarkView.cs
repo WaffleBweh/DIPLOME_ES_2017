@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,8 +17,11 @@ namespace PrisonersDilemmaCA
     {
         public List<Strategy> strategies { get; set; }
         public PayoffMatrix matrix { get; set; }
-        public int p1Score = 0;
-        public int p2Score = 0;
+        public int score = 0;
+        public int totalScore = 0;
+        public StringBuilder csv;
+
+        public const bool SHOULD_EXPORT_DATA = false;
 
         public BenchmarkView()
         {
@@ -35,11 +39,19 @@ namespace PrisonersDilemmaCA
             this.cbStrategy1.AddStrategies(strategies);
             this.cbStrategy1.SelectedIndex = 0;
 
-            this.cbStrategy2.AddStrategies(strategies);
-            this.cbStrategy2.SelectedIndex = 0;
-
             // Reset the focus
             this.tbNbTurns.Select();
+
+            // Set the chart
+            scoreChart.AxisY.Add(new Axis
+            {
+                Title = "Score"
+            });
+            
+            scoreChart.AxisX.Add(new Axis
+            {
+                Labels = new[] { "Strategies" }
+            });
         }
 
         /// <summary>
@@ -69,50 +81,69 @@ namespace PrisonersDilemmaCA
         /// <param name="e"></param>
         private void btnPlay_Click(object sender, EventArgs e)
         {
+            // Reset the score
+            csv = new StringBuilder();
+            totalScore = 0;
+
+            // Clear the chart
             scoreChart.Series = new SeriesCollection();
 
             // Create a grid for benchmarking (100px by 100px, 1 by 2 grid)
             Grid benchmarkGrid = new Grid(100, 100, 1, 2, this.matrix, WrapMode.Default);
 
-            // Set the strategies
-            Strategy strategyP1 = (Strategy)cbStrategy1.Items[cbStrategy1.SelectedIndex];
-            Strategy strategyP2 = (Strategy)cbStrategy2.Items[cbStrategy2.SelectedIndex];
-            benchmarkGrid.setStrategy(0, 0, strategyP1);
-            benchmarkGrid.setStrategy(1, 0, strategyP2);
-
-            // Play the rounds
-            for (int i = 0; i < tbNbTurns.Value; i++)
+            // For every available strategy
+            foreach (Strategy strat in cbStrategy1.Items)
             {
-                benchmarkGrid.step();
-                p1Score += benchmarkGrid.Cells[0, 0].Score;
-                p2Score += benchmarkGrid.Cells[0, 1].Score;
+                // Set the strategy (reset the strategy)
+                Strategy strategyP1 = (Strategy)cbStrategy1.Items[cbStrategy1.SelectedIndex];
+                benchmarkGrid.setStrategy(0, 0, strategyP1);
+
+                // Set the opposing player's strategy
+                benchmarkGrid.setStrategy(1, 0, strat);
+
+                // Get the color from the strategy
+                System.Windows.Media.BrushConverter converter = new System.Windows.Media.BrushConverter();
+                System.Windows.Media.Brush brush = (System.Windows.Media.Brush)converter.ConvertFromString(strat.getColor().ToHex());
+
+
+                // Play the rounds
+                for (int i = 0; i < tbNbTurns.Value; i++)
+                {
+                    benchmarkGrid.step();
+                    score += benchmarkGrid.Cells[0, 0].Score;
+                    totalScore += benchmarkGrid.Cells[0, 0].Score;
+                    csv.AppendLine(totalScore.ToString());
+                }
+
+                // Check if we should export as csv or not
+                if (SHOULD_EXPORT_DATA)
+                {
+                    // Make sure the csv directory exists
+                    if (!Directory.Exists("csv/"))
+                    {
+                        Directory.CreateDirectory("csv");
+                    }
+
+                    // Write the data
+                    File.WriteAllText("csv/" + strategyP1.ToString() + " benchmark.csv", csv.ToString());
+                }
+
+                // Add the score to the chart
+                scoreChart.Series.Add(new ColumnSeries
+                {
+                    Title = strat.ToString(),
+                    Values = new ChartValues<double> { score },
+                    Fill = brush,
+                });
+
+                // Reset the score
+                score = 0;
             }
 
+            // Set the total score label
+            lblTotalScore.Text = "Total score: " + totalScore;
+
             this.Size = new Size(820, 340);
-
-            // Charts
-            scoreChart.Series.Add(new ColumnSeries
-            {
-                Title = strategyP1.ToString(),
-                Values = new ChartValues<double> { p1Score }
-            });
-
-            scoreChart.Series.Add(new ColumnSeries
-            {
-                Title = strategyP2.ToString(),
-                Values = new ChartValues<double> { p2Score }
-            });
-
-
-            scoreChart.AxisX.Add(new Axis
-            {
-                Title = "Strategy",
-                Labels = new[] { strategyP1.ToString(), strategyP2.ToString() }
-            });
-
-            //MessageBox.Show("p1: " + p1Score + Environment.NewLine + "p2: " + p2Score);
-            p1Score = 0;
-            p2Score = 0;
         }
 
         /// <summary>
