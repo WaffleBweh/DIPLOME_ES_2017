@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="fcfc409d-6d36-4607-9605-4113350dca59" name="SEEMULLERJ_INFO@CFPTCFP-PV41DQ2 2017-06-09 15:11:05" runUser="CFPTCFP-PV41DQ2\SEEMULLERJ_INFO" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2017-06-09T15:11:05.8960547+02:00" queuing="2017-06-09T15:11:05.8960547+02:00" start="2017-06-09T15:11:05.9000549+02:00" finish="2017-06-09T15:11:05.9490577+02:00" />
+  <TestSettings name="default" id="b34f3dc8-4791-4ecc-af01-053c399434d1">
+    <Execution>
+      <TestTypeSpecific />
+    </Execution>
+    <Deployment runDeploymentRoot="SEEMULLERJ_INFO_CFPTCFP-PV41DQ2 2017-06-09 15_11_05" />
+    <Properties />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="9eae237f-3046-434d-a556-a1eceda772b9" testId="df090eae-9e5d-04d5-dec5-71e896e297d8" testName="DesignatedConstructorTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0083494" startTime="2017-06-09T15:11:05.7600469+02:00" endTime="2017-06-09T15:11:05.7970490+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9eae237f-3046-434d-a556-a1eceda772b9" />
+    <UnitTestResult executionId="0c8c8ad4-98d2-4ce7-a197-9649a242c854" testId="6c285e1f-012b-346b-9c9f-5a1a2522192f" testName="ConvenianceConstructorTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0002014" startTime="2017-06-09T15:11:05.8060495+02:00" endTime="2017-06-09T15:11:05.8060495+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0c8c8ad4-98d2-4ce7-a197-9649a242c854" />
+    <UnitTestResult executionId="4abf7eed-c57e-4f5e-8b0f-02536ea2ec33" testId="925ee2e8-6c08-0b1e-d301-e6cbc19c2d23" testName="onClickTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0060866" startTime="2017-06-09T15:11:05.8060495+02:00" endTime="2017-06-09T15:11:05.8120499+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4abf7eed-c57e-4f5e-8b0f-02536ea2ec33" />
+    <UnitTestResult executionId="938ea094-db4d-42d1-9561-1df8e1b85318" testId="869b4d5f-87a7-8d15-89a8-7dda664862d3" testName="ImplicitConversionTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0002080" startTime="2017-06-09T15:11:05.8120499+02:00" endTime="2017-06-09T15:11:05.8130499+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="938ea094-db4d-42d1-9561-1df8e1b85318" />
+    <UnitTestResult executionId="ecfddbea-26b0-4a5c-a766-63e9fbbd494e" testId="d4a2c5e9-5eff-4a81-3b98-fef2319782d2" testName="chooseMoveTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0029031" startTime="2017-06-09T15:11:05.8130499+02:00" endTime="2017-06-09T15:11:05.8160501+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ecfddbea-26b0-4a5c-a766-63e9fbbd494e" />
+    <UnitTestResult executionId="fef76de8-2148-4cf1-8d4b-2cf56acb8e04" testId="22505af1-dd45-a49f-bfe7-80e8e8909aff" testName="AddStrategiesTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0247826" startTime="2017-06-09T15:11:05.8160501+02:00" endTime="2017-06-09T15:11:05.8410515+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fef76de8-2148-4cf1-8d4b-2cf56acb8e04" />
+    <UnitTestResult executionId="0a083f32-9aa6-4001-832b-7640b0c8f0ff" testId="5f944e98-631a-8395-423f-e1d1d38be87e" testName="chooseMoveTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0028304" startTime="2017-06-09T15:11:05.8410515+02:00" endTime="2017-06-09T15:11:05.8440517+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0a083f32-9aa6-4001-832b-7640b0c8f0ff" />
+    <UnitTestResult executionId="1ca36396-09e5-47be-8d51-1e63bdd7bd63" testId="12bb16a3-ab34-b1bc-5f40-28311aba3e3c" testName="ToStringTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0004382" startTime="2017-06-09T15:11:05.8440517+02:00" endTime="2017-06-09T15:11:05.8450517+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1ca36396-09e5-47be-8d51-1e63bdd7bd63" />
+    <UnitTestResult executionId="34aa78a9-9b66-4240-bb4c-0b19d1dfd3f8" testId="f5802a2e-04d4-f1f5-acfe-2092a218c439" testName="CompareToTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0004379" startTime="2017-06-09T15:11:05.8450517+02:00" endTime="2017-06-09T15:11:05.8450517+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="34aa78a9-9b66-4240-bb4c-0b19d1dfd3f8" />
+    <UnitTestResult executionId="767f104e-38a9-4e70-93aa-18648b9d11b8" testId="cb2578cd-7702-98c8-5b80-bbf50b5bfeee" testName="ToHexTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0004385" startTime="2017-06-09T15:11:05.8510521+02:00" endTime="2017-06-09T15:11:05.8520521+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="767f104e-38a9-4e70-93aa-18648b9d11b8" />
+    <UnitTestResult executionId="d29673c6-fa50-463e-a4b7-d8ffbaccd996" testId="e83b4fa6-9ff3-b307-6b34-de3cc6cdbcd4" testName="ToHexTransparentTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0004142" startTime="2017-06-09T15:11:05.8520521+02:00" endTime="2017-06-09T15:11:05.8530522+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d29673c6-fa50-463e-a4b7-d8ffbaccd996" />
+    <UnitTestResult executionId="64fa3afa-7784-47c6-baea-50db134f0159" testId="9dcfac65-db83-3c3b-1ad4-b2bda5833892" testName="ToRGBTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0003641" startTime="2017-06-09T15:11:05.8530522+02:00" endTime="2017-06-09T15:11:05.8530522+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="64fa3afa-7784-47c6-baea-50db134f0159" />
+    <UnitTestResult executionId="b836ba04-d310-46cc-a384-8d9165fd00aa" testId="0e66901a-9ea6-c526-fedf-2657d429896d" testName="DesignatedConstructorTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0006595" startTime="2017-06-09T15:11:05.8530522+02:00" endTime="2017-06-09T15:11:05.8540523+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b836ba04-d310-46cc-a384-8d9165fd00aa" />
+    <UnitTestResult executionId="fc7a8d57-0b75-41a4-8944-b635a0c4e1ac" testId="47093434-7773-7204-893e-9fcd737bceea" testName="getPointClampedInGridTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0005565" startTime="2017-06-09T15:11:05.8540523+02:00" endTime="2017-06-09T15:11:05.8550523+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fc7a8d57-0b75-41a4-8944-b635a0c4e1ac" />
+    <UnitTestResult executionId="41c4f985-8a3b-4c5d-80d4-b38f04ef2ade" testId="597ac1b7-2492-a36e-2ba5-049fefde28a0" testName="getCellTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0005589" startTime="2017-06-09T15:11:05.8550523+02:00" endTime="2017-06-09T15:11:05.8550523+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="41c4f985-8a3b-4c5d-80d4-b38f04ef2ade" />
+    <UnitTestResult executionId="10d14be9-6205-4e57-96ff-615c8febfe9a" testId="35aeb0a3-1d7e-a0a1-0004-9ab598c1f1a1" testName="findCellNeighborsTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0009470" startTime="2017-06-09T15:11:05.8550523+02:00" endTime="2017-06-09T15:11:05.8560524+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="10d14be9-6205-4e57-96ff-615c8febfe9a" />
+    <UnitTestResult executionId="0f4a7338-0b81-41cb-b0f2-6f33e384cdcd" testId="2cf2ae5b-9053-0fed-9e16-8387720eeb93" testName="DesignatedConstructorTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0002266" startTime="2017-06-09T15:11:05.8560524+02:00" endTime="2017-06-09T15:11:05.8570524+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0f4a7338-0b81-41cb-b0f2-6f33e384cdcd" />
+    <UnitTestResult executionId="4c7ac870-32f3-4070-acaf-38bd3bedb480" testId="9b48b709-bf92-cd89-73d6-ceb5d87abaa8" testName="returnPayoffTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0002335" startTime="2017-06-09T15:11:05.8570524+02:00" endTime="2017-06-09T15:11:05.8570524+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4c7ac870-32f3-4070-acaf-38bd3bedb480" />
+    <UnitTestResult executionId="ed360967-5b47-4bce-b350-ee3ddf25b9d3" testId="1ba16a26-5bc1-3fb3-3b9c-390b24dc3156" testName="isValidStaticTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0010773" startTime="2017-06-09T15:11:05.8570524+02:00" endTime="2017-06-09T15:11:05.8590525+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ed360967-5b47-4bce-b350-ee3ddf25b9d3" />
+    <UnitTestResult executionId="f88fe22e-57da-4c02-b075-8f4a680970d6" testId="a2a7232e-d6c5-96cc-b224-c7e3bbe88f2d" testName="isValidConvenianceTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0003449" startTime="2017-06-09T15:11:05.8590525+02:00" endTime="2017-06-09T15:11:05.8590525+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f88fe22e-57da-4c02-b075-8f4a680970d6" />
+    <UnitTestResult executionId="33a3ba2a-6969-49bd-880e-b4b88c573a83" testId="7977ea2e-0351-f532-d1f1-40b01327fe54" testName="chooseMoveTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0004451" startTime="2017-06-09T15:11:05.8590525+02:00" endTime="2017-06-09T15:11:05.8600526+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="33a3ba2a-6969-49bd-880e-b4b88c573a83" />
+    <UnitTestResult executionId="48e2d41b-52ff-49cd-9ac8-61b63ff56f44" testId="fbf0eafc-0cbf-4bf8-1528-f83711ec3f18" testName="chooseMoveTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0004544" startTime="2017-06-09T15:11:05.8600526+02:00" endTime="2017-06-09T15:11:05.8610527+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="48e2d41b-52ff-49cd-9ac8-61b63ff56f44" />
+    <UnitTestResult executionId="f2584dff-84cf-47f5-bc13-ebe1cc1c7365" testId="07d88514-a16e-4bd7-0341-c39d745a6b3d" testName="chooseMoveTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0011629" startTime="2017-06-09T15:11:05.8610527+02:00" endTime="2017-06-09T15:11:05.8620527+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f2584dff-84cf-47f5-bc13-ebe1cc1c7365" />
+    <UnitTestResult executionId="ce4b2905-744a-423a-980e-0a2800cda911" testId="d7abf1bb-9d54-0c92-59d2-f1ee5f850406" testName="chooseMoveTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0013625" startTime="2017-06-09T15:11:05.8620527+02:00" endTime="2017-06-09T15:11:05.8640528+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ce4b2905-744a-423a-980e-0a2800cda911" />
+    <UnitTestResult executionId="7b8d5c53-8858-4a95-95bd-7b36481bd8ed" testId="551f0303-a5d3-44e2-c92d-74d131403155" testName="chooseMoveTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0003097" startTime="2017-06-09T15:11:05.8640528+02:00" endTime="2017-06-09T15:11:05.8640528+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7b8d5c53-8858-4a95-95bd-7b36481bd8ed" />
+    <UnitTestResult executionId="92a586d7-b6fe-464e-ba3a-425a9d01fff0" testId="5bb6ce96-1b35-99bc-fd3d-a5d890a14b42" testName="chooseMoveTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0009945" startTime="2017-06-09T15:11:05.8640528+02:00" endTime="2017-06-09T15:11:05.8650529+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="92a586d7-b6fe-464e-ba3a-425a9d01fff0" />
+    <UnitTestResult executionId="a5c4c389-ed4c-41dd-8c67-701cdda9d842" testId="a8ba2359-6f8c-71c9-2264-a7a9d98284bc" testName="chooseMoveTest" computerName="CFPTCFP-PV41DQ2" duration="00:00:00.0015303" startTime="2017-06-09T15:11:05.8650529+02:00" endTime="2017-06-09T15:11:05.8670530+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a5c4c389-ed4c-41dd-8c67-701cdda9d842" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="DesignatedConstructorTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="df090eae-9e5d-04d5-dec5-71e896e297d8">
+      <Execution id="9eae237f-3046-434d-a556-a1eceda772b9" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.CellTests" name="DesignatedConstructorTest" />
+    </UnitTest>
+    <UnitTest name="ConvenianceConstructorTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="6c285e1f-012b-346b-9c9f-5a1a2522192f">
+      <Execution id="0c8c8ad4-98d2-4ce7-a197-9649a242c854" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.CellTests" name="ConvenianceConstructorTest" />
+    </UnitTest>
+    <UnitTest name="onClickTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="925ee2e8-6c08-0b1e-d301-e6cbc19c2d23">
+      <Execution id="4abf7eed-c57e-4f5e-8b0f-02536ea2ec33" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.CellTests" name="onClickTest" />
+    </UnitTest>
+    <UnitTest name="ImplicitConversionTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="869b4d5f-87a7-8d15-89a8-7dda664862d3">
+      <Execution id="938ea094-db4d-42d1-9561-1df8e1b85318" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.CellTests" name="ImplicitConversionTest" />
+    </UnitTest>
+    <UnitTest name="chooseMoveTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="d4a2c5e9-5eff-4a81-3b98-fef2319782d2">
+      <Execution id="ecfddbea-26b0-4a5c-a766-63e9fbbd494e" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.StratSuspiciousTitForTatTests" name="chooseMoveTest" />
+    </UnitTest>
+    <UnitTest name="AddStrategiesTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="22505af1-dd45-a49f-bfe7-80e8e8909aff">
+      <Execution id="fef76de8-2148-4cf1-8d4b-2cf56acb8e04" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.ComboBoxExtensionsTests" name="AddStrategiesTest" />
+    </UnitTest>
+    <UnitTest name="chooseMoveTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="5f944e98-631a-8395-423f-e1d1d38be87e">
+      <Execution id="0a083f32-9aa6-4001-832b-7640b0c8f0ff" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.StratFortressTests" name="chooseMoveTest" />
+    </UnitTest>
+    <UnitTest name="ToStringTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="12bb16a3-ab34-b1bc-5f40-28311aba3e3c">
+      <Execution id="1ca36396-09e5-47be-8d51-1e63bdd7bd63" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.StrategyTests" name="ToStringTest" />
+    </UnitTest>
+    <UnitTest name="CompareToTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="f5802a2e-04d4-f1f5-acfe-2092a218c439">
+      <Execution id="34aa78a9-9b66-4240-bb4c-0b19d1dfd3f8" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.StrategyTests" name="CompareToTest" />
+    </UnitTest>
+    <UnitTest name="ToHexTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="cb2578cd-7702-98c8-5b80-bbf50b5bfeee">
+      <Execution id="767f104e-38a9-4e70-93aa-18648b9d11b8" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.ColorExtensionsTests" name="ToHexTest" />
+    </UnitTest>
+    <UnitTest name="ToHexTransparentTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="e83b4fa6-9ff3-b307-6b34-de3cc6cdbcd4">
+      <Execution id="d29673c6-fa50-463e-a4b7-d8ffbaccd996" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.ColorExtensionsTests" name="ToHexTransparentTest" />
+    </UnitTest>
+    <UnitTest name="ToRGBTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="9dcfac65-db83-3c3b-1ad4-b2bda5833892">
+      <Execution id="64fa3afa-7784-47c6-baea-50db134f0159" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.ColorExtensionsTests" name="ToRGBTest" />
+    </UnitTest>
+    <UnitTest name="DesignatedConstructorTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="0e66901a-9ea6-c526-fedf-2657d429896d">
+      <Execution id="b836ba04-d310-46cc-a384-8d9165fd00aa" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.GridTests" name="DesignatedConstructorTest" />
+    </UnitTest>
+    <UnitTest name="getPointClampedInGridTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="47093434-7773-7204-893e-9fcd737bceea">
+      <Execution id="fc7a8d57-0b75-41a4-8944-b635a0c4e1ac" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.GridTests" name="getPointClampedInGridTest" />
+    </UnitTest>
+    <UnitTest name="getCellTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="597ac1b7-2492-a36e-2ba5-049fefde28a0">
+      <Execution id="41c4f985-8a3b-4c5d-80d4-b38f04ef2ade" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.GridTests" name="getCellTest" />
+    </UnitTest>
+    <UnitTest name="findCellNeighborsTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="35aeb0a3-1d7e-a0a1-0004-9ab598c1f1a1">
+      <Execution id="10d14be9-6205-4e57-96ff-615c8febfe9a" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.GridTests" name="findCellNeighborsTest" />
+    </UnitTest>
+    <UnitTest name="DesignatedConstructorTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="2cf2ae5b-9053-0fed-9e16-8387720eeb93">
+      <Execution id="0f4a7338-0b81-41cb-b0f2-6f33e384cdcd" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.PayoffMatrixTests" name="DesignatedConstructorTest" />
+    </UnitTest>
+    <UnitTest name="returnPayoffTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="9b48b709-bf92-cd89-73d6-ceb5d87abaa8">
+      <Execution id="4c7ac870-32f3-4070-acaf-38bd3bedb480" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.PayoffMatrixTests" name="returnPayoffTest" />
+    </UnitTest>
+    <UnitTest name="isValidStaticTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="1ba16a26-5bc1-3fb3-3b9c-390b24dc3156">
+      <Execution id="ed360967-5b47-4bce-b350-ee3ddf25b9d3" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.PayoffMatrixTests" name="isValidStaticTest" />
+    </UnitTest>
+    <UnitTest name="isValidConvenianceTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="a2a7232e-d6c5-96cc-b224-c7e3bbe88f2d">
+      <Execution id="f88fe22e-57da-4c02-b075-8f4a680970d6" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.PayoffMatrixTests" name="isValidConvenianceTest" />
+    </UnitTest>
+    <UnitTest name="chooseMoveTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="7977ea2e-0351-f532-d1f1-40b01327fe54">
+      <Execution id="33a3ba2a-6969-49bd-880e-b4b88c573a83" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.StratAlwaysCooperateTests" name="chooseMoveTest" />
+    </UnitTest>
+    <UnitTest name="chooseMoveTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="fbf0eafc-0cbf-4bf8-1528-f83711ec3f18">
+      <Execution id="48e2d41b-52ff-49cd-9ac8-61b63ff56f44" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.StratAlwaysDefectTests" name="chooseMoveTest" />
+    </UnitTest>
+    <UnitTest name="chooseMoveTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="07d88514-a16e-4bd7-0341-c39d745a6b3d">
+      <Execution id="f2584dff-84cf-47f5-bc13-ebe1cc1c7365" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.StratBlinkerTests" name="chooseMoveTest" />
+    </UnitTest>
+    <UnitTest name="chooseMoveTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="d7abf1bb-9d54-0c92-59d2-f1ee5f850406">
+      <Execution id="ce4b2905-744a-423a-980e-0a2800cda911" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.StratGrimTriggerTests" name="chooseMoveTest" />
+    </UnitTest>
+    <UnitTest name="chooseMoveTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="551f0303-a5d3-44e2-c92d-74d131403155">
+      <Execution id="7b8d5c53-8858-4a95-95bd-7b36481bd8ed" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.StratRandomTests" name="chooseMoveTest" />
+    </UnitTest>
+    <UnitTest name="chooseMoveTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="5bb6ce96-1b35-99bc-fd3d-a5d890a14b42">
+      <Execution id="92a586d7-b6fe-464e-ba3a-425a9d01fff0" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.StratTitForTatTests" name="chooseMoveTest" />
+    </UnitTest>
+    <UnitTest name="chooseMoveTest" storage="c:\users\seemullerj_info\desktop\diplome_es_2017\dev\prisonersdilemmaca\prisonersdilemmacatests\bin\debug\prisonersdilemmacatests.dll" id="a8ba2359-6f8c-71c9-2264-a7a9d98284bc">
+      <Execution id="a5c4c389-ed4c-41dd-8c67-701cdda9d842" />
+      <TestMethod codeBase="C:\Users\SEEMULLERJ_INFO\Desktop\DIPLOME_ES_2017\dev\PrisonersDilemmaCA\PrisonersDilemmaCATests\bin\Debug\PrisonersDilemmaCATests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter" className="PrisonersDilemmaCA.Tests.StratTitForTwoTatsTests" name="chooseMoveTest" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="df090eae-9e5d-04d5-dec5-71e896e297d8" executionId="9eae237f-3046-434d-a556-a1eceda772b9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6c285e1f-012b-346b-9c9f-5a1a2522192f" executionId="0c8c8ad4-98d2-4ce7-a197-9649a242c854" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="925ee2e8-6c08-0b1e-d301-e6cbc19c2d23" executionId="4abf7eed-c57e-4f5e-8b0f-02536ea2ec33" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="869b4d5f-87a7-8d15-89a8-7dda664862d3" executionId="938ea094-db4d-42d1-9561-1df8e1b85318" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d4a2c5e9-5eff-4a81-3b98-fef2319782d2" executionId="ecfddbea-26b0-4a5c-a766-63e9fbbd494e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="22505af1-dd45-a49f-bfe7-80e8e8909aff" executionId="fef76de8-2148-4cf1-8d4b-2cf56acb8e04" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5f944e98-631a-8395-423f-e1d1d38be87e" executionId="0a083f32-9aa6-4001-832b-7640b0c8f0ff" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="12bb16a3-ab34-b1bc-5f40-28311aba3e3c" executionId="1ca36396-09e5-47be-8d51-1e63bdd7bd63" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f5802a2e-04d4-f1f5-acfe-2092a218c439" executionId="34aa78a9-9b66-4240-bb4c-0b19d1dfd3f8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cb2578cd-7702-98c8-5b80-bbf50b5bfeee" executionId="767f104e-38a9-4e70-93aa-18648b9d11b8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e83b4fa6-9ff3-b307-6b34-de3cc6cdbcd4" executionId="d29673c6-fa50-463e-a4b7-d8ffbaccd996" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9dcfac65-db83-3c3b-1ad4-b2bda5833892" executionId="64fa3afa-7784-47c6-baea-50db134f0159" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0e66901a-9ea6-c526-fedf-2657d429896d" executionId="b836ba04-d310-46cc-a384-8d9165fd00aa" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="47093434-7773-7204-893e-9fcd737bceea" executionId="fc7a8d57-0b75-41a4-8944-b635a0c4e1ac" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="597ac1b7-2492-a36e-2ba5-049fefde28a0" executionId="41c4f985-8a3b-4c5d-80d4-b38f04ef2ade" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="35aeb0a3-1d7e-a0a1-0004-9ab598c1f1a1" executionId="10d14be9-6205-4e57-96ff-615c8febfe9a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2cf2ae5b-9053-0fed-9e16-8387720eeb93" executionId="0f4a7338-0b81-41cb-b0f2-6f33e384cdcd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9b48b709-bf92-cd89-73d6-ceb5d87abaa8" executionId="4c7ac870-32f3-4070-acaf-38bd3bedb480" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1ba16a26-5bc1-3fb3-3b9c-390b24dc3156" executionId="ed360967-5b47-4bce-b350-ee3ddf25b9d3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a2a7232e-d6c5-96cc-b224-c7e3bbe88f2d" executionId="f88fe22e-57da-4c02-b075-8f4a680970d6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7977ea2e-0351-f532-d1f1-40b01327fe54" executionId="33a3ba2a-6969-49bd-880e-b4b88c573a83" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fbf0eafc-0cbf-4bf8-1528-f83711ec3f18" executionId="48e2d41b-52ff-49cd-9ac8-61b63ff56f44" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="07d88514-a16e-4bd7-0341-c39d745a6b3d" executionId="f2584dff-84cf-47f5-bc13-ebe1cc1c7365" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d7abf1bb-9d54-0c92-59d2-f1ee5f850406" executionId="ce4b2905-744a-423a-980e-0a2800cda911" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="551f0303-a5d3-44e2-c92d-74d131403155" executionId="7b8d5c53-8858-4a95-95bd-7b36481bd8ed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5bb6ce96-1b35-99bc-fd3d-a5d890a14b42" executionId="92a586d7-b6fe-464e-ba3a-425a9d01fff0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a8ba2359-6f8c-71c9-2264-a7a9d98284bc" executionId="a5c4c389-ed4c-41dd-8c67-701cdda9d842" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Les résultats ne figurent pas dans une liste" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="Tous les résultats chargés" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="27" executed="27" passed="27" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+</TestRun>

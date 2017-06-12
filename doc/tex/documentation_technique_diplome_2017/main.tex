@@ -1,6 +1,14 @@
-\documentclass[a4paper]{article}
-\usepackage[utf8x]{inputenc}
-\usepackage[francais]{babel}
+%****************************************************************************
+% Title     : Documentation technique
+% Author    : SEEMULLER Julien
+% Date      : 2016-2017
+% Version   : 1.0
+%****************************************************************************
+
+\documentclass[a4paper, french]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage{csquotes}
 \usepackage[T1]{fontenc}
 \usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3cm]{geometry}
 \usepackage{graphicx}
@@ -12,15 +20,16 @@
 \usepackage{layout}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{listings}
-\usepackage{pdfescape}
-\usepackage{wrapfig}
 \usepackage{pdflscape}
+\usepackage{pgfgantt}
+\usepackage{pdfescape}
+\usepackage{pdfpages}
+\usepackage{wrapfig}
 \usepackage{rotating}
 \usepackage{epstopdf}
 \usepackage{xstring}
 \usepackage{lastpage}
 \usepackage{tikz}
-\usepackage{pgfgantt}
 \usepackage{csquotes}
 \usepackage{dirtree}
 \usepackage[backend=biber, style=numeric, sorting=none]{biblatex} 
@@ -853,25 +862,6 @@ Les six premiers tours de la partie sont consacrés à l'analyse des voisins, pe
     \end{tikzpicture}
     \caption{Modèle UML de l'automate cellulaire du dilemme du prisonnier}
 \end{figure}
-
-\pagebreak
-\subsection{Diagramme global}
-
-%\begin{figure}[htp]
-%    \centering
-%    \begin{tikzpicture}[thick, scale=1.25, every node/.style={transform shape}]
-%        \umlsimpleclass[x=0, y=0]{Model}
-%        \umlsimpleclass[x=0, y=-2]{View}
-%        \umlsimpleclass[x=-4, y=-4]{ArrayExtensions}
-%        \umlsimpleclass[x=-0, y=-4]{ColorExtensions}
-%        \umlsimpleclass[x=4, y=-4]{ComboboxExtensions}
-%        
-%        \umlassoc[]{Model}{View}
-%        \umlassoc[]{ArrayExtensions}{View}
-%        \umlassoc[]{ColorExtensions}{View}
-%        \umlassoc[]{ComboboxExtensions}{View}
-%    \end{tikzpicture}
-%\end{figure}
 
 \pagebreak
 \subsection{Conventions de codage}
@@ -1970,32 +1960,34 @@ Voici les résultats des tests unitaires des classes de l'automate du cellulaire
 \begin{tabular}{lll}
 \hline
 \textbf{Nom du test}                        & \textbf{Durée}   & \textbf{Résultat} \\ \hline
-StratTitForTwoTatsTests.chooseMoveTest      & 00:00:00.0011284 & Réussite          \\
-StratTitForTatTests.chooseMoveTest          & 00:00:00.0012782 & Réussite          \\
-StratReverseTitForTatTests.chooseMoveTest   & 00:00:00.0016006 & Réussite          \\
-StratRandomTests.chooseMoveTest             & 00:00:00.0003971 & Réussite          \\
-StratGrimTriggerTests.chooseMoveTest        & 00:00:00.0012845 & Réussite          \\
-StrategyTests.ToStringTest                  & 00:00:00.0004259 & Réussite          \\
-StrategyTests.CompareToTest                 & 00:00:00.0004124 & Réussite          \\
-StratBlinkerTests.chooseMoveTest            & 00:00:00.0010023 & Réussite          \\
-StratAlwaysDefectTests.chooseMoveTest       & 00:00:00.0004947 & Réussite          \\
-StratAlwaysCooperateTests.chooseMoveTest    & 00:00:00.0043890 & Réussite          \\
-PayoffMatrixTests.returnPayoffTest          & 00:00:00.0002887 & Réussite          \\
-PayoffMatrixTests.isValidStaticTest         & 00:00:00.0007546 & Réussite          \\
-PayoffMatrixTests.isValidConvenianceTest    & 00:00:00.0002266 & Réussite          \\
-PayoffMatrixTests.DesignatedConstructorTest & 00:00:00.0003320 & Réussite          \\
-GridTests.getPointClampedInGridTest         & 00:00:00.0003422 & Réussite          \\
-GridTests.getCellTest                       & 00:00:00.0003659 & Réussite          \\
-GridTests.findCellNeighborsTest             & 00:00:00.0005940 & Réussite          \\
-GridTests.DesignatedConstructorTest         & 00:00:00.0019260 & Réussite          \\
-ComboBoxExtensionsTests.AddStrategiesTest   & 00:00:00.0188054 & Réussite          \\
-ColorExtensionsTests.ToRGBTest              & 00:00:00.0004100 & Réussite          \\
-ColorExtensionsTests.ToHexTransparentTest   & 00:00:00.0002800 & Réussite          \\
-ColorExtensionsTests.ToHexTest              & 00:00:00.0002878 & Réussite          \\
-CellTests.onClickTest                       & 00:00:00.0024636 & Réussite          \\
-CellTests.ImplicitConversionTest            & 00:00:00.0001942 & Réussite          \\
-CellTests.DesignatedConstructorTest         & 00:00:00.0092386 & Réussite          \\
-CellTests.ConvenianceConstructorTest        & 00:00:00.0001753 & Réussite          \\ \hline
+CellTests.ConvenianceConstructorTest         & 00:00:00.0002014 & Réussite \\
+CellTests.DesignatedConstructorTest          & 00:00:00.0083494 & Réussite \\
+CellTests.ImplicitConversionTest             & 00:00:00.0002080 & Réussite \\
+CellTests.onClickTest                        & 00:00:00.0060866 & Réussite \\
+ColorExtensionsTests.ToHexTest               & 00:00:00.0004385 & Réussite \\
+ColorExtensionsTests.ToHexTransparentTest    & 00:00:00.0004142 & Réussite \\
+ColorExtensionsTests.ToRGBTest               & 00:00:00.0003641 & Réussite \\
+ComboBoxExtensionsTests.AddStrategiesTest    & 00:00:00.0247826 & Réussite \\
+GridTests.DesignatedConstructorTest          & 00:00:00.0006595 & Réussite \\
+GridTests.findCellNeighborsTest              & 00:00:00.0009470 & Réussite \\
+GridTests.getCellTest                        & 00:00:00.0005589 & Réussite \\
+GridTests.getPointClampedInGridTest          & 00:00:00.0005565 & Réussite \\
+PayoffMatrixTests.DesignatedConstructorTest  & 00:00:00.0002266 & Réussite \\
+PayoffMatrixTests.isValidConvenianceTest     & 00:00:00.0003449 & Réussite \\
+PayoffMatrixTests.isValidStaticTest          & 00:00:00.0010773 & Réussite \\
+PayoffMatrixTests.returnPayoffTest           & 00:00:00.0002335 & Réussite \\
+StratAlwaysCooperateTests.chooseMoveTest     & 00:00:00.0004451 & Réussite \\
+StratAlwaysDefectTests.chooseMoveTest        & 00:00:00.0004544 & Réussite \\
+StratBlinkerTests.chooseMoveTest             & 00:00:00.0011629 & Réussite \\
+StrategyTests.CompareToTest                  & 00:00:00.0004379 & Réussite \\
+StrategyTests.ToStringTest                   & 00:00:00.0004382 & Réussite \\
+StratFortressTests.chooseMoveTest            & 00:00:00.0028304 & Réussite \\
+StratGrimTriggerTests.chooseMoveTest         & 00:00:00.0013625 & Réussite \\
+StratRandomTests.chooseMoveTest              & 00:00:00.0003097 & Réussite \\
+StratSuspiciousTitForTatTests.chooseMoveTest & 00:00:00.0029031 & Réussite \\
+StratTitForTatTests.chooseMoveTest           & 00:00:00.0009945 & Réussite \\
+StratTitForTwoTatsTests.chooseMoveTest       & 00:00:00.0015303 & Réussite \\
+\hline
 \end{tabular}
 \caption{Résultat des tests unitaires}
 \end{table}
@@ -2023,8 +2015,79 @@ Documentation       & 100\%             &                                       
 \end{table}
 
 \section{Conclusions et perspectives}
-\subsection{Coopération dans l'automate cellulaire}
+\subsection{Projet}
+En conclusion, le cahier des charges à été entièrement rempli. De plus, quelques fonctionnalités ont pu être ajoutés. La fonction \textit{benchmark} permet à l'utilisateur de tester une stratégie contre toutes les autres stratégies disponibles, dans l'optique de comparer ses résultats. Il est également possible de changer à tout moment le mode d'interaction des cellules. Deux modes sont disponibles, le mode normal et le mode torique (voir Énumération \texttt{WrapMode}). 
+
 \subsection{Améliorations possibles}
+Le projet contient actuellement toutes les fonctions décrites dans le cahier des charges, mais n'est évidemment pas parfait. Plusieurs idées viennent à l'esprit lorsque l'on parle d'améliorations possibles :
+
+\begin{itemize}
+    \item Amélioration des performances.
+    \begin{itemize}
+        \item Graphique de la moyenne des scores.
+    \end{itemize}
+    
+    \item Changement de la logique du projet.
+    \begin{itemize}
+        \item MVC
+        \item Huit choix pour huit voisins.
+    \end{itemize}
+\end{itemize}
+
+
+\pagebreak
+\subsubsection{Graphique de la moyenne des scores}
+Le graphique affichant le score moyen de la cellule stocke actuellement tous les résultats de la partie actuelle, ce qui peut causer des ralentissement dans des parties longues. Pour corriger ce problème il est envisageable de créer un nouvel objet compatible avec le graphique de \textit{LiveCharts}. 
+
+Pour cela, l'objet devrait spécifier la coordonnée "$x$" de chaque point au lieu d'être réparti automatiquement par le composant graphique. Cet objet posséderait donc le score et le numéro du tour ou le score à été prit. Après avoir implémenté cela, il ne resterait plus qu'à fixer un seuil pour le nombre d'éléments maximum a stocker et à retirer les éléments en trop.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=8cm]{graph.png}
+    \caption{Graphique causant des problèmes de performances}
+\end{figure}
+
+\subsubsection{MVC}
+Actuellement le projet utilise une structure de type "\texttt{Model} $\rightarrow{}$ \texttt{View}" ce qui rends plus difficile la séparation du modèle de la vue. Utiliser une architecture MVC simplifierait l'implémentation du modèle dans un autre application.
+
+\subsubsection{Huit choix pour huit voisins}
+Actuellement, une seule action est choisi par une cellule, malgré le fait qu'une cellule possède huit voisins au maximum. Ce choix de conception permet de simplifier grandement la logique du jeu malgré les quelques imprécisions qu'elle peut causer au niveau des stratégies. En effet, certaines stratégies ont eu être adaptées pour fonctionner avec l'automate cellulaire. En adoptant une structure ou chaque cellule joue huit parties individuelles avec chacun de ces voisins, les stratégies peuvent rester plus fidèles à leur première implémentation, mais cela au coût de la simplicité. Ce concept pose des problèmes comme "comment définir la couleur de la cellule ?" mais il serait intéressant de l'implémenter pour observer les résultats obtenus.
+
+\pagebreak
+\subsection{Évolution de la coopération et fiabilité des stratégies}
+Dans "The Evolution of Cooperation" de Robert Axelrod\cite{book}, l'auteur définit différents critères pour qu'une stratégie puisse obtenir un bon score au dilemme du prisonnier. Les critères pour qu'une stratégie soit efficace sont les suivants :
+
+\begin{table}[htp]
+\centering
+\begin{tabular}{lll}
+\hline
+\textbf{Anglais}                            & \textbf{}     & \textbf{Français}                          \\ \hline
+Don't be envious.                           & $\rightarrow$ & Ne soyez pas envieux.                      \\
+Don't be the first to defect.               & $\rightarrow$ & Ne soyez pas le premier a trahir.          \\
+Reciprocate both cooperation and defection. & $\rightarrow$ & Réciproquez la coopération et la trahison. \\
+Don't be too clever.                        & $\rightarrow$ & Ne soyez pas trop malin.                   \\ \hline
+\end{tabular}
+\caption{Réussite d'une stratégie}
+\end{table}
+
+Le premier critère indique qu'il ne faut pas être envieux, cela implique que la stratégie ne dois pas chercher à avoir le meilleur score de manière égoïste pour réussir.
+
+Le deuxième critère indique qu'il ne faut pas être le premier à trahir ses voisins. Cela assure une relation de "confiance" et empêche certaines stratégies de se "venger" au prochain tour. 
+
+Le troisième critère est qu'il faut réciproquer la trahison et la coopération. En résumé, il est important de coopérer mais il ne faut pas se laisser exploiter par des traîtres et il est nécessaire de trahir si l'adversaire trahit de manière répétée.
+
+Le quatrième critère est qu'il ne faut pas être trop malin. L'auteur fait probablement référence à la stratégie \textit{tit-for-tat} étant l'une des stratégies les plus simples et pourtant la gagnante de plusieurs tournois du dilemme du prisonnier. Ce critère indique aussi que des stratégies plus complexes ne seront pas forcement plus efficaces cela du à la nature du jeu. Une stratégie analysant son adversaire pour déterminer quelle action faire ne sera pas forcement plus efficace qu'une stratégie simple comme \textit{tit-for-tat}.
+
+Dans le cas de l'automate cellulaire du dilemme du prisonnier, ces critères s'appliquent toujours. Cependant, le troisième critère est beaucoup plus difficile à appliquer. Chaque cellule fait un seul choix pour jouer contre ses huit voisins. Cette condition implique que la coopération devient beaucoup plus difficile à rétablir. En effet, si une cellule décide de coopérer, il est nécessaire que la \textit{totalité} de ses voisins coopère pour s'assurer que l'on se fasse pas exploiter par des cellules traîtres. C'est à cause de cette subtilité que des stratégies comme \textit{tit-for-tat} ou \textit{pavlov} ne décident de pas rétablir la coopération.
+
+On peut donc tirer plusieurs conclusions de ces résultats. Du à la nature de l'automate cellulaire, il est difficile de rétablir la coopération après la trahison. De plus, les stratégies simples (\textit{always cooperate}, \textit{blinker}, etc...) ne sont pas une bonne approche et il est nécessaire d'utiliser les informations du plateau pour obtenir de meilleurs scores. Finalement, les stratégies visant à avoir un maximum de points (envieuses) sont plus performantes que dans le dilemme du prisonnier standard (un contre un), cela du à la disposition du jeu (un contre huit) et à la méthode d'attribution des scores (maximisé).
+
+\subsection{Perspectives}
+Grâce à ce projet, j'ai pu m'immerger dans un sujet qui m'était inconnu. Il m'aura permit d'appliquer différents concepts appris en classe, tels que : les \textit{design patterns}, le \textit{test driven developpement} ou encore la sérialisation. Il m'a également permit de renforcer mes compétences en documentation avec \LaTeX{}.
+
+Si je venais à travailler à nouveau sur ce projet, je pense changer la structure du programme pour que chaque cellule puisse choisir une action par voisin. 
+
+Finalement, ce projet m'a donné envie de me plonger dans le domaine de la théorie des jeux et de finir la lecture du livre de Robert Axelrod : "L'Évolution de la Coopération".
 
 % End document
 \pagebreak
@@ -2035,4 +2098,166 @@ Documentation       & 100\%             &                                       
 \listoffigures
 \listoftables
 
+\pagebreak
+
+% Title page
+\pagebreak
+\begin{center}
+	{\scshape\LARGE CFPT-INFORMATIQUE \par}
+	\vspace{0.25cm}
+	{\scshape\lesson\par}
+	\vspace{3cm}
+	
+	\hrule
+	{\huge\bfseries\textsc{}Code Source\par}
+	{\Large\bfseries\textsc\subtitle\par}
+	\vspace{0.5cm}
+	{\itshape\@author\par}
+	\vspace{1cm}
+	{\textit{Supervisé par :}  \par \textsc{\teacher}}\par
+	\vspace{0.5cm}
+	\hrule
+	
+	\vfill
+
+	\vfill
+	\textsc{\class}
+	\vspace{1cm}
+	
+	{\large\today\par}
+\end{center}
+% End title page
+\pagebreak
+
+\section{Code source}
+\subsection{Vues}
+\subsubsection{AboutView.cs}
+\lstinputlisting{code/AboutView.cs}
+
+\subsubsection{GenerateHelpView.cs}
+\lstinputlisting{code/GenerateHelpView.cs}
+
+\subsubsection{GenerateView.cs}
+\lstinputlisting{code/GenerateView.cs}
+
+\subsubsection{MainView.cs}
+\lstinputlisting{code/MainView.cs}
+
+\subsubsection{PayoffMatrixHelpView.cs}
+\lstinputlisting{code/PayoffMatrixHelpView.cs}
+
+\subsubsection{PayoffMatrixView.cs}
+\lstinputlisting{code/PayoffMatrixView.cs}
+
+\pagebreak
+\subsection{Classes}
+\subsubsection{Cell.cs}
+\lstinputlisting{code/Cell.cs}
+
+\subsubsection{Grid.cs}
+\lstinputlisting{code/Grid.cs}
+
+\subsubsection{PayoffMatrix.cs}
+\lstinputlisting{code/PayoffMatrix.cs}
+
+\pagebreak
+\subsection{Classes d'extensions}
+\subsubsection{ArrayExtensions.cs}
+\lstinputlisting{code/ArrayExtensions.cs}
+
+\subsubsection{ColorExtensions.cs}
+\lstinputlisting{code/ColorExtensions.cs}
+
+\subsubsection{ComboBoxExtensions.cs}
+\lstinputlisting{code/ComboBoxExtensions.cs}
+
+\pagebreak
+\subsection{Stratégies}
+\subsubsection{Strategy.cs}
+\lstinputlisting{code/Strategy.cs}
+
+\subsubsection{StratAdaptativePavlov.cs}
+\lstinputlisting{code/StratAdaptativePavlov.cs}
+
+\subsubsection{StratAlwaysCooperate.cs}
+\lstinputlisting{code/StratAlwaysCooperate.cs}
+
+\subsubsection{StratAlwaysDefect.cs}
+\lstinputlisting{code/StratAlwaysDefect.cs}
+
+\subsubsection{StratBlinker.cs}
+\lstinputlisting{code/StratBlinker.cs}
+
+\subsubsection{StratFortress.cs}
+\lstinputlisting{code/StratFortress.cs}
+
+\subsubsection{StratFortress.cs}
+\lstinputlisting{code/StratFortress.cs}
+
+\subsubsection{StratGrimTrigger.cs}
+\lstinputlisting{code/StratGrimTrigger.cs}
+
+\subsubsection{StratRandom.cs}
+\lstinputlisting{code/StratRandom.cs}
+
+\subsubsection{StratSuspiciousTitForTat.cs}
+\lstinputlisting{code/StratSuspiciousTitForTat.cs}
+
+\subsubsection{StratTitForTat.cs}
+\lstinputlisting{code/StratTitForTat.cs}
+
+\subsubsection{StratTitForTwoTats.cs}
+\lstinputlisting{code/StratTitForTwoTats.cs}
+
+\pagebreak
+\subsection{Enums}
+\subsubsection{Enums.cs}
+\lstinputlisting{code/Enums.cs}
+
+\pagebreak
+\subsection{Tests}
+\subsubsection{CellTests.cs}
+\lstinputlisting{code/tests/CellTests.cs}
+
+\subsubsection{ColorExtensionsTests.cs}
+\lstinputlisting{code/tests/ColorExtensionsTests.cs}
+
+\subsubsection{ComboBoxExtensionsTests.cs}
+\lstinputlisting{code/tests/ComboBoxExtensionsTests.cs}
+
+\subsubsection{GridTests.cs}
+\lstinputlisting{code/tests/GridTests.cs}
+
+\subsubsection{PayoffMatrixTests.cs}
+\lstinputlisting{code/tests/PayoffMatrixTests.cs}
+
+\subsubsection{StrategyTests.cs}
+\lstinputlisting{code/tests/StrategyTests.cs}
+
+\subsubsection{StratAlwaysCooperateTests.cs}
+\lstinputlisting{code/tests/StratAlwaysCooperateTests.cs}
+
+\subsubsection{StratAlwaysDefectTests.cs}
+\lstinputlisting{code/tests/StratAlwaysDefectTests.cs}
+
+\subsubsection{StratBlinkerTests.cs}
+\lstinputlisting{code/tests/StratBlinkerTests.cs}
+
+\subsubsection{StratFortressTests.cs}
+\lstinputlisting{code/tests/StratFortressTests.cs}
+
+\subsubsection{StratGrimTriggerTests.cs}
+\lstinputlisting{code/tests/StratGrimTriggerTests.cs}
+
+\subsubsection{StratRandomTests.cs}
+\lstinputlisting{code/tests/StratRandomTests.cs}
+
+\subsubsection{StratSuspiciousTitForTatTests.cs}
+\lstinputlisting{code/tests/StratSuspiciousTitForTatTests.cs}
+
+\subsubsection{StratTitForTatTests.cs}
+\lstinputlisting{code/tests/StratTitForTatTests.cs}
+
+\subsubsection{StratTitForTwoTatsTests.cs}
+\lstinputlisting{code/tests/StratTitForTwoTatsTests.cs}
 \end{document}
